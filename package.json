@@ -1,6 +1,6 @@
 {
   "name": "dotwiki",
-  "private": true,
+  "version": "0.1.0",
   "scripts": {
     "rails": "overmind s -f DevProcfile -p 3000",
     "wds": "webpack-dev-server",
@@ -34,7 +34,6 @@
     "vue-loader": "^15.8.3",
     "vue-template-compiler": "^2.6.11"
   },
-  "version": "0.1.0",
   "devDependencies": {
     "webpack": "^4.41.5",
     "webpack-assets-manifest": "^3.1.1",
