@@ -1,0 +1,16 @@
+ja:
+  wikis:
+    index:
+      title: Wikiのタイトル
+    maintainers:
+      index:
+        maintainers: メンテナー
+        remove_maintainer_link: メンテナーから除外
+        remove_maintainer_title: 本当にメンテナーから除外しますか？
+        remove_maintainer_body: メンテナーから外すと、このユーザーはメンテナーの管理・コントリビューターの管理・Wikiの設定にアクセスできなくなります。それでもよろしいですか？
+        remove_maintainer_cancel: キャンセル
+        watchers: ウォッチしているユーザー
+        add_maintainer_link: メンテナーに追加
+        add_maintainer_title: 本当にメンテナーに追加しますか？
+        add_maintainer_body: メンテナーに追加すると、このユーザーはメンテナーの管理・コントリビューターの管理・Wikiの設定にアクセスできるようになります。それでもよろしいですか？
+        add_maintainer_cancel: キャンセル

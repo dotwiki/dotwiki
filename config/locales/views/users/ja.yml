@@ -1,0 +1,11 @@
+ja:
+  users:
+    new:
+      title: 新規登録
+      terms: 利用規約
+      privacy: プライバシーポリシー
+      terms_privacy_html: '%{terms}と%{privacy}に同意の上、登録ボタンをクリックしてください'
+    edit:
+      title: ユーザー情報変更
+      edit_password: パスワードを変更する
+      delete_account: アカウントを削除する

@@ -1,0 +1,14 @@
+ja:
+  header:
+    login: ログイン
+    logout: ログアウト
+  footer:
+    about: 運営について
+    developer: 開発者
+    services: サービス
+    privacy_terms: 利用規約など
+    credit: クレジット
+    supports: サポート情報
+    blog: 運営ブログ
+    contact: お問い合わせ
+    community: コミュニティー

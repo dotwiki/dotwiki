@@ -1,0 +1,51 @@
+<%= include_gon %>
+
+<div class="column col-9 col-sm-12 side-column">
+
+  <a class="btn show-lg" href="#sidebar-id">
+    <i class="icon icon-arrow-right mr-1"></i>メニューを開く
+  </a>
+
+  <div class="off-canvas off-canvas-sidebar-show">
+    <%# サイドバー %>
+    <div id="sidebar-id" class="off-canvas-sidebar">
+      <ul class="nav">
+        <% wiki.nav.each do |nv| %>
+          <% unless nv.is_a?(Array) %>
+            <% page = wiki.pages.find(nv["page_id"]) %>
+            <li class="nav-item">
+              <%= link_to page.title, wiki_page_path(wiki, page) %>
+            </li>
+          <% else %>
+            <ul class="nav">
+              <% nv.each do |nvc| %>
+                <% page = wiki.pages.find(nvc["page_id"]) %>
+                <li class="nav-item">
+                  <%= link_to page.title, wiki_page_path(wiki, page) %>
+                </li>
+              <% end %>
+            </ul>
+          <% end %>
+        <% end %>
+        <li class="nav-item">
+          <%= link_to "ページ一覧", wiki_pages_path(@wiki) %>
+        </li>
+        <li class="nav-item">
+          <a href="#">アップロード一覧</a>
+        </li>
+        <li class="nav-item">
+          <a href="#">このWikiについて</a>
+        </li>
+      </ul>
+    </div>
+    <%# /サイドバー %>
+
+    <a class="off-canvas-overlay" href="#close"></a>
+
+    <div class="off-canvas-content">
+      <article>
+        <%= yield %>
+      </article>
+    </div>
+  </div>
+</div>

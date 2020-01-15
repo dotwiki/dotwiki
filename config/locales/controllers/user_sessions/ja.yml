@@ -1,0 +1,13 @@
+ja:
+  user_sessions:
+    create:
+      notice: ログインしました
+      flash_alert: ログインに失敗しました
+    destroy:
+      notice: ログアウトしました
+    please_login_first: 'ログインしてください'
+  password_resets:
+    create:
+      notice: メールを送信しました
+    update:
+      notice: パスワードを更新しました

@@ -1,0 +1,30 @@
+# == Schema Information
+#
+# Table name: histories
+#
+#  id         :bigint           not null, primary key
+#  comment    :string
+#  content    :text
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  page_id    :integer
+#  user_id    :integer
+#
+# Indexes
+#
+#  index_histories_on_comment  (comment)
+#  index_histories_on_page_id  (page_id)
+#  index_histories_on_user_id  (user_id)
+#
+
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  page_id: 1
+  content: MyText
+  user_id: 
+
+two:
+  page_id: 1
+  content: MyText
+  user_id: 

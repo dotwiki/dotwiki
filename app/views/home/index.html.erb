@@ -1,0 +1,39 @@
+
+<div class="columns is-index">
+  <div class="column col-3 col-sm-12 side-column">
+    <div>
+      <%= render partial: 'bookmark' if current_user %>
+    </div>
+    <div>
+      <ul class="menu">
+        <li class="divider" data-content="新しく追加されたwiki">
+        </li>
+        <% @wikis.each do |wiki| %>
+          <li class="menu-item">
+            <%= link_to wiki.title, wiki %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+  <div class="column col-sm-12">
+    <div class="container">
+        <ul class="tab tab-block">
+      <li class="tab-item active">
+        <a href="#">新着フィード</a>
+      </li>
+      <li class="tab-item">
+        <a href="#">コメント</a>
+      </li>
+      <li class="tab-item">
+        <a href="#" class="d-hides">イベント</a>
+      </li>
+    </ul>
+    </div>
+  </div>
+  <div class="column col-3 col-sm-12 side-column">
+    <div>
+      <%= render partial: 'controll_panel' if current_user %>
+    </div>
+  </div>
+</div>

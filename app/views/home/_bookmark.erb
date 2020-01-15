@@ -1,0 +1,29 @@
+<div class="panel">
+  <div class="panel-header text-center">
+    <figure class="avatar avatar-lg"><%= image_tag current_user.current_avatar %></figure>
+    <div class="panel-title h5 mt-10"><%= current_user.name %></div>
+    <div class="panel-subtitle d-hide"></div>
+  </div>
+  <nav class="panel-nav d-hide">
+    <ul class="tab tab-block">
+      <li class="tab-item active"><a href="#panels">ウォッチ</a></li>
+      <li class="tab-item"><a href="#panels">プライベート</a></li>
+    </ul>
+  </nav>
+  <div class="panel-body">
+    <% current_user.watches.each do |watching| %>
+    <div class="tile">
+      <div class="tile-content">
+        <div class="tile-title">
+          <%= link_to wiki_path(watching.wiki) do %>
+            <i class="btn btn-link icon icon-bookmark mr-2"></i><%= watching.wiki.title %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+  <div class="panel-footer">
+    <button class="btn btn-primary btn-block">foobar</button>
+  </div>
+</div>

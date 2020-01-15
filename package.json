@@ -1,0 +1,44 @@
+{
+  "name": "dotwiki",
+  "private": true,
+  "scripts": {
+    "rails": "overmind s -f DevProcfile -p 3000",
+    "wds": "webpack-dev-server",
+    "dev": "webpack --progress",
+    "watch": "webpack --progress --watch"
+  },
+  "dependencies": {
+    "@rails/actioncable": "^6.0.0",
+    "@rails/activestorage": "^6.0.0",
+    "@rails/ujs": "^6.0.0",
+    "autoprefixer": "^9.7.3",
+    "axios": "^0.19.1",
+    "css-loader": "^3.4.1",
+    "cssnano": "^4.1.10",
+    "glob": "^7.1.6",
+    "import-glob-loader": "^1.1.0",
+    "insane": "^2.6.2",
+    "marked": "^0.8.0",
+    "mini-css-extract-plugin": "^0.9.0",
+    "node-sass": "^4.13.0",
+    "postcss-loader": "^3.0.0",
+    "purgecss-webpack-plugin": "^1.6.0",
+    "sass-loader": "^8.0.0",
+    "simplemde": "^1.11.2",
+    "sortablejs": "^1.10.2",
+    "style-loader": "^1.1.2",
+    "svg-loader": "0.0.2",
+    "tree-helper": "^1.4.14",
+    "vue": "^2.6.11",
+    "vue-draggable-nested-tree": "^2.2.18",
+    "vue-loader": "^15.8.3",
+    "vue-template-compiler": "^2.6.11"
+  },
+  "version": "0.1.0",
+  "devDependencies": {
+    "webpack": "^4.41.5",
+    "webpack-assets-manifest": "^3.1.1",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.10.1"
+  }
+}

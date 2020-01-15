@@ -1,0 +1,81 @@
+<div class="columns">
+  <%= render layout: 'wikis/navs/layout', locals: {wiki: @wiki} do %>
+    <div class="container is_main">
+      <h2><%= @wiki.title %></h2>
+      <h3>このwikiについて</h3>
+      <p><%= @wiki.description %></p>
+      <h3>ルールや規約について</h3>
+      <p><%= @wiki.terms %></p>
+    </div>
+  <% end %>
+
+  <div class="column col-3 col-sm-12 side-column">
+    <% if current_user %>
+      <div id="watch_wiki_button"></div>
+      <%=  javascript_pack_tag 'watch_wiki', defer: true %>
+      <div>
+        <%= render partial: 'wikis/controll_panel' if current_user_is_maintainer? %>
+      </div>
+    <% else %>
+      <%= render partial: "signup_user" %>
+    <% end %>
+    
+    <div>
+      <ul class="nav">
+        <li class="nav-item active">
+          <a href="#">最新の更新</a>
+          <ul class="nav">
+            <li class="nav-item">
+              <a href="#">xxxあいうえおかきくきくけこきくけこ(2020/01/14)</a>
+            </li>
+            <li class="nav-item">
+              <a href="#">yyy(2020/01/14)</a>
+            </li>
+            <li class="nav-item">
+              <a href="#">zzz(2020/01/14)</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    
+    <div>
+      <ul class="nav">
+        <li class="nav-item active">
+          <a href="#">最新のコメント</a>
+          <ul class="nav">
+            <li class="nav-item">
+              <a href="#">xxxあいうえおかきくきくけこきくけこ(2020/01/14)</a>
+            </li>
+            <li class="nav-item">
+              <a href="#">yyy(2020/01/14)</a>
+            </li>
+            <li class="nav-item">
+              <a href="#">zzz(2020/01/14)</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    
+    <div>
+      <ul class="nav">
+        <li class="nav-item active">
+          <a href="#">その他いろいろな情報</a>
+          <ul class="nav">
+            <li class="nav-item">
+              <a href="#">xxxあいうえおかきくきくけこきくけこ(2020/01/14)</a>
+            </li>
+            <li class="nav-item">
+              <a href="#">yyy(2020/01/14)</a>
+            </li>
+            <li class="nav-item">
+              <a href="#">zzz(2020/01/14)</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</div>

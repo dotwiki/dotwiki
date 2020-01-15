@@ -1,0 +1,10 @@
+ja:
+  users:
+    create:
+      notice: 確認メールを送信しました
+    update:
+      notice: ユーザーの更新が完了しました
+    destroy:
+      notice: ユーザーの削除が完了しました
+    activate:
+      notice: ユーザー登録が完了しました

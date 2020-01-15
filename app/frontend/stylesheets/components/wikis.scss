@@ -1,0 +1,20 @@
+.wiki_header {
+  padding: 15px;
+  .column {
+    height: $navbar-height;
+  }
+  .brand {
+    display: inline-block;
+  }
+  .title {
+    display: inline-block;
+    margin: 0;
+    h1 {
+      font-weight: bold;
+      font-size: 1rem;
+      height: $navbar-height;
+      display: table-cell;
+      vertical-align: middle;
+    }
+  }
+}

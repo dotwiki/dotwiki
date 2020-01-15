@@ -1,0 +1,70 @@
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+main {
+  flex: 1;
+}
+
+$navbar-height: 36px;
+
+.container {
+  &.is-main {
+    margin-top: 1rem;
+  }
+}
+
+.form-action {
+  margin-top: 0.8rem;
+}
+
+.columns.is-index {
+  .column.side-column {
+    padding: 0 25px;
+  }
+}
+
+.btn-original {
+  display: table;
+  padding: 6px 12px;
+  border-radius: 0.1rem;
+  &:hover {
+    text-decoration: none;
+  }
+  div {
+    display: table-cell;
+    vertical-align: middle;
+    height: 18px;
+    svg {
+      display: table-cell;
+      margin-right: 8px;
+    }
+  }
+  span {
+    color: #fff;
+    font-size: 20px;
+  }
+  &.btn-twitter {
+    background-color: #1da1f2;
+  }
+  &.btn-discord {
+    background-color: #7289da;
+  }
+}
+
+.btn-full {
+  width: 100%;
+}
+
+.align-items-center {
+  align-items: center !important;
+}
+
+.signup_user {
+  background-color: #f8ff8c;
+  box-shadow: 5px 6px 0px #ffdc8c;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+}

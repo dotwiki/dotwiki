@@ -1,0 +1,22 @@
+<%= form_with(model: [@wiki, page], local: true) do |form| %>
+  <%= render partial: 'shared/form_error', locals: {form_object: page} %>
+
+  <div class="form-group">
+    <%= form.label :title, class: "form-label" %>
+    <%= form.text_field :title, class: "form-input" %>
+  </div>
+
+  <%= form.fields_for :histories, @page.histories.last do |cform| %>
+    <div class="form-group">
+      <%= cform.label :content, class: "form-label" %>
+      <%= cform.text_area :content, id: "mdeditor", data: {wiki_id: @wiki.id} %>
+    </div>
+  <% end %>
+
+  <div class="form-action">
+    <%= form.submit class: 'btn btn-lg btn-primary' %>
+  </div>
+<% end %>
+
+<%= stylesheet_pack_tag 'simplemde' %>
+<%= javascript_pack_tag 'simplemde' %>

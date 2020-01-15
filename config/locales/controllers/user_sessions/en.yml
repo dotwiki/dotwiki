@@ -1,0 +1,7 @@
+en:
+  user_sessions_controller:
+    create:
+      notice: Sign in successful
+      flash_alert: Sign in failed
+    destroy:
+      notice: Sign out successful

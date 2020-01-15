@@ -1,0 +1,7 @@
+ja:
+  user_sessions:
+    new:
+      title: ログイン
+      email: メールアドレス
+      password: パスワード
+      submit: ログイン

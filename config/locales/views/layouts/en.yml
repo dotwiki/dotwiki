@@ -1,0 +1,10 @@
+en:
+  header:
+    login: Sign in
+    logout: Sign out
+    mypage: My page
+    resister: Resister
+    edit: Setting
+  nav:
+    gear: Gear
+    pack: Pack

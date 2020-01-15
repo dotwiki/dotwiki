@@ -1,0 +1,37 @@
+<h1 class="title">Settings</h1>
+
+<a class="btn btn- show-lg" href="#sidebar-id">
+  <i class="icon icon-arrow-right mr-1"></i>メニューを開く
+</a>
+
+<div class="off-canvas off-canvas-sidebar-show">
+  <div id="sidebar-id" class="off-canvas-sidebar">
+  <ul class="nav">
+    <li class="nav-item">
+      <a href="<%= edit_user_path(user) %>">ユーザー情報</a>
+    </li>
+    <li class="nav-item">
+      <ul class="nav">
+        <li class="nav-item <%= 'active' if active.include?('user_setting') %>">
+          <a href="<%= edit_user_path(user) %>" class="">ユーザー情報変更</a>
+        </li>
+        <li class="nav-item <%= 'active' if active.include?('change_password') %>">
+          <a href="<%= change_password_user_path(user) %>" class="">パスワードの変更</a>
+        </li>
+        <li class="nav-item">
+          <%= link_to "ログアウト", :logout, method: :post, class: '', data: {no_instant: true} %>
+        </li>
+        <li class="nav-item <%= 'active' if active.include?('delete_user') %> has-text-danger">
+        <a href="<%= delete_user_path(user) %>" class="">ユーザーを削除</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+  </div>
+
+  <a class="off-canvas-overlay" href="#close"></a>
+
+  <div class="off-canvas-content">
+    <%= yield %>
+  </div>
+</div>

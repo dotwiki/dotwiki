@@ -1,0 +1,4 @@
+en:
+  user_mailer:
+    welcome:
+      subject: 'Welcome to Rails Guides!'

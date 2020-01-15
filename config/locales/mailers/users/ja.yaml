@@ -1,0 +1,10 @@
+en:
+  user_mailer:
+    welcome:
+      subject: 'Welcome to Rails Guides!'
+    activation_needed_email:
+      subject: ようこそdotwikiへ！メールアドレスの認証をお願いします
+    activation_success_email:
+      subject: メールアドレスの認証が完了しました！
+    reset_password_email:
+      subject: パスワードリセットのご案内

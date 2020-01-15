@@ -1,0 +1,26 @@
+{
+  "ignored_warnings": [
+    {
+      "warning_type": "Mass Assignment",
+      "warning_code": 70,
+      "fingerprint": "573663502d98a8db93c2de95526cb98719b158b40accd825d13e421a1b1e00d4",
+      "check_name": "MassAssignment",
+      "message": "Parameters should be whitelisted for mass assignment",
+      "file": "app/controllers/wikis/navs_controller.rb",
+      "line": 50,
+      "link": "https://brakemanscanner.org/docs/warning_types/mass_assignment/",
+      "code": "params.require(:nav).permit!",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Wikis::NavsController",
+        "method": "wiki_nav_params"
+      },
+      "user_input": null,
+      "confidence": "Medium",
+      "note": ""
+    }
+  ],
+  "updated": "2020-01-15 13:27:21 +0900",
+  "brakeman_version": "4.7.2"
+}

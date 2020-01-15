@@ -1,0 +1,15 @@
+ja:
+  wikis:
+    create:
+      notice: Wikiの登録が完了しました
+    update:
+      notice: Wikiの更新が完了しました
+    destroy:
+      notice: Wikiの削除が完了しました
+    maintainers:
+      update:
+        notice: メンテナーを追加しました
+      destroy:
+        notice: メンテナーを削除しました
+    check_maintainer:
+      alert: 編集権限がありません

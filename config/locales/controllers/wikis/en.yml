@@ -1,0 +1,8 @@
+en:
+  wikis:
+    create:
+      notice: Wiki was successfully created.
+    update:
+      notice: Wiki was successfully updated.
+    destroy:
+      notice: Wiki was successfully destroyed.

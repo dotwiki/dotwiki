@@ -1,0 +1,57 @@
+<div class="columns">
+  <%= render layout: 'wikis/navs/layout', locals: {wiki: @wiki} do %>
+    <h2><%= @page.title %></h2>
+    <div id="markdown"><%= sanitize(@page.latest_history.content) %></div>
+    <%= javascript_pack_tag 'marked' %>
+  <% end %>
+
+  <div class="column col-3 col-sm-12 side-column">
+
+    <% if current_user %>
+      <div>
+        <% if current_user_is_maintainer? %>
+          <ul class="menu mb-2">
+            <li class="divider" data-content="コントロールパネル"></li>
+            <li class="menu-item">
+              <%= link_to edit_wiki_page_path(@wiki, @page) do %>
+                <i class="icon icon-edit mr-2"></i>ページを編集
+              <% end %>
+            </li>
+            <li class="menu-item d-hide">
+              <a href="#" class="">
+                <i class="icon icon-check mr-2"></i>編集リクエストを確認
+              </a>
+            </li>
+          </ul>
+        <% end %>
+      </div>
+    <% else %>
+      <%= render partial: "wikis/signup_user" %>
+    <% end %>
+    
+<div class="panel">
+                  <div class="panel-header">
+                    <div class="panel-title h6">Comments</div>
+                        <div class="input-group">
+                          <input class="form-input" type="text" placeholder="Hello">
+                          <button class="btn btn-primary input-group-btn">Send</button>
+                        </div>
+                  </div>
+                  <div class="panel-body">
+<% (1..10).to_a.sample.times do |i| %>
+                    <div class="tile">
+                      <div class="tile-icon">
+                        <figure class="avatar avatar-sm"><img src="<%= Identicon.data_url_for(i) %>" alt="Avatar"></figure>
+                      </div>
+                      <div class="tile-content">
+                        <p class="tile-title text-bold d-hide">name</p>
+                        <p class="tile-subtitle">こめんとこめんと</p>
+                      </div>
+                    </div>
+<% end %>
+    </div>
+    </div>
+
+
+  </div>
+</div>

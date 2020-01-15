@@ -1,0 +1,29 @@
+<ul class="menu mb-2">
+  <!-- menu header text -->
+  <li class="divider" data-content="コントロールパネル"></li>
+  <li class="menu-item">
+    <%= link_to new_wiki_page_path(wiki_id: @wiki) do %>
+      <i class="icon icon-plus mr-2"></i>ページを作成
+    <% end %>
+  </li>
+  <li class="menu-item d-hide">
+    <a href="#" class="">
+      <i class="icon icon-check mr-2"></i>編集リクエストを確認
+    </a>
+  </li>
+  <li class="menu-item">
+    <%= link_to edit_nav_path(wiki_id: @wiki) do %>
+      <i class="icon icon-menu mr-2"></i>サイドバーの設定
+    <% end %>
+  </li>
+  <li class="menu-item">
+    <%= link_to edit_wiki_path(@wiki) do %>
+      <i class="icon icon-more-vert mr-2"></i>Wikiの設定を変更
+    <% end %>
+  </li>
+  <li class="menu-item">
+    <%= link_to maintainers_path(wiki_id: @wiki) do %>
+      <i class="icon icon-shutdown mr-2"></i>メンテナーの管理
+    <% end %>
+  </li>
+</ul>

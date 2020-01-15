@@ -1,0 +1,17 @@
+header {
+  border-bottom: 1px solid #ddd;
+  &.is-spaced {
+    padding: 15px;
+  }
+  .navbar-brand {
+    height: $navbar-height;
+    img.brand-logo {
+      height: $navbar-height;
+    }
+  }
+  .title {
+    font-weight: bold;
+    font-size: 1rem;
+    margin: 0;
+  }
+}

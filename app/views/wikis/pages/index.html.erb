@@ -1,0 +1,93 @@
+<div class="columns">
+  <%= render layout: 'wikis/navs/layout', locals: {wiki: @wiki} do %>
+    <div class="container is_main">
+      <% @wiki.pages.each do |page| %>
+        <%= link_to page.title, wiki_page_path(@wiki, page) %>
+      <% end %>
+    </div>
+  <% end %>
+
+  <div class="column col-3 col-sm-12 side-column">
+    <% if current_user %>
+      <div id="watch_wiki_button"></div>
+      <%=  javascript_pack_tag 'watch_wiki' %>
+      <div>
+        <% if current_user_is_maintainer? %>
+          <ul class="menu mb-2">
+            <li class="divider" data-content="コントロールパネル"></li>
+            <li class="menu-item">
+              <%= link_to new_wiki_page_path(@wiki) do %>
+                <i class="icon icon-edit mr-2"></i>ページを作成
+              <% end %>
+            </li>
+            <li class="menu-item d-hide">
+              <a href="#" class="">
+                <i class="icon icon-check mr-2"></i>編集リクエストを確認
+              </a>
+            </li>
+          </ul>
+        <% end %>
+      </div>
+    <% else %>
+      <%= render partial: "signup_user" %>
+    <% end %>
+    
+    <div>
+      <ul class="nav">
+        <li class="nav-item active">
+          <a href="#">最新の更新</a>
+          <ul class="nav">
+            <li class="nav-item">
+              <a href="#">xxxあいうえおかきくきくけこきくけこ(2020/01/14)</a>
+            </li>
+            <li class="nav-item">
+              <a href="#">yyy(2020/01/14)</a>
+            </li>
+            <li class="nav-item">
+              <a href="#">zzz(2020/01/14)</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    
+    <div>
+      <ul class="nav">
+        <li class="nav-item active">
+          <a href="#">最新のコメント</a>
+          <ul class="nav">
+            <li class="nav-item">
+              <a href="#">xxxあいうえおかきくきくけこきくけこ(2020/01/14)</a>
+            </li>
+            <li class="nav-item">
+              <a href="#">yyy(2020/01/14)</a>
+            </li>
+            <li class="nav-item">
+              <a href="#">zzz(2020/01/14)</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    
+    <div>
+      <ul class="nav">
+        <li class="nav-item active">
+          <a href="#">その他いろいろな情報</a>
+          <ul class="nav">
+            <li class="nav-item">
+              <a href="#">xxxあいうえおかきくきくけこきくけこ(2020/01/14)</a>
+            </li>
+            <li class="nav-item">
+              <a href="#">yyy(2020/01/14)</a>
+            </li>
+            <li class="nav-item">
+              <a href="#">zzz(2020/01/14)</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</div>

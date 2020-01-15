@@ -1,0 +1,15 @@
+<% if current_user %>
+  <%= link_to edit_user_path(current_user) do %>
+  <%# <a href="/" class="btn btn-link badge" data-badge="8"> %>
+  <a href="#" class="btn btn-link" data-badge="">
+    <i class="icon icon-2x icon-message"></i>
+  </a>
+  <% end %>
+  <%= link_to edit_user_path(current_user), class: "ml-2" do %>
+    <figure class="avatar">
+      <%= image_tag "#{current_user.current_avatar}" %>
+    </figure>
+  <% end %>
+<% else %>
+  <%= link_to "ログイン", login_path, class: "btn" %>
+<% end %>
