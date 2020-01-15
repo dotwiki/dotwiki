@@ -9,12 +9,16 @@ const { NODE_ENV } = process.env
 const isProd = NODE_ENV === 'production'
 
 function collectWhitelist() {
-  return []
+  return ['show']
+}
+
+function collectWhitelistPatternsChildren() {
+  return [/CodeMirror/, /editor/, /cm/, /toast/]
 }
 
 function collectWhitelistPatterns() {
   if (isProd === true) {
-    return [/CodeMirror/, /editor/, /cm/]
+    return []
   } else {
     return [/^/]
   }
@@ -22,7 +26,6 @@ function collectWhitelistPatterns() {
 
 module.exports = {
   mode: isProd ? 'production' : 'development',
-  devtool: 'source-map',
   entry: {
     application: path.resolve(__dirname, 'app/frontend/application.js'),
     simplemde: path.resolve(__dirname, 'app/frontend/javascripts/simplemde.js'),
@@ -98,7 +101,8 @@ module.exports = {
       paths: glob.sync(`${path.join(__dirname, 'app/views')}/**/*`, { nodir: true }),
       only: ['application'],
       whitelist: collectWhitelist,
-      whitelistPatterns: collectWhitelistPatterns
+      whitelistPatterns: collectWhitelistPatterns,
+      whitelistPatternsChildren: collectWhitelistPatternsChildren
     }),
     new VueLoaderPlugin()
   ]

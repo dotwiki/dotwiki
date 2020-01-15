@@ -16,7 +16,7 @@ require('@rails/ujs').start()
 
 import './stylesheets/application.scss'
 
-const toast = (type, msg) => {
+window.toast = function toast(type, msg) {
   let toast = document.getElementById('toast')
   toast.classList.add(type)
   let toast_img = document.getElementById('toast_img')
@@ -37,5 +37,3 @@ const toast = (type, msg) => {
     toast.className = toast.className.replace('show', '')
   }, 5000)
 }
-
-window.toast = toast
