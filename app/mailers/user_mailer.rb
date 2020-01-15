@@ -38,7 +38,7 @@ class UserMailer < ApplicationMailer
 
   def get_domain
     if Rails.env.production?
-      "https://dotwiki.xyz/"
+      "https://www.dotwiki.xyz"
     else
       "http://127.0.0.1:3000"
     end
