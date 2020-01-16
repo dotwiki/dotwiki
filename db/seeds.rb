@@ -18,18 +18,18 @@ dotwiki.wiki_maintainers.create(user: dotwiki_admin)
 dotwiki_admin.watches.create(wiki_id: dotwiki.id)
 
 # 自分がアクセスできるテスト用wiki
-admin1 = User.new(
-  name: 'あどみんさん',
-  email: 't4traw+kanri1@gmail.com',
+t4traw = User.new(
+  name: 't4traw',
+  email: 't4traw@gmail.com',
   password: 'password',
   agreement: true
 )
-admin1.save!
-admin1.activate!
+t4traw.save!
+t4traw.activate!
 
 wiki = Wiki.create(
   title: 'かいはつよーうぃき',
 )
-wiki.wiki_maintainers.create(user: admin1)
-admin1.watches.create(wiki_id: wiki.id)
+wiki.wiki_maintainers.create(user: t4traw)
+t4traw.watches.create(wiki_id: wiki.id)
 

@@ -1,0 +1,23 @@
+<%= buoy_with_title :wiki, {wiki: @wiki}, title: @wiki.title %>
+
+<div class="columns">
+  <%= render layout: 'wikis/navs/layout', locals: {wiki: @wiki} do %>
+    <h2><%= @wiki.title %></h2>
+    <h3>このwikiについて</h3>
+    <p><%= @wiki.description %></p>
+    <h3>ルールや規約について</h3>
+    <p><%= @wiki.terms %></p>
+  <% end %>
+
+  <div class="column col-3 col-sm-12 side-column">
+    <% if current_user %>
+      <div id="watch_wiki_button"></div>
+      <%=  javascript_pack_tag 'watch_wiki', defer: true %>
+      <div>
+        <%= render partial: 'wikis/controll_panel' %>
+      </div>
+    <% else %>
+      <%= render partial: "signup_user" %>
+    <% end %>
+  </div>
+</div>

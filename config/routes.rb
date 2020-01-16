@@ -6,7 +6,12 @@ Rails.application.routes.draw do
       post '/upload', to: 'wikis#upload'
       resource :nav, only: [:edit, :update], module: "wikis"
       resources :maintainers, only: [:index, :update, :destroy], module: "wikis"
-      resources :pages, except: [:destroy], module: "wikis", as: :wiki_pages
+      resources :pages, except: [:destroy], module: "wikis", as: :wiki_pages do
+        resources :requests, except: [:destroy] do
+          get '/merge', to: 'requests#merge'
+          get '/reject', to: 'requests#reject'
+        end
+      end
     end
   end
 
@@ -27,9 +32,4 @@ Rails.application.routes.draw do
   post 'logout', to: 'user_sessions#destroy', as: :logout
   resources :user_sessions, only: [:new, :create, :destroy]
   resources :password_resets, only: [:new, :create, :edit, :update]
-
-  # if Rails.env.development?
-  #   mount LetterOpenerWeb::Engine, at: "/letter_opener"
-  # end
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
