@@ -35,6 +35,7 @@ class Wikis::PagesController < ApplicationController
   # POST /pages
   # POST /pages.json
   def create
+    params["page"]["histories_attributes"]["0"]["user_id"] = current_user.id
     @page = @wiki.pages.new(page_params)
 
     respond_to do |format|
@@ -51,6 +52,8 @@ class Wikis::PagesController < ApplicationController
   # PATCH/PUT /pages/1
   # PATCH/PUT /pages/1.json
   def update
+    params["page"]["histories_attributes"]["0"]["user_id"] = current_user.id
+
     respond_to do |format|
       if @page.update(page_params)
         format.html { redirect_to wiki_page_path(@wiki, @page), notice: 'Page was successfully updated.' }
@@ -85,6 +88,6 @@ class Wikis::PagesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def page_params
-      params.require(:page).permit(:wiki_id, :title, histories_attributes: [:content])
+      params.require(:page).permit(:wiki_id, :title, histories_attributes: [:content, :user_id])
     end
 end
