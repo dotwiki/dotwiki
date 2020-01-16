@@ -8,6 +8,8 @@ class OauthsController < ApplicationController
   end
       
   def callback
+    redirect_to login_url and return if params[:denied].present?
+    
     provider = params[:provider]
     if @user = login_from(provider)
       redirect_to root_path, notice: t('user_sessions.create.notice')
