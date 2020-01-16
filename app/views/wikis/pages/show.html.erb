@@ -1,3 +1,5 @@
+<%= buoy_with_title :wiki_page, {wiki: @wiki, page: @page}, title: @page.title %>
+
 <div class="columns">
   <%= render layout: 'wikis/navs/layout', locals: {wiki: @wiki} do %>
     <h2><%= @page.title %></h2>

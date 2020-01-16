@@ -38,7 +38,6 @@ class Wikis::NavsController < ApplicationController
 
   def update
     @wiki = Wiki.find(params["wiki_id"])
-    binding.pry
     navs = wiki_nav_params.to_hash["tree"]
     @wiki.nav = navs
     @wiki.save
