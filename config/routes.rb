@@ -19,10 +19,10 @@ Rails.application.routes.draw do
     end
   end
 
-  get "oauth/:provider", to: "oauths#oauth", as: :auth_at_provider
   post "oauth/callback", to: "oauths#callback"
   get "oauth/callback", to: "oauths#callback"
   get "oauth/callback/:provider", to: "oauths#callback"
+  get "oauth/login_from/:provider", to: "oauths#oauth", as: :auth_at_provider
   get 'login', to: 'user_sessions#new', as: :login
   post 'logout', to: 'user_sessions#destroy', as: :logout
   resources :user_sessions, only: [:new, :create, :destroy]
