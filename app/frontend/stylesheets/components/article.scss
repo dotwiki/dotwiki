@@ -1,0 +1,6 @@
+article {
+  padding: 1rem 0;
+  @media (min-width: $off-canvas-breakpoint) {
+    padding: 0 1rem;
+  }
+}
