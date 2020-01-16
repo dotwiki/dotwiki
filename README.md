@@ -10,7 +10,7 @@ Next-generation wiki service that allows you to write in markdown, manage mainta
 ## Require
 
 - ruby
-- nodejs(webpack)
+- node.js(webpack)
 - vue.js
 - postgresql
 - overmind(`brew install overmind`)
@@ -25,7 +25,11 @@ $ bin/setup
 
 ```
 $ npm run rails
-# or rails s, npm run wds
+
+# or
+
+$ rails s
+$ npm run wds
 ```
 
 ## メイン機能ロードマップ
