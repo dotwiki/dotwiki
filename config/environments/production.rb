@@ -1,7 +1,4 @@
 Rails.application.configure do
-  config.static_cache_control = "public, max-age=604800"
-  config.assets.compress = true
-  
   config.action_mailer.default_url_options = { host: 'https://www.dotwiki.xyz' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
