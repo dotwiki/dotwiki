@@ -31,6 +31,7 @@ class Wiki < ApplicationRecord
   has_many :watchers, through: :watches, source: :user
   
   has_many :pages, dependent: :delete_all
+  has_many :requests, dependent: :destroy
   has_many :attachments, dependent: :delete_all 
 
   before_create :add_wiki_string

@@ -19,4 +19,5 @@ class Page < ApplicationRecord
   has_many :histories, inverse_of: :page
   has_one :latest_history, -> { order(created_at: :desc) }, class_name: :History
   accepts_nested_attributes_for :histories, limit: 1
+  has_many :requests, dependent: :destroy
 end

@@ -41,6 +41,7 @@ class User < ApplicationRecord
 
   has_many :wikis, through: :watches
   has_many :watches, dependent: :destroy
+  has_many :requests, dependent: :destroy
 
   mount_uploader :avatar, AvatarUploader
   
