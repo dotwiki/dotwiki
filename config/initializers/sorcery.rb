@@ -109,7 +109,7 @@ Rails.application.config.sorcery.configure do |config|
   #
   config.twitter.key = ENV["TWITTER_KEY"]
   config.twitter.secret = ENV["TWITTER_SECRET"]
-  config.twitter.callback_url = "http://127.0.0.1:3000/oauth/callback/twitter"
+  config.twitter.callback_url = "#{get_domain}/oauth/callback/twitter"
   config.twitter.user_info_path = "/1.1/account/verify_credentials.json?include_email=true"
   config.twitter.user_info_mapping = {
     name: "screen_name",
@@ -224,7 +224,7 @@ Rails.application.config.sorcery.configure do |config|
   # https://discordapp.com/developers/docs/topics/oauth2
   config.discord.key = ENV["DISCORD_KEY"]
   config.discord.secret = ENV["DISCORD_SECRET"]
-  config.discord.callback_url = "http://127.0.0.1:3000/oauth/callback?provider=discord"
+  config.discord.callback_url = "#{get_domain}/oauth/callback?provider=discord"
   config.discord.scope = "identify email"
   config.discord.user_info_mapping = {
     name: "name",
@@ -545,4 +545,12 @@ Rails.application.config.sorcery.configure do |config|
   # This line must come after the 'user config' block.
   # Define which model authenticates with sorcery.
   config.user_class = "User"
+end
+
+def get_domain
+  if Rails.env.production?
+    "https://www.dotwiki.xyz"
+  else
+    "http://127.0.0.1:3000"
+  end
 end
