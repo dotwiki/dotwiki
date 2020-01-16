@@ -1,6 +1,11 @@
+<div align="center">
+  <br>
+  <a target="_blank" rel="noopener noreferrer" href="https://www.dotwiki.xyz"><img alt="DEV" src="https://res.cloudinary.com/dotwiki/image/upload/v1579133718/dotwiki_abg_iqegbx.png" width="300px" style="max-width:100%;"></a>
+</div>
+
 # dotwiki
 
-A next-generation wiki service that allows you to write in markdown, manage maintainers, make edit requests, and identify contributors.
+Next-generation wiki service that allows you to write in markdown, manage maintainers, make edit requests, and identify contributors.
 
 ## Require
 
