@@ -1,7 +1,8 @@
 <% if buoys.any? %>
+<div class="container">
   <ul itemscope itemtype='//schema.org/BreadcrumbList' class='breadcrumb'>
     <% buoys.each.with_index(1) do |link, i| %>
-      <li itemprop='itemListElement' itemscope itemtype='//schema.org/ListItem'>
+      <li itemprop='itemListElement' itemscope itemtype='//schema.org/ListItem' class="breadcrumb-item">
         <%= link_to link.url, link.options, itemprop: :item do %>
           <span itemprop='name'><%= link.text %></span>
           <meta itemprop='position' content='<%= i %>' />
@@ -9,4 +10,5 @@
       </li>
     <% end %>
   </ul>
+</div>
 <% end %>

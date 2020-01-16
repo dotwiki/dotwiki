@@ -1,9 +1,13 @@
 # frozen_string_literal: true
 
-buoy :wiki do |wiki|
-  link wiki.title, wiki_path(wiki)
+buoy :wiki do |args|
+  link args[:wiki].title, wiki_path(args[:wiki])
 end
 
+buoy :wiki_page do |args|
+  link args[:page].title, wiki_page_path(args[:wiki], args[:page])
+  parent :wiki, args
+end
 
 # buoy :stories do
 #   link 'Stories', stories_path
