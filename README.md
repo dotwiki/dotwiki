@@ -1,6 +1,6 @@
 <div align="center">
   <br>
-  <a target="_blank" rel="noopener noreferrer" href="https://www.dotwiki.xyz"><img alt="DEV" src="https://res.cloudinary.com/dotwiki/image/upload/v1579133718/dotwiki_abg_iqegbx.png" width="300px" style="max-width:100%;"></a>
+  <a target="_blank" rel="noopener noreferrer" href="https://www.dotwiki.xyz"><img alt="DEV" src="https://user-images.githubusercontent.com/6788936/72482956-b8581a00-3842-11ea-963b-baef441e2a9b.png" width="300px" style="max-width:100%;"></a>
 </div>
 
 # dotwiki
