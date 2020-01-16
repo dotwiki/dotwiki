@@ -1,11 +1,11 @@
 class WikisController < ApplicationController
   include OnlyMaintainers
+  helper_method :current_user_is_maintainer?
+
   before_action :set_wiki, only: [:show, :edit, :update, :destroy]
   before_action :only_maintainers, except: [:index, :show, :new, :create]
   skip_before_action :require_login, only: [:index, :show]
 
-  helper_method :current_user_is_maintainer?
-  
   # GET /wikis
   # GET /wikis.json
   def index

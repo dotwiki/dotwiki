@@ -1,11 +1,12 @@
 class Wikis::PagesController < ApplicationController
   include OnlyMaintainers
+  helper_method :current_user_is_maintainer?
+
   before_action :only_maintainers, except: [:index, :show]
   before_action :set_wiki
   before_action :set_page, only: [:show, :edit, :update, :destroy]
   skip_before_action :require_login, only: [:index, :show]
 
-  helper_method :current_user_is_maintainer?
 
   # GET /pages
   # GET /pages.json

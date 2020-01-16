@@ -1,0 +1,21 @@
+<%= form_with(model: [@wiki, @page, @request], local: true) do |form| %>
+  <%= render partial: 'shared/form_error', locals: {form_object: @page} %>
+
+  <div class="form-group">
+    <%= form.label :content, class: "form-label" %>
+    <%= form.text_area :content, id: "mdeditor", data: {wiki_id: @wiki.id} %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :comment, class: "form-label" %>
+    <%= form.text_field :comment, class: "form-input", placeholder: "例: 新しい情報がきたので追加しました😆" %>
+  </div>
+
+
+  <div class="form-action">
+    <%= form.submit class: 'btn btn-lg btn-primary' %>
+  </div>
+<% end %>
+
+<%= stylesheet_pack_tag 'simplemde' %>
+<%= javascript_pack_tag 'simplemde' %>
