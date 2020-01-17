@@ -51,10 +51,8 @@ class WikisController < ApplicationController
         wiki_maintainer = @wiki.wiki_maintainers.new(user: current_user)
         wiki_maintainer.save
         format.html { redirect_to @wiki, notice: t('.notice') }
-        format.json { render :show, status: :created, location: @wiki }
       else
         format.html { render :new }
-        format.json { render json: @wiki.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -65,10 +63,8 @@ class WikisController < ApplicationController
     respond_to do |format|
       if @wiki.update(wiki_params)
         format.html { redirect_to @wiki, notice: t('.notice') }
-        format.json { render :show, status: :ok, location: @wiki }
       else
         format.html { render :edit }
-        format.json { render json: @wiki.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -79,7 +75,6 @@ class WikisController < ApplicationController
   #   @wiki.destroy
   #   respond_to do |format|
   #     format.html { redirect_to wikis_url, notice: t('.notice') }
-  #     format.json { head :no_content }
   #   end
   # end
 

@@ -1,0 +1,41 @@
+<%= buoy_with_title :wiki, {wiki: @wiki}, title: @wiki.title %>
+
+<%= render layout: 'wikis/layout' do %>
+<% @requests.each do |req| %>
+
+<div class="tile mb-2">
+  <div class="tile-icon">
+    <div class="example-tile-icon">
+      <figure class="avatar">
+        <%= image_tag "#{req.user.current_avatar}" %>
+      </figure>
+    </div>
+  </div>
+  <div class="tile-content">
+    <p class="tile-title-only"><%= req.page.title %><span class="label label-warning ml-2">ページ編集</span></p>
+  </div>
+  <div class="tile-action">
+    <%= link_to wiki_page_request_review_path(@wiki, @page, req) do %>
+    <button class="btn tooltip tooltip-left" data-tooltip="<%= req.comment %>">レビュー</button>
+    <% end %>
+  </div>
+</div>
+
+<% end %>
+<div class="tile mb-2">
+  <div class="tile-icon">
+    <div class="example-tile-icon">
+      <figure class="avatar">
+        <%= image_tag current_user.current_avatar %>
+      </figure>
+    </div>
+  </div>
+  <div class="tile-content">
+    <p class="tile-title-only">あたらしいぺーじ<span class="label label-success ml-2">新規作成</span></p>
+
+  </div>
+  <div class="tile-action">
+    <button class="btn">レビュー</button>
+  </div>
+</div>
+<% end %>

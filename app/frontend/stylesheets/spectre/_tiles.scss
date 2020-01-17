@@ -21,6 +21,10 @@
   .tile-subtitle {
     line-height: $line-height;
   }
+  .tile-title-only {
+    line-height: $unit-9;
+    margin: 0;
+  }
 
   &.tile-centered {
     align-items: center;

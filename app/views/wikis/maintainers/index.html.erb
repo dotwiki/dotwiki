@@ -1,135 +1,93 @@
-<div class="columns">
-  <%= render layout: 'wikis/navs/layout', locals: {wiki: @wiki} do %>
-    <div class="container is_main">
-      <p class="mini_header"><%= t('wikis.maintainers.index.maintainers') %></p>
-      <% @maintainers.each do |maintainer| %>
-        <div class="tile align-items-center mb-2">
-          <div class="tile-icon">
-            <div class="example-tile-icon">
-              <figure class="avatar">
-                <%= image_tag maintainer.current_avatar %>
-              </figure>
-            </div>
-          </div>
-          <div class="tile-content">
-            <%= maintainer.name %>
-          </div>
-          <div class="tile-action">
-
-<% target = "modal-#{SecureRandom.hex(8)}" %>
-
-<a class="btn btn-error" onclick="openModal('<%= target %>')">
-  <%= t('wikis.maintainers.index.remove_maintainer_link') %>
-</a>
-
-<div class="modal" id="<%= target %>">
-  <a href="#close" class="modal-overlay" onclick="closeModal('<%= target %>')"></a>
-  <div class="modal-container">
-    <div class="modal-header">
-      <a href="#close" class="btn btn-clear float-right" onclick="closeModal('<%= target %>')">
-      </a>
-      <div class="modal-title h5"><%= t('wikis.maintainers.index.remove_maintainer_title') %></div>
-    </div>
-    <div class="modal-body">
-      <div class="content">
-        <%= t('wikis.maintainers.index.remove_maintainer_body') %>
-      </div>
-    </div>
-    <div class="modal-footer">
-      <%= link_to t('wikis.maintainers.index.remove_maintainer_link'), maintainer_path(wiki_id: @wiki.id, id: maintainer.id), method: :delete, class: "btn btn-error" %>
-      <button class="btn" onclick="closeModal('<%= target %>')">
-        <%= t('wikis.maintainers.index.remove_maintainer_cancel') %>
-      </button>
-    </div>
-  </div>
-</div>
-
+<%= render layout: 'wikis/layout' do %>
+  <div class="container is_main">
+    <p class="mini_header"><%= t('wikis.maintainers.index.maintainers') %></p>
+    <% @maintainers.each do |maintainer| %>
+      <div class="tile align-items-center mb-2">
+        <div class="tile-icon">
+          <div class="example-tile-icon">
+            <figure class="avatar">
+              <%= image_tag maintainer.current_avatar %>
+            </figure>
           </div>
         </div>
-      <% end %>
-
-      <p class="mini_header"><%= t('wikis.maintainers.index.watchers') %></p>
-      <% @watchers.each do |watch_user| %>
-        <div class="tile align-items-center mb-2">
-          <div class="tile-icon">
-            <div class="example-tile-icon">
-              <figure class="avatar">
-                <%= image_tag watch_user.current_avatar %>
-              </figure>
+        <div class="tile-content">
+          <%= maintainer.name %>
+        </div>
+        <div class="tile-action">
+          <% target = "modal-#{SecureRandom.hex(8)}" %>
+          <a class="btn btn-error" onclick="openModal('<%= target %>')">
+            <%= t('wikis.maintainers.index.remove_maintainer_link') %>
+          </a>
+          <div class="modal" id="<%= target %>">
+            <a href="#close" class="modal-overlay" onclick="closeModal('<%= target %>')"></a>
+            <div class="modal-container">
+              <div class="modal-header">
+                <a href="#close" class="btn btn-clear float-right" onclick="closeModal('<%= target %>')">
+                </a>
+                <div class="modal-title h5"><%= t('wikis.maintainers.index.remove_maintainer_title') %></div>
+              </div>
+              <div class="modal-body">
+                <div class="content">
+                  <%= t('wikis.maintainers.index.remove_maintainer_body') %>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <%= link_to t('wikis.maintainers.index.remove_maintainer_link'), maintainer_path(wiki_id: @wiki.id, id: maintainer.id), method: :delete, class: "btn btn-error" %>
+                <button class="btn" onclick="closeModal('<%= target %>')">
+                  <%= t('wikis.maintainers.index.remove_maintainer_cancel') %>
+                </button>
+              </div>
             </div>
           </div>
-          <div class="tile-content">
-            <%= watch_user.name %>
-          </div>
-          <div class="tile-action">
-
-<% target = "modal-#{SecureRandom.hex(8)}" %>
-
-<a class="btn btn-error" onclick="openModal('<%= target %>')">
-  <%= t('wikis.maintainers.index.add_maintainer_link') %>
-</a>
-
-<div class="modal" id="<%= target %>">
-  <a href="#close" class="modal-overlay" onclick="closeModal('<%= target %>')"></a>
-  <div class="modal-container">
-    <div class="modal-header">
-      <a href="#close" class="btn btn-clear float-right" onclick="closeModal('<%= target %>')">
-      </a>
-      <div class="modal-title h5"><%= t('wikis.maintainers.index.add_maintainer_title') %></div>
-    </div>
-    <div class="modal-body">
-      <div class="content">
-        <%= t('wikis.maintainers.index.add_maintainer_body') %>
+        </div>
       </div>
-    </div>
-    <div class="modal-footer">
-      <%= link_to t('wikis.maintainers.index.add_maintainer_link'), maintainer_path(wiki_id: @wiki.id, id: watch_user.id), method: :put, class: "btn btn-error" %>
-      <button class="btn" onclick="closeModal('<%= target %>')">
-        <%= t('wikis.maintainers.index.add_maintainer_cancel') %>
-      </button>
-    </div>
-  </div>
-</div>
+    <% end %>
+
+    <p class="mini_header"><%= t('wikis.maintainers.index.watchers') %></p>
+    <% @watchers.each do |watch_user| %>
+      <div class="tile align-items-center mb-2">
+        <div class="tile-icon">
+          <div class="example-tile-icon">
+            <figure class="avatar">
+              <%= image_tag watch_user.current_avatar %>
+            </figure>
           </div>
         </div>
-      <% end %>
+        <div class="tile-content">
+          <%= watch_user.name %>
+        </div>
+        <div class="tile-action">
+          <% target = "modal-#{SecureRandom.hex(8)}" %>
+          <a class="btn btn-error" onclick="openModal('<%= target %>')">
+            <%= t('wikis.maintainers.index.add_maintainer_link') %>
+          </a>
+          <div class="modal" id="<%= target %>">
+            <a href="#close" class="modal-overlay" onclick="closeModal('<%= target %>')"></a>
+            <div class="modal-container">
+              <div class="modal-header">
+                <a href="#close" class="btn btn-clear float-right" onclick="closeModal('<%= target %>')">
+                </a>
+                <div class="modal-title h5"><%= t('wikis.maintainers.index.add_maintainer_title') %></div>
+              </div>
+              <div class="modal-body">
+                <div class="content">
+                  <%= t('wikis.maintainers.index.add_maintainer_body') %>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <%= link_to t('wikis.maintainers.index.add_maintainer_link'), maintainer_path(wiki_id: @wiki.id, id: watch_user.id), method: :put, class: "btn btn-error" %>
+                <button class="btn" onclick="closeModal('<%= target %>')">
+                  <%= t('wikis.maintainers.index.add_maintainer_cancel') %>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
 
-    </div>
-  <% end %>
-
-  <div class="column col-3 col-sm-12 side-column">
-    <div id="watch_wiki_button"></div>
-    <%=  javascript_pack_tag 'watch_wiki' %>
-    <div>
-      <%= render partial: 'wikis/controll_panel' %>
-    </div>
-    <div>
-      <ul class="nav">
-        <li class="nav-item active">
-          <a href="#">最新の更新</a>
-          <ul class="nav">
-            <li class="nav-item">
-              <a href="#">Flexbox grid</a>
-            </li>
-            <li class="nav-item">
-              <a href="#">Responsive</a>
-            </li>
-            <li class="nav-item">
-              <a href="#">Navbar</a>
-            </li>
-            <li class="nav-item">
-              <a href="#">Empty states</a>
-            </li>
-          </ul>
-        </li>
-      </ul>
-    </div>
   </div>
-</div>
-
-
-<%# render partial: 'shared/delete_modal', locals: {link: '全てのユーザー情報を削除する', title: '本当に削除しますか？', content: 'ユーザーの削除をすると、アップロードファイルやプレイリストなど全ての情報が削除され、今後アクセスする事ができなくなります。本当に削除してもよいですか？', object: @user} %>
-
+<% end %>
 
 <script>
 function openModal(target){

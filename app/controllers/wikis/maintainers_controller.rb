@@ -14,10 +14,8 @@ class Wikis::MaintainersController < ApplicationController
     respond_to do |format|
       if @maintainer.save
         format.html { redirect_to maintainers_path(params[:wiki_id]), notice: t('.notice') }
-        format.json { render :show, status: :created, location: @maintainer }
       else
         format.html { render :new }
-        format.json { render json: @maintainer.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -26,7 +24,6 @@ class Wikis::MaintainersController < ApplicationController
     WikiMaintainer.find_by(user_id: params[:id]).destroy
     respond_to do |format|
       format.html { redirect_to maintainers_path(params[:wiki_id]), notice: t('.notice') }
-      format.json { head :no_content }
     end
   end
 end

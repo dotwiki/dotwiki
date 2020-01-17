@@ -1,25 +1,11 @@
 <%= buoy_with_title :wiki_page, {wiki: @wiki, page: @page}, title: @page.title %>
 
-<div class="columns">
-  <%= render layout: 'wikis/navs/layout', locals: {wiki: @wiki} do %>
-    <h2><%= @page.title %></h2>
-    <div id="markdown"><%= sanitize(@page.latest_history.content) %></div>
+<%= render layout: 'wikis/layout' do %>
+  <h2><%= @page.title %></h2>
+  <div id="markdown"><%= sanitize(@page.latest_history.content) %></div>
 
-    <%= link_to new_wiki_page_request_path(@wiki, @page), class: "btn" do %>
-      編集リクエストを送る
-    <% end %>
-    <%= javascript_pack_tag 'marked' %>
+  <%= link_to new_wiki_page_request_path(@wiki, @page), class: "btn" do %>
+    編集リクエストを送る
   <% end %>
-
-  <div class="column col-3 col-sm-12 side-column">
-
-    <% if current_user %>
-      <%= render partial: 'wikis/controll_panel' %>
-    <% else %>
-      <%= render partial: "wikis/signup_user" %>
-    <% end %>
-    
-
-
-  </div>
-</div>
+  <%= javascript_pack_tag 'marked' %>
+<% end %>

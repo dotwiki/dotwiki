@@ -5,6 +5,10 @@ class Wikis::RequestsController < ApplicationController
   before_action :set_wiki
   before_action :set_page
 
+  def index
+    @requests = @wiki.pages.find(params[:wiki_page_id]).requests
+  end
+
   def new
     @page = Page.find(params[:wiki_page_id])
     @request = Request.new(
@@ -16,6 +20,40 @@ class Wikis::RequestsController < ApplicationController
   end
 
   def show
+  end
+
+  def review
+gon.old_text = "
+登場人物の名前は創作のほか、「奇抜に見えるが実在する」姓名が多用されている。
+敵方である「鬼」については、身体破壊や人喰いなどのハードな描写が多いが、
+その一方で不死性をコミカルに描くような側面もある。ほげほげ。
+また、主人公の炭治郎をはじめとする人間たちもシリアスとコメディの両側面が描かれている。
+
+舞台は大正時代の日本。
+開国と文明開化から半世紀近くが経っていて、和の中に洋が混在する。
+都市部は発展しているが、地方部は前時代が色濃く残る。ふーばー。
+また廃刀令や科学文明の大正現代に夜に潜む鬼などいるわけがないなどの理由により、
+政府不認可なので、鬼殺隊は表立った行動に制限がある。
+
+浅草、吉原など現実の大正時代の土地も描かれる。
+"
+gon.new_text = "
+登場人物の名前は創作のほか、「奇抜に見えるが実在する」姓名が多用されている。
+敵方である「鬼」については、身体破壊や人喰いなどのハードな描写が多いが、
+その一方で不死性をコミカルに描くような側面もある。
+また、主人公の炭治郎をはじめとする人間たちもシリアスとコメディの両側面が描かれている。
+
+舞台は大正時代の日本。
+都市部は発展しているが、地方部は前時代が色濃く残る。
+また廃刀令や科学文明の大正現代に夜に潜む鬼などいるわけがないなどの理由により、
+政府不認可なので、鬼殺隊は表立った行動に制限がある。
+
+浅草、吉原など現実の大正時代の土地も描かれる。てすてす。
+"
+
+  end
+
+  def merge
   end
 
   def create
@@ -39,9 +77,6 @@ class Wikis::RequestsController < ApplicationController
   end
 
   def update
-  end
-
-  def merge
   end
 
   def reject
