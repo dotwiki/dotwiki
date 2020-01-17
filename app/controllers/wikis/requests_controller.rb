@@ -23,34 +23,18 @@ class Wikis::RequestsController < ApplicationController
   end
 
   def review
-gon.old_text = "
-登場人物の名前は創作のほか、「奇抜に見えるが実在する」姓名が多用されている。
-敵方である「鬼」については、身体破壊や人喰いなどのハードな描写が多いが、
-その一方で不死性をコミカルに描くような側面もある。ほげほげ。
-また、主人公の炭治郎をはじめとする人間たちもシリアスとコメディの両側面が描かれている。
+    @page = Page.find(params[:wiki_page_id])
+    latest_content = @page.latest_history.content
+    request = Request.find(params[:request_id])
+    p request.diff
 
-舞台は大正時代の日本。
-開国と文明開化から半世紀近くが経っていて、和の中に洋が混在する。
-都市部は発展しているが、地方部は前時代が色濃く残る。ふーばー。
-また廃刀令や科学文明の大正現代に夜に潜む鬼などいるわけがないなどの理由により、
-政府不認可なので、鬼殺隊は表立った行動に制限がある。
+    binding.pry
 
-浅草、吉原など現実の大正時代の土地も描かれる。
-"
-gon.new_text = "
-登場人物の名前は創作のほか、「奇抜に見えるが実在する」姓名が多用されている。
-敵方である「鬼」については、身体破壊や人喰いなどのハードな描写が多いが、
-その一方で不死性をコミカルに描くような側面もある。
-また、主人公の炭治郎をはじめとする人間たちもシリアスとコメディの両側面が描かれている。
 
-舞台は大正時代の日本。
-都市部は発展しているが、地方部は前時代が色濃く残る。
-また廃刀令や科学文明の大正現代に夜に潜む鬼などいるわけがないなどの理由により、
-政府不認可なので、鬼殺隊は表立った行動に制限がある。
 
-浅草、吉原など現実の大正時代の土地も描かれる。てすてす。
-"
-
+    gon.old_text = latest_content
+    gon.new_text = ""
+    
   end
 
   def merge
@@ -95,5 +79,11 @@ gon.new_text = "
 
     def request_params
       params.require(:request).permit(:wiki_id, :wiki_page_id, :content, :comment)
+    end
+
+    def merge_content(base_txt, diff)
+      diff.each do |df|
+        binding.pry
+      end
     end
 end
