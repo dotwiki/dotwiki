@@ -11,8 +11,8 @@ export default {
   components: { CodeDiff },
   data() {
     return {
-      oldStr: gon.old_text,
-      newStr: gon.new_text,
+      oldStr: gon.latest_content,
+      newStr: gon.merged_content,
       format: 'side-by-side'
     }
   },
@@ -21,7 +21,7 @@ export default {
       this.format = width >= 600 ? 'side-by-side' : 'line-by-line'
     }
   },
-  mounted(){
+  mounted() {
     this.setOutputFormat(window.innerWidth)
   }
 }

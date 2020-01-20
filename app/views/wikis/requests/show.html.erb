@@ -1,2 +1,33 @@
-<h1>Wikis::Requests#show</h1>
-<p>Find me in app/views/wikis/requests/show.html.erb</p>
+<%= buoy_with_title :wiki_page_request, {wiki: @wiki, page: @page, request: @request}, title: @wiki.title %>
+<%= include_gon %>
+
+<div class="tile mb-2">
+  <div class="tile-icon">
+    <div class="example-tile-icon">
+      <figure class="avatar">
+        <%= image_tag @request.user.current_avatar %>
+      </figure>
+    </div>
+  </div>
+  <div class="tile-content">
+    <p class="tile-title-only"><%= @request.comment %></p>
+  </div>
+  <% if current_user == @request.user %>
+  <div class="tile-action">
+    <%= link_to edit_wiki_page_request_path(@wiki, @page, @request) do %>
+      <button class="btn">編集</button>
+    <% end %>
+  </div>
+  <% end %>
+</div>
+
+<div id="request_review"></div>
+
+<% unless @merged_content.include?("<!--") %>
+  <%= link_to wiki_page_request_merge_path(@wiki, @page, @request), method: :post do %>
+  <button class="btn btn-success">マージ</button>
+  <% end %>
+<% end %>
+<button class="btn btn-warning">調整してマージ</button>
+<button class="btn btn-error">リジェクト</button>
+<%= javascript_pack_tag 'request_review' %>

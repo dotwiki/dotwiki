@@ -9,6 +9,16 @@ buoy :wiki_page do |args|
   parent :wiki, args
 end
 
+buoy :wiki_page_requests do |args|
+  link "編集リクエスト一覧", wiki_page_requests_path(args[:wiki], args[:page])
+  parent :wiki_page, args
+end
+
+buoy :wiki_page_request do |args|
+  link "#{args[:request].user.name}さんの編集リクエスト", wiki_page_request_path(args[:wiki], args[:page], args[:request])
+  parent :wiki_page_requests, args
+end
+
 # buoy :stories do
 #   link 'Stories', stories_path
 # end

@@ -1,4 +1,4 @@
-<%= buoy_with_title :wiki, {wiki: @wiki}, title: @wiki.title %>
+<%= buoy_with_title :wiki_page_requests, {wiki: @wiki, page: @page, request: @request}, title: @wiki.title %>
 
 <%= render layout: 'wikis/layout' do %>
 <% @requests.each do |req| %>
@@ -15,7 +15,7 @@
     <p class="tile-title-only"><%= req.page.title %><span class="label label-warning ml-2">ページ編集</span></p>
   </div>
   <div class="tile-action">
-    <%= link_to wiki_page_request_review_path(@wiki, @page, req) do %>
+    <%= link_to wiki_page_request_path(@wiki, @page, req) do %>
     <button class="btn tooltip tooltip-left" data-tooltip="<%= req.comment %>">レビュー</button>
     <% end %>
   </div>
