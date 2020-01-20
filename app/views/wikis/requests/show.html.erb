@@ -24,10 +24,15 @@
 <div id="request_review"></div>
 
 <% unless @merged_content.include?("<!--") %>
-  <%= link_to wiki_page_request_merge_path(@wiki, @page, @request), method: :post do %>
-  <button class="btn btn-success">マージ</button>
+  <%= link_to wiki_page_request_quick_merge_path(@wiki, @page, @request), method: :post do %>
+    <button class="btn btn-success">マージ</button>
   <% end %>
 <% end %>
-<button class="btn btn-warning">調整してマージ</button>
+
+<%= link_to wiki_page_request_adjust_path(@wiki, @page, @request), method: :post do %>
+  <button class="btn btn-warning">調整してマージ</button>
+<% end %>
+
+
 <button class="btn btn-error">リジェクト</button>
 <%= javascript_pack_tag 'request_review' %>

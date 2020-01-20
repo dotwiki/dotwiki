@@ -8,7 +8,8 @@ Rails.application.routes.draw do
       resources :maintainers, only: [:index, :update, :destroy], module: "wikis"
       resources :pages, except: [:destroy], module: "wikis", as: :wiki_pages do
         resources :requests, except: [:destroy] do
-          post '/merge', to: 'requests#merge'
+          post '/quick_merge', to: 'requests#quick_merge'
+          post '/adjust_merge', to: 'requests#adjust_merge'
           post '/adjust', to: 'requests#adjust'
           post '/reject', to: 'requests#reject'
         end

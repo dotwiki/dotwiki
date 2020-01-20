@@ -4,19 +4,10 @@ class Wikis::RequestsController < ApplicationController
 
   before_action :set_wiki
   before_action :set_page
-  before_action :set_request, except: [:index, :new, :merge, :adjust, :reject]
+  before_action :set_request, only: [:show, :edit, :update]
 
   def index
     @requests = @wiki.pages.find(params[:wiki_page_id]).requests
-  end
-
-  def new
-    @request = Request.new(
-      content: @page.latest_history.content
-    )
-  end
-
-  def edit
   end
 
   def show
@@ -27,8 +18,14 @@ class Wikis::RequestsController < ApplicationController
     gon.merged_content = @merged_content
   end
 
+  def new
+    @request = Request.new(
+      content: @page.latest_history.content
+    )
+  end
+
   def create
-    diff = Diff::LCS.sdiff(page.latest_history.content.lines, request_params[:content].lines)
+    diff = Diff::LCS.sdiff(@page.latest_history.content.lines, request_params[:content].lines)
 
     request = Request.new(
       wiki_id: params[:wiki_id],
@@ -46,6 +43,9 @@ class Wikis::RequestsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
   def update
     page = Page.find(params[:wiki_page_id])
     diff = Diff::LCS.sdiff(page.latest_history.content.lines, request_params[:content].lines)
@@ -57,7 +57,7 @@ class Wikis::RequestsController < ApplicationController
     end
   end
 
-  def merge
+  def quick_merge
     request = @page.requests.find(params[:request_id])
     @latest_content = @page.latest_history.content
     @merged_content = merge_content(@latest_content, request.diff)
@@ -71,6 +71,20 @@ class Wikis::RequestsController < ApplicationController
   end
 
   def adjust
+    @request = @page.requests.find(params[:request_id])
+    @latest_content = @page.latest_history.content
+    @merged_content = merge_content(@latest_content, @request.diff)
+  end
+
+  def adjust_merge
+    request = @page.requests.find(params[:request_id])
+    if @page.histories.create(user_id: request.user.id, content: params[:content], comment: request.comment)
+      redirect_to wiki_page_path(@wiki, @page), notice: 'マージしました'
+      # requestにis_activeを追加
+      # TODO Notificationクラスを追加して通知する
+    else
+      redirect_to wiki_page_requests_path(@wiki, @page), notice: 'マージに失敗しました'
+    end
   end
 
   def reject
@@ -97,7 +111,7 @@ class Wikis::RequestsController < ApplicationController
 
     def merge_content(txt, diff)
       line_shift = 0
-      result = txt
+      result = txt.dup
       diff.each do |df|
         case df["action"]
         when "!"
