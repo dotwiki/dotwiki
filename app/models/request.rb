@@ -23,4 +23,6 @@ class Request < ApplicationRecord
   belongs_to :wiki
   belongs_to :page
   belongs_to :user
+
+  validates :comment, length: {maximum: 50}
 end
