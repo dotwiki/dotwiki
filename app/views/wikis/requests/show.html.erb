@@ -22,17 +22,39 @@
 </div>
 
 <div id="request_review"></div>
-
-<% unless @merged_content.include?("<!--") %>
-  <%= link_to wiki_page_request_quick_merge_path(@wiki, @page, @request), method: :post do %>
-    <button class="btn btn-success">マージ</button>
-  <% end %>
-<% end %>
-
-<%= link_to wiki_page_request_adjust_path(@wiki, @page, @request), method: :post do %>
-  <button class="btn btn-warning">調整してマージ</button>
-<% end %>
-
-
-<button class="btn btn-error">リジェクト</button>
 <%= javascript_pack_tag 'request_review' %>
+
+<% if current_user_is_maintainer %>
+  <% unless @merged_content.include?("[change]" || "[delete]") %>
+    <%= link_to wiki_page_request_merge_path(@wiki, @page, @request, content: @request.content), method: :post do %>
+      <button class="btn btn-success">マージ</button>
+    <% end %>
+  <% end %>
+
+  <%= link_to wiki_page_request_adjust_path(@wiki, @page, @request) do %>
+    <button class="btn btn-warning">調整してマージ</button>
+  <% end %>
+
+  <% target = "modal-#{SecureRandom.hex(8)}" %>
+  <a class="btn btn-error" onclick="toggleModal('<%= target %>')">リジェクト</a>
+
+  <div class="modal" id="<%= target %>">
+    <a href="#close" class="modal-overlay" onclick="toggleModal('<%= target %>')"></a>
+    <div class="modal-container">
+      <div class="modal-header">
+        <a href="#close" class="btn btn-clear float-right" onclick="toggleModal('<%= target %>')">
+        </a>
+        <div class="modal-title h5">本当にリジェクトしますか？</div>
+      </div>
+      <div class="modal-body">
+        <div class="content">
+          リジェクトされると、編集リクエスト一覧から削除され、戻すことができません。それでもよろしいですか？
+        </div>
+      </div>
+      <div class="modal-footer">
+        <%= link_to 'リジェクトします', wiki_page_request_reject_path(@wiki, @page, @request), method: :post, class: "btn btn-error" %>
+        <button class="btn" onclick="toggleModal('<%= target %>')">キャンセル</button>
+      </div>
+    </div>
+  </div>
+<% end %>

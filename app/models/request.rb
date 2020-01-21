@@ -24,5 +24,6 @@ class Request < ApplicationRecord
   belongs_to :page
   belongs_to :user
 
+  validates :comment, presence: true
   validates :comment, length: {maximum: 50}
 end

@@ -1,13 +1,15 @@
-<%= form_with(url: wiki_page_request_adjust_merge_path(@wiki, @page, @request), local: true) do |form| %>
-<%= render partial: 'shared/form_error', locals: {form_object: @page} %>
+<%= form_with(model: wiki_page_request_merge_path(@wiki, @page, @request), local: true) do |form| %>
+  <%= render partial: 'shared/form_error', locals: {form_object: @request} %>
 
-<div class="form-group">
-  <%= form.label :content, class: "form-label" %>
-  <%= form.text_area :content, id: "mdeditor", value: @merged_content %>
-</div>
-<div class="form-action">
-  <%= form.submit 'マージする', class: 'btn btn-lg btn-primary' %>
-</div>
+  <% content_value = @merged_content || @request.content %>
+  <div class="form-group">
+    <%= form.label :content, class: "form-label" %>
+    <%= form.text_area :content, id: "mdeditor", data: {wiki_id: @wiki.id}, value: content_value %>
+  </div>
+
+  <div class="form-action">
+    <%= form.submit class: 'btn btn-lg btn-primary' %>
+  </div>
 <% end %>
 
 <%= stylesheet_pack_tag 'simplemde' %>

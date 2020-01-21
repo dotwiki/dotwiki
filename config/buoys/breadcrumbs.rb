@@ -10,7 +10,7 @@ buoy :wiki_page do |args|
 end
 
 buoy :wiki_page_requests do |args|
-  link "編集リクエスト一覧", wiki_page_requests_path(args[:wiki], args[:page])
+  link "リクエスト一覧", wiki_page_requests_path(args[:wiki], args[:page])
   parent :wiki_page, args
 end
 

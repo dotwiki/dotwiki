@@ -37,3 +37,7 @@ window.toast = function toast(type, msg) {
     toast.className = toast.className.replace('show', '')
   }, 5000)
 }
+
+window.toggleModal = function openModal(target) {
+  document.getElementById(target).classList.toggle('active')
+}

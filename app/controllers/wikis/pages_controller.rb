@@ -1,6 +1,6 @@
 class Wikis::PagesController < ApplicationController
   include OnlyMaintainers
-  helper_method :current_user_is_maintainer?
+  helper_method :current_user_is_maintainer
 
   before_action :only_maintainers, except: [:index, :show]
   before_action :set_wiki

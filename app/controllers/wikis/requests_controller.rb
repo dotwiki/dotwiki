@@ -1,10 +1,13 @@
 class Wikis::RequestsController < ApplicationController
   include OnlyMaintainers
-  helper_method :current_user_is_maintainer?
+  helper_method :current_user_is_maintainer
 
   before_action :set_wiki
   before_action :set_page
   before_action :set_request, only: [:show, :edit, :update]
+  before_action :check_same_user, only: [:edit, :update]
+  before_action :only_maintainers, only: [:quick_merge, :adjust, :adjust_merge, :reject]
+  skip_before_action :require_login, only: [:index, :show]
 
   def index
     @requests = @wiki.pages.find(params[:wiki_page_id]).requests
@@ -12,10 +15,13 @@ class Wikis::RequestsController < ApplicationController
 
   def show
     @latest_content = @page.latest_history.content
-    @merged_content = merge_content(@latest_content, @request.diff)
+    @merged_content = merge_content(@latest_content.dup, @request.diff)
+    @latest2 = @page.histories
+
+    binding.pry
 
     gon.latest_content = @latest_content
-    gon.merged_content = @merged_content
+    gon.merged_content = @request.content
   end
 
   def new
@@ -27,7 +33,7 @@ class Wikis::RequestsController < ApplicationController
   def create
     diff = Diff::LCS.sdiff(@page.latest_history.content.lines, request_params[:content].lines)
 
-    request = Request.new(
+    @request = Request.new(
       wiki_id: params[:wiki_id],
       page_id: params[:wiki_page_id],
       user_id: current_user.id,
@@ -36,7 +42,7 @@ class Wikis::RequestsController < ApplicationController
       diff: diff
     )
     
-    if request.save
+    if @request.save
       redirect_to wiki_page_path(@wiki, @page), notice: 'リクOK'
     else
       render :new
@@ -57,13 +63,11 @@ class Wikis::RequestsController < ApplicationController
     end
   end
 
-  def quick_merge
+  def merge
     request = @page.requests.find(params[:request_id])
-    @latest_content = @page.latest_history.content
-    @merged_content = merge_content(@latest_content, request.diff)
-    if @page.histories.create(user_id: request.user.id, content: @merged_content, comment: request.comment)
+    if @page.histories.create(user_id: request.user.id, content: params[:content], comment: request.comment)
+      request.destroy
       redirect_to wiki_page_path(@wiki, @page), notice: 'マージしました'
-      # requestにis_activeを追加
       # TODO Notificationクラスを追加して通知する
     else
       redirect_to wiki_page_requests_path(@wiki, @page), notice: 'マージに失敗しました'
@@ -76,21 +80,17 @@ class Wikis::RequestsController < ApplicationController
     @merged_content = merge_content(@latest_content, @request.diff)
   end
 
-  def adjust_merge
-    request = @page.requests.find(params[:request_id])
-    if @page.histories.create(user_id: request.user.id, content: params[:content], comment: request.comment)
-      redirect_to wiki_page_path(@wiki, @page), notice: 'マージしました'
-      # requestにis_activeを追加
-      # TODO Notificationクラスを追加して通知する
-    else
-      redirect_to wiki_page_requests_path(@wiki, @page), notice: 'マージに失敗しました'
-    end
-  end
-
   def reject
+    request = @page.requests.find(params[:request_id])
+    request.destroy
+    redirect_to wiki_page_requests_path(@wiki, @page), notice: t('.notice')
   end
 
   private
+    def request_params
+      params.require(:request).permit(:wiki_id, :wiki_page_id, :content, :comment)
+    end
+
     def set_wiki
       @wiki = Wiki.find(params[:wiki_id])
       gon.wiki_id = @wiki.id
@@ -105,38 +105,13 @@ class Wikis::RequestsController < ApplicationController
       @request = @page.requests.find(params[:id])
     end
 
-    def request_params
-      params.require(:request).permit(:wiki_id, :wiki_page_id, :content, :comment)
-    end
-
-    def merge_content(txt, diff)
-      line_shift = 0
-      result = txt.dup
-      diff.each do |df|
-        case df["action"]
-        when "!"
-          unless result.gsub!(/#{df["old_element"]}/, df["new_element"])
-            result = result.lines.insert(df["new_position"] + line_shift, "<!-- 変更したかった内容 -->").join
-            result = result.lines.insert(df["new_position"] + line_shift, df["new_element"]).join
-            line_shift += 2
-          end
-        when "-"
-          if result.gsub!(/#{df["new_element"]}/, '')
-            line_shift -= 1
-          else
-            result = result.lines.insert(df["new_position"] + line_shift, "<!-- 変更したかった内容 -->").join
-            result = result.lines.insert(df["new_position"] + line_shift, "<!-- #{df["new_element"]}の削除 -->").join
-            line_shift += 2
-          end
-        when "+"
-          result = result.lines.insert(df["new_position"] + line_shift, df["new_element"]).join
-          line_shift += 1
-        end
+    def check_same_user
+      unless current_user == @request.user
+        redirect_to wiki_page_path(@wiki, @page)
       end
-      result
     end
 
-    def check_simple_merge(txt)
-      
+    def merge_content(latest_content, diff)
+      result
     end
 end

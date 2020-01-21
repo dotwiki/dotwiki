@@ -1,16 +1,20 @@
 <%= form_with(model: [@wiki, @page, @request], local: true) do |form| %>
   <%= render partial: 'shared/form_error', locals: {form_object: @request} %>
 
+  <% content_value = @merged_content || @request.content %>
   <div class="form-group">
     <%= form.label :content, class: "form-label" %>
-    <%= form.text_area :content, id: "mdeditor", data: {wiki_id: @wiki.id} %>
+    <%= form.text_area :content, id: "mdeditor", data: {wiki_id: @wiki.id}, value: content_value %>
   </div>
 
-  <div class="form-group">
-    <%= form.label :comment, class: "form-label" %>
-    <%= form.text_field :comment, class: "form-input", placeholder: "例: 新しい情報がきたので追加しました！！" %>
-    <p>※コメントの上限は50文字です</p>
-  </div>
+  <% disable_comment ||= false %>
+  <% unless disable_comment %>
+    <div class="form-group">
+      <%= form.label :comment, class: "form-label" %>
+      <%= form.text_field :comment, class: "form-input", placeholder: "例: 新しい情報がきたので追加しました！！", maximum: 50 %>
+      <p>※コメントの上限は50文字です</p>
+    </div>
+  <% end %>
 
   <div class="form-action">
     <%= form.submit class: 'btn btn-lg btn-primary' %>

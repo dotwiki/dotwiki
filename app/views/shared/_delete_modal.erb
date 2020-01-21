@@ -1,14 +1,13 @@
 <%# render partial: 'shared/delete_modal', locals: {link: '全てのユーザー情報を削除する', title: '本当に削除しますか？', content: 'ユーザーの削除をすると、アップロードファイルやプレイリストなど全ての情報が削除され、今後アクセスする事ができなくなります。本当に削除してもよいですか？', object: @user} %>
 
 <% target = "modal-#{SecureRandom.hex(8)}" %>
-
-<a class="btn btn-error" onclick="openModal('<%= target %>')"><%= link %></a>
+<a class="btn btn-error" onclick="toggleMoadl('<%= target %>')"><%= link %></a>
 
 <div class="modal" id="<%= target %>">
-  <a href="#close" class="modal-overlay" onclick="closeModal('<%= target %>')"></a>
+  <a href="#close" class="modal-overlay" onclick="toggleMoadl('<%= target %>')"></a>
   <div class="modal-container">
     <div class="modal-header">
-      <a href="#close" class="btn btn-clear float-right" onclick="closeModal('<%= target %>')">
+      <a href="#close" class="btn btn-clear float-right" onclick="toggleMoadl('<%= target %>')">
       </a>
       <div class="modal-title h5"><%= title %></div>
     </div>
@@ -19,16 +18,7 @@
     </div>
     <div class="modal-footer">
       <%= link_to '削除します', object, method: :delete, class: "btn btn-error" %>
-      <button class="btn" onclick="closeModal('<%= target %>')">キャンセル</button>
+      <button class="btn" onclick="toggleMoadl('<%= target %>')">キャンセル</button>
     </div>
   </div>
 </div>
-
-<script>
-function openModal(target){
-  document.getElementById(target).classList.add('active')
-}
-function closeModal(target){
-  document.getElementById(target).classList.remove('active')
-}
-</script>

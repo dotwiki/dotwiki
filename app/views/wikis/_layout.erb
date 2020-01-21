@@ -132,7 +132,7 @@
 
           <%# ページでメンテナーだったら編集リンクを表示 %>
           <% if @page %>
-            <% if current_user_is_maintainer? %>
+            <% if current_user_is_maintainer %>
             <li class="menu-item">
               <%= link_to edit_wiki_page_path(@wiki, @page) do %>
                 <i class="icon icon-edit mr-2"></i>ページを編集
@@ -143,7 +143,7 @@
             </li>
           <% end %>
 
-          <% if current_user_is_maintainer? %>
+          <% if current_user_is_maintainer %>
           <li class="menu-item">
             <%= link_to new_wiki_page_path(wiki_id: @wiki) do %>
               <i class="icon icon-plus mr-2"></i>ページを作成
