@@ -1,111 +1,120 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= content_for?(:title) ? yield(:title) : "dotwiki 🖊️ Markdownや編集リクエストが使える次世代Wikiサービス" %></title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="apple-touch-icon" type="image/png" href="/apple-touch-icon-180x180.png">
-    <link rel="icon" type="image/png" href="/icon-192x192.png">
-    <%= stylesheet_pack_tag 'application', media: 'all' %>
-    <%= javascript_pack_tag 'application' %>
-  </head>
 
-  <body>
-    <header>
-      <div class="container grid-xl">
-        <div class="columns wiki_header">
-          <div class="column col-auto">
-            <a href="/" class="brand navbar-brand"><%= image_tag 'logo.svg', class: "brand-logo" %></a>
-          </div>
-          <div class="column show-sm text-right mb-2">
-            <% if current_user %>
-              <%= link_to edit_user_path(current_user) do %>
-              <%# <a href="/" class="btn btn-link badge" data-badge="8"> %>
-              <a href="#" class="btn btn-link" data-badge="">
-                <i class="icon icon-2x icon-message"></i>
-              </a>
-              <% end %>
-              <%= link_to edit_user_path(current_user), class: "ml-2" do %>
-                <figure class="avatar">
-                  <%= image_tag "#{current_user.current_avatar}" %>
-                </figure>
-              <% end %>
-            <% else %>
-              <%= link_to "ログイン", login_path, class: "btn" %>
-            <% end %>
-          </div>
+<head>
+  <title><%= content_for?(:title) ? yield(:title) : "dotwiki 🖊️ Markdownや編集リクエストが使える次世代Wikiサービス" %></title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="apple-touch-icon" type="image/png" href="/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" href="/icon-192x192.png">
+  <%= stylesheet_pack_tag 'application', media: 'all' %>
+  <%= javascript_pack_tag 'application' %>
+</head>
 
-          <% if @wiki&.id %>
-          <div class="column col-sm-12 col-lg-auto">
-            <div class="title">
-              <%= link_to wiki_path(@wiki) do %>
-                <h1 class=""><%= @wiki.title %></h1>
-              <% end %>
-            </div>
-          </div>
-          <% else %>
-          <div class="column col-3 col-sm-12 col-lg-auto">
-            <div class="input-group">
-              <input class="form-input" type="text" placeholder="search">
-              <button class="btn input-group-btn">検索</button>
-            </div>
-          </div>
+<body>
+  <header>
+    <div class="container grid-xl">
+      <div class="columns wiki_header">
+        <div class="column col-auto">
+          <a href="/" class="brand navbar-brand"><%= image_tag 'logo.svg', class: "brand-logo" %></a>
+        </div>
+        <div class="column show-sm text-right mb-2">
+          <% if current_user %>
+          <%= link_to edit_user_path(current_user) do %>
+          <%# <a href="/" class="btn btn-link badge" data-badge="8"> %>
+          <a href="#" class="btn btn-link" data-badge="">
+            <i class="icon icon-2x icon-message"></i>
+          </a>
           <% end %>
+          <%= link_to edit_user_path(current_user), class: "ml-2" do %>
+          <figure class="avatar">
+            <%= image_tag "#{current_user.current_avatar}" %>
+          </figure>
+          <% end %>
+          <% else %>
+          <%= link_to "ログイン", login_path, class: "btn" %>
+          <% end %>
+        </div>
 
-          <div class="column col-lg-auto hide-sm text-right">
-            <% if current_user %>
-              <%= link_to edit_user_path(current_user) do %>
-              <%# <a href="/" class="btn btn-link badge" data-badge="8"> %>
-              <a href="#" class="btn btn-link" data-badge="">
-                <i class="icon icon-2x icon-message"></i>
-              </a>
-              <% end %>
-              <%= link_to edit_user_path(current_user), class: "ml-2" do %>
-                <figure class="avatar">
-                  <%= image_tag "#{current_user.current_avatar}" %>
-                </figure>
-              <% end %>
-            <% else %>
-              <%= link_to "ログイン", login_path, class: "btn" %>
+        <% if @wiki&.id %>
+        <div class="column col-sm-12 col-lg-auto">
+          <div class="title">
+            <%= link_to wiki_path(@wiki) do %>
+            <h1 class=""><%= @wiki.title %></h1>
             <% end %>
           </div>
         </div>
-      </div>
-    </header>
-    <div class="container is-main grid-xl">
-      <div class="breadcrumb_container">
-        <%= render partial: 'breadcrumbs/buoys' %>
-      </div>
-      <%= yield %>
-    </div>
+        <% else %>
+        <div class="column col-3 col-sm-12 col-lg-auto">
+          <div class="input-group">
+            <input class="form-input" type="text" placeholder="search">
+            <button class="btn input-group-btn">検索</button>
+          </div>
+        </div>
+        <% end %>
 
-    <footer class="footer">
+        <div class="column col-lg-auto hide-sm text-right">
+          <% if current_user %>
+          <%= link_to edit_user_path(current_user) do %>
+          <%# <a href="/" class="btn btn-link badge" data-badge="8"> %>
+          <a href="#" class="btn btn-link" data-badge="">
+            <i class="icon icon-2x icon-message"></i>
+          </a>
+          <% end %>
+          <%= link_to edit_user_path(current_user), class: "ml-2" do %>
+          <figure class="avatar">
+            <%= image_tag "#{current_user.current_avatar}" %>
+          </figure>
+          <% end %>
+          <% else %>
+          <%= link_to "ログイン", login_path, class: "btn" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container is-main grid-xl">
+    <div class="breadcrumb_container">
+      <%= render partial: 'breadcrumbs/buoys' %>
+    </div>
+    <%= yield %>
+  </div>
+
+  <footer class="footer">
+    <div class="container grid-xl">
       <div class="columns">
         <div class="column is-4">
-          <h2 class="title is-4">dotwiki</h2>
+          <a href="/" class="brand navbar-brand"><%= image_tag 'logo.svg', class: "brand-logo" %>dotwiki</a>
+          <ul>
+            <li>github</li>
+            <li>twitter</li>
+          </ul>
         </div>
         <div class="column is-4"></div>
         <div class="column is-4"></div>
       </div>
-    </footer>
-
-    <div id="toast" class="">
-      <div id="toast_img"></div>
-      <div id="toast_msg"></div>
     </div>
+  </footer>
 
-    <% flash.each do |toast_type, toast_msg| %>
-    <script defer>
-      toast('<%= toast_type %>', '<%= toast_msg %>')
-    </script>
-    <% end %>
-    
-    <% if Rails.env.production? %>
-      
-    <script src="//instant.page/3.0.0" type="module" defer integrity="sha384-OeDn4XE77tdHo8pGtE1apMPmAipjoxUQ++eeJa6EtJCfHlvijigWiJpD7VDPWXV1"></script>
-    <% end %>
-  </body>
+  <div id="toast" class="">
+    <div id="toast_img"></div>
+    <div id="toast_msg"></div>
+  </div>
+
+  <% flash.each do |toast_type, toast_msg| %>
+  <script defer>
+    toast('<%= toast_type %>', '<%= toast_msg %>')
+  </script>
+  <% end %>
+
+  <% if Rails.env.production? %>
+  <script src="//instant.page/3.0.0" type="module" defer
+    integrity="sha384-OeDn4XE77tdHo8pGtE1apMPmAipjoxUQ++eeJa6EtJCfHlvijigWiJpD7VDPWXV1"></script>
+  <% end %>
+</body>
+
 </html>

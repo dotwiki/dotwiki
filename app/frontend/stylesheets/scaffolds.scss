@@ -3,14 +3,12 @@ body {
   flex-direction: column;
   min-height: 100vh;
 }
-main {
-  flex: 1;
-}
 
 $navbar-height: 36px;
 
 .container {
   &.is-main {
+    flex: 1;
     margin-top: 1rem;
   }
 }
