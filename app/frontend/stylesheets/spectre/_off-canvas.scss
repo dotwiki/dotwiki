@@ -22,12 +22,6 @@ $off-canvas-breakpoint: $size-lg !default;
   }
 
   .off-canvas-sidebar {
-    background-color: #fff;
-    box-shadow: 3px 4px 0 #f1f1f1;
-    border-radius: 8px 0px 8px 0px;
-    @media (min-width: $off-canvas-breakpoint) {
-      background-color: #f5f5f5;
-    }
     bottom: 0;
     min-width: 14rem;
     overflow-y: auto;

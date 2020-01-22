@@ -9,7 +9,7 @@
 
     <div class="off-canvas off-canvas-sidebar-show">
       <%# サイドバー %>
-      <div id="sidebar-id" class="off-canvas-sidebar">
+      <div id="sidebar-id" class="sidebar off-canvas-sidebar">
         <ul class="nav">
           <% @wiki.nav.each do |nv| %>
             <% unless nv.is_a?(Array) %>
@@ -20,10 +20,21 @@
             <% else %>
               <ul class="nav">
                 <% nv.each do |nvc| %>
-                  <% page = @wiki.pages.find(nvc["page_id"]) %>
-                  <li class="nav-item">
-                    <%= link_to page.title, wiki_page_path(@wiki, page) %>
-                  </li>
+                  <% unless nvc.is_a?(Array) %>
+                    <% page = @wiki.pages.find(nvc["page_id"]) %>
+                    <li class="nav-item">
+                      <%= link_to page.title, wiki_page_path(@wiki, page) %>
+                    </li>
+                  <% else %>
+                    <ul class="nav">
+                      <% nvc.each do |nvcc| %>
+                        <% page = @wiki.pages.find(nvcc["page_id"]) %>
+                        <li class="nav-item">
+                          <%= link_to page.title, wiki_page_path(@wiki, page) %>
+                        </li>
+                      <% end %>
+                    </ul>
+                  <% end %>
                 <% end %>
               </ul>
             <% end %>

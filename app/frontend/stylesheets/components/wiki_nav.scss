@@ -1,20 +1,18 @@
-.he-tree {
-  border: 1px solid #ccc;
-  padding: 20px;
-  width: 300px;
-}
-.tree-node-inner {
-  padding: 5px;
-  border: 1px solid #ccc;
-  cursor: pointer;
-}
-.draggable-placeholder-inner {
-  border: 1px dashed #0088f8;
-  box-sizing: border-box;
-  background: rgba(0, 136, 249, 0.09);
-  color: #0088f9;
-  text-align: center;
-  padding: 0;
-  display: flex;
-  align-items: center;
+.tree {
+  padding: 10px 0;
+  .tree-node-inner {
+    border: 1px solid #ddd;
+    cursor: pointer;
+    padding: 5px;
+  }
+  .draggable-placeholder-inner {
+    border: 1px dashed #0088f8;
+    box-sizing: border-box;
+    background: rgba(0, 136, 249, 0.09);
+    color: #0088f9;
+    text-align: center;
+    padding: 0;
+    display: flex;
+    align-items: center;
+  }
 }

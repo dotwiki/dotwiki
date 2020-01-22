@@ -19,11 +19,21 @@ class Wikis::NavsController < ApplicationController
       else
         children = []
         nv.each do |nvc|
-          ch_page = @wiki.pages.find(nvc["page_id"])
-          children << {title: ch_page.title, page_id: ch_page.id}
-          rej << ch_page.id
+          unless nvc.is_a?(Array)
+            ch_page = @wiki.pages.find(nvc["page_id"])
+            children << {title: ch_page.title, page_id: ch_page.id}
+            rej << ch_page.id
+          else
+            gchildren = []
+            nvc.each do |nvcc|
+              gc_page = @wiki.pages.find(nvcc["page_id"])
+              gchildren << {title: gc_page.title, page_id: gc_page.id}
+              rej << gc_page.id
+            end
+            display_pages.last[:children].last[:children] = gchildren
+          end
+          display_pages.last[:children] = children
         end
-        display_pages.last[:children] =children
       end
     end
     gon.display_pages = display_pages

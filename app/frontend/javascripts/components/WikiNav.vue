@@ -1,7 +1,7 @@
 <template>
-  <div id="app">
+  <div id="" class="">
     <div class="columns">
-      <div class="column">
+      <div class="sidebar nav column">
         <tree :data="tree1data" draggable="draggable" cross-tree="cross-tree" @drop="tree1Changed">
           <div slot-scope="{ data, store }">
             <template>
@@ -45,13 +45,20 @@ export default {
   methods: {
     tree1Changed() {
       let sd = []
-      this.tree1data.forEach(function(parent) {
-        console.log(parent)
-        sd.push({ page_id: parent.page_id })
-        if (parent.children.length >= 1) {
+      this.tree1data.forEach(function(parent_a) {
+        sd.push({ page_id: parent_a.page_id })
+        if (parent_a.children.length >= 1) {
           let ch = []
-          parent.children.forEach(function(children) {
-            ch.push({ page_id: children.page_id })
+          parent_a.children.forEach(function(parent_b) {
+            ch.push({ page_id: parent_b.page_id })
+
+            if (parent_b.children.length >= 1) {
+              let mg = []
+              parent_b.children.forEach(function(parent_c) {
+                mg.push({ page_id: parent_c.page_id })
+              })
+              ch.push(mg)
+            }
           })
           sd.push(ch)
         }
