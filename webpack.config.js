@@ -81,6 +81,17 @@ module.exports = {
         test: /\.(sass|scss)$/,
         enforce: 'pre',
         loader: 'import-glob-loader'
+      },
+      {
+        test: /\.(woff2)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]'
+            }
+          }
+        ]
       }
     ]
   },
