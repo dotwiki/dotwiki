@@ -1,3 +1,54 @@
 footer {
+  color: #fff;
   background-color: $gray-color-dark;
+  padding: 0 1rem;
+  .footer {
+    &:first-child {
+      padding-top: 50px;
+    }
+    &:last-child {
+      padding-bottom: 50px;
+    }
+    ul {
+      a {
+        color: #fff;
+      }
+    }
+    .brand {
+      font-size: 40px;
+      font-weight: bold;
+      color: #ff566c;
+      animation: miracle_color 10s infinite;
+    }
+    .sns_icons {
+      margin: 0;
+      padding: 0;
+      li {
+        display: inline;
+        color: #fff;
+        font-size: 22px;
+      }
+    }
+  }
+}
+
+@keyframes miracle_color {
+  0% {
+    color: #ff566c;
+  }
+  20% {
+    color: #fddd5e;
+  }
+  40% {
+    color: #4effdc;
+  }
+  60% {
+    color: #68c3ff;
+  }
+  80% {
+    color: #ff6ef3;
+  }
+  100% {
+    color: #ff566c;
+  }
 }

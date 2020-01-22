@@ -84,18 +84,69 @@
     <%= yield %>
   </div>
 
-  <footer class="footer">
-    <div class="container grid-xl">
-      <div class="columns">
-        <div class="column is-4">
-          <a href="/" class="brand navbar-brand"><%= image_tag 'logo.svg', class: "brand-logo" %>dotwiki</a>
-          <ul>
-            <li>github</li>
-            <li>twitter</li>
-          </ul>
+  <footer>
+    <div class="footer">
+      <div class="container grid-xl">
+        <div class="columns">
+          <div class="column is-12">
+            <a href="/" class="brand navbar-brand"><%= image_tag 'logo.svg', class: "brand-logo" %>dotwiki</a>
+            <ul class="sns_icons">
+              <li><i class="icon-github"></i></li>
+              <li><i class="icon-twitter"></i></li>
+              <li><i class="icon-slack"></i></li>
+            </ul>
+          </div>
         </div>
-        <div class="column is-4"></div>
-        <div class="column is-4"></div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="container grid-xl">
+        <div class="columns">
+          <div class="column is-3 col-sm-12">
+            <ul class="nav">
+              <%= link_to 'https://www.dotwiki.xyz/wikis/1/pages/1', target: '' do %>
+                <li>dotwikiとは？</li>
+              <% end %>
+              <%= link_to 'https://www.dotwiki.xyz/wikis/1/pages/3', target: '' do %>
+                <li>利用規約</li>
+              <% end %>
+              <%= link_to 'https://www.dotwiki.xyz/wikis/1/pages/4', target: '' do %>
+                <li>プライバシーポリシー</li>
+              <% end %>
+            </ul>
+          </div>
+          <div class="column is-3 col-sm-12">
+            <ul class="nav">
+              <%= link_to 'https://www.dotwiki.xyz/wikis/1/pages/1', target: '' do %>
+                <li>dotwikiの使い方</li>
+              <% end %>
+            </ul>
+          </div>
+          <div class="column is-3 col-sm-12">
+            <ul class="nav">
+              <%= link_to new_user_path, target: '' do %>
+                <li>新規登録</li>
+              <% end %>
+              <%= link_to login_path, target: '' do %>
+                <li>ログイン</li>
+              <% end %>
+            </ul>
+          </div>
+          <div class="column is-3 col-sm-12">
+            <ul class="nav">
+              <%= link_to 'https://www.dotwiki.xyz/wikis/1/pages/6', target: '' do %>
+                  <li>ロードマップ</li>
+              <% end %>
+              <%= link_to '/', target: '' do %>
+                <li>ブログ</li>
+              <% end %>
+              <%= link_to '/', target: '' do %>
+                <li>お問い合わせ</li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   </footer>
