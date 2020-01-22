@@ -13,7 +13,7 @@ function collectWhitelist() {
 }
 
 function collectWhitelistPatternsChildren() {
-  return [/CodeMirror/, /editor/, /cm/, /toast/, /avatar/, /diff/, /tree/]
+  return [/CodeMirror/, /editor/, /cm/, /toast/, /avatar/, /diff/, /tree/, /icon/]
 }
 
 module.exports = {
@@ -52,7 +52,12 @@ module.exports = {
         test: /\.(css|sass|scss)$/,
         use: [
           MiniCssExtractPlugin.loader,
-          'css-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              url: true
+            }
+          },
           {
             loader: 'postcss-loader',
             options: {
@@ -86,10 +91,12 @@ module.exports = {
         test: /\.(woff2)$/,
         use: [
           {
-            loader: 'file-loader',
-            options: {
-              name: '[name].[ext]'
-            }
+            loader: 'url-loader'
+            // options: {
+            //   name: '[name].[ext]',
+            //   outputPath: './fonts',
+            //   publicPath: '../fonts'
+            // }
           }
         ]
       }
