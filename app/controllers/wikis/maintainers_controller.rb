@@ -1,5 +1,6 @@
 class Wikis::MaintainersController < ApplicationController
   include OnlyMaintainers
+  helper_method :current_user_is_maintainer
   before_action :only_maintainers
 
   def index
