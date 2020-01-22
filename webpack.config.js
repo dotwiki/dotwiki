@@ -31,8 +31,7 @@ module.exports = {
     simplemde: path.resolve(__dirname, 'app/frontend/javascripts/simplemde.js'),
     marked: path.resolve(__dirname, 'app/frontend/javascripts/marked.js'),
     wiki_nav: path.resolve(__dirname, 'app/frontend/javascripts/wiki_nav.js'),
-    watch_wiki: path.resolve(__dirname, 'app/frontend/javascripts/watch_wiki.js'),
-    request_review: path.resolve(__dirname, 'app/frontend/javascripts/request_review.js')
+    watch_wiki: path.resolve(__dirname, 'app/frontend/javascripts/watch_wiki.js')
   },
   output: {
     path: path.resolve(__dirname, 'public/packs'),
