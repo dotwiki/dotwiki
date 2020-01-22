@@ -13,15 +13,7 @@ function collectWhitelist() {
 }
 
 function collectWhitelistPatternsChildren() {
-  return [/CodeMirror/, /editor/, /cm/, /toast/, /avatar/]
-}
-
-function collectWhitelistPatterns() {
-  if (isProd === true) {
-    return []
-  } else {
-    return [/^/]
-  }
+  return [/CodeMirror/, /editor/, /cm/, /toast/, /avatar/, /diff/]
 }
 
 module.exports = {
@@ -101,7 +93,6 @@ module.exports = {
       paths: glob.sync(`${path.join(__dirname, 'app/views')}/**/*`, { nodir: true }),
       only: ['application'],
       whitelist: collectWhitelist,
-      whitelistPatterns: collectWhitelistPatterns,
       whitelistPatternsChildren: collectWhitelistPatternsChildren
     }),
     new VueLoaderPlugin()
