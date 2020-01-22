@@ -20,8 +20,8 @@
             <%= form.check_box :agreement, as: :boolean, checked:false %>
             <i class="form-icon"></i>
             <%= t(".terms_privacy_html",
-              terms: link_to(t('.terms'), root_path, target: '_blank'),
-              privacy: link_to(t('.privacy'), root_path, target: '_blank')) %>
+              terms: link_to(t('.terms'), 'https://www.dotwiki.xyz/wikis/1/pages/3', target: '_blank'),
+              privacy: link_to(t('.privacy'), 'https://www.dotwiki.xyz/wikis/1/pages/4', target: '_blank')) %>
           <% end %>
         </div>
 
