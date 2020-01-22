@@ -17,15 +17,23 @@
     <%= link_to edit_wiki_page_request_path(@wiki, @page, @request) do %>
       <button class="btn">編集</button>
     <% end %>
+    <%= link_to wiki_page_request_path(@wiki, @page, @request), method: :delete, data: {confirm: "本当にキャンセルしますか？"} do %>
+      <button class="btn">キャンセル</button>
+    <% end %>
   </div>
   <% end %>
 </div>
 
-<div id="request_review"></div>
-<%= javascript_pack_tag 'request_review' %>
+<%= raw @diffy %>
+
+<% unless @can_quick_merge %>
+  <div class="caution">
+    <p class="text-error">編集リクエストのあとでページ内容に更新がありました。変更点を調整してマージしてください。</p>
+  </div>
+<% end %>
 
 <% if current_user_is_maintainer %>
-  <% unless @merged_content.include?("[change]" || "[delete]") %>
+  <% if @can_quick_merge %>
     <%= link_to wiki_page_request_merge_path(@wiki, @page, @request, content: @request.content), method: :post do %>
       <button class="btn btn-success">マージ</button>
     <% end %>

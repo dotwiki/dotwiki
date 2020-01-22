@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_16_152247) do
+ActiveRecord::Schema.define(version: 2020_01_16_062128) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,11 +57,12 @@ ActiveRecord::Schema.define(version: 2020_01_16_152247) do
     t.integer "wiki_id"
     t.integer "page_id"
     t.integer "user_id"
+    t.integer "history_id"
     t.text "content", null: false
     t.string "comment", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.jsonb "diff"
+    t.index ["history_id"], name: "index_requests_on_history_id"
     t.index ["page_id"], name: "index_requests_on_page_id"
     t.index ["user_id"], name: "index_requests_on_user_id"
     t.index ["wiki_id"], name: "index_requests_on_wiki_id"

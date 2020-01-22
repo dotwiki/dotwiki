@@ -4,8 +4,8 @@ class Wikis::RequestsController < ApplicationController
 
   before_action :set_wiki
   before_action :set_page
-  before_action :set_request, only: [:show, :edit, :update]
-  before_action :check_same_user, only: [:edit, :update]
+  before_action :set_request, only: [:show, :edit, :update, :destroy]
+  before_action :check_same_user, only: [:edit, :update, :destroy]
   before_action :only_maintainers, only: [:quick_merge, :adjust, :adjust_merge, :reject]
   skip_before_action :require_login, only: [:index, :show]
 
@@ -14,14 +14,10 @@ class Wikis::RequestsController < ApplicationController
   end
 
   def show
-    @latest_content = @page.latest_history.content
-    @merged_content = merge_content(@latest_content.dup, @request.diff)
-    @latest2 = @page.histories
-
-    binding.pry
-
-    gon.latest_content = @latest_content
-    gon.merged_content = @request.content
+    before = @page.histories.find(@request.history_id)
+    @can_quick_merge = @page.latest_history.id == before.id
+    @diffy = Diffy::Diff.new(before.content, @request.content, context: 1,
+      include_plus_and_minus_in_html: true).to_s(:html_simple)
   end
 
   def new
@@ -34,16 +30,16 @@ class Wikis::RequestsController < ApplicationController
     diff = Diff::LCS.sdiff(@page.latest_history.content.lines, request_params[:content].lines)
 
     @request = Request.new(
-      wiki_id: params[:wiki_id],
-      page_id: params[:wiki_page_id],
+      wiki_id: @wiki.id,
+      page_id: @page.id,
+      history_id: @page.latest_history.id,
       user_id: current_user.id,
       content: request_params[:content],
       comment: request_params[:comment],
-      diff: diff
     )
     
     if @request.save
-      redirect_to wiki_page_path(@wiki, @page), notice: 'リクOK'
+      redirect_to wiki_page_request_path(@wiki, @page, @request), notice: t('.notice')
     else
       render :new
     end
@@ -56,28 +52,36 @@ class Wikis::RequestsController < ApplicationController
     page = Page.find(params[:wiki_page_id])
     diff = Diff::LCS.sdiff(page.latest_history.content.lines, request_params[:content].lines)
 
-    if @request.update(content: request_params[:content], diff: diff)
-      redirect_to wiki_page_path(@wiki, @page), notice: 'リクOK'
+    if @request.update(content: request_params[:content])
+      redirect_to wiki_page_request_path(@wiki, @page, @request), notice: t('.notice')
     else
       render :edit
     end
+  end
+
+  def destroy
+    request = @page.requests.find(params[:id])
+    request.destroy
+    redirect_to wiki_page_requests_path(@wiki, @page), notice: t('.notice')
   end
 
   def merge
     request = @page.requests.find(params[:request_id])
     if @page.histories.create(user_id: request.user.id, content: params[:content], comment: request.comment)
       request.destroy
-      redirect_to wiki_page_path(@wiki, @page), notice: 'マージしました'
+      redirect_to wiki_page_path(@wiki, @page), notice: t('.notice')
       # TODO Notificationクラスを追加して通知する
     else
-      redirect_to wiki_page_requests_path(@wiki, @page), notice: 'マージに失敗しました'
+      redirect_to wiki_page_requests_path(@wiki, @page), alert: t('.alert')
     end
   end
 
   def adjust
     @request = @page.requests.find(params[:request_id])
-    @latest_content = @page.latest_history.content
-    @merged_content = merge_content(@latest_content, @request.diff)
+    before = @page.histories.find(@request.history_id)
+    @can_quick_merge = @page.latest_history.id == before.id
+    @diffy = Diffy::Diff.new(before.content, @request.content, context: 1,
+      include_plus_and_minus_in_html: true).to_s(:html_simple)
   end
 
   def reject
@@ -109,9 +113,5 @@ class Wikis::RequestsController < ApplicationController
       unless current_user == @request.user
         redirect_to wiki_page_path(@wiki, @page)
       end
-    end
-
-    def merge_content(latest_content, diff)
-      result
     end
 end

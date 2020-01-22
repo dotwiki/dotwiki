@@ -1,0 +1,32 @@
+.diff {
+  border: 2px solid #eaeaea;
+  border-radius: 3px;
+  margin: 1rem 0;
+  ul {
+    margin: 0;
+    border-radius: 3px;
+    li {
+      margin: 0;
+      list-style: none;
+      min-height: 1rem;
+      padding-left: 5px;
+      .symbol {
+        text-decoration: none;
+        width: 0.8rem;
+        display: inline-block;
+      }
+      &.unchanged {
+        // background-color: $gray-color-light;
+      }
+      &.del {
+        background-color: #fff0cf;
+      }
+      &.ins {
+        background-color: #daf3fd;
+      }
+      ins {
+        text-decoration: none;
+      }
+    }
+  }
+}

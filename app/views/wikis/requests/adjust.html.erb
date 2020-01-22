@@ -1,10 +1,12 @@
-<%= form_with(model: wiki_page_request_merge_path(@wiki, @page, @request), local: true) do |form| %>
+<h3>リクエストのあった変更点</h3>
+<%= raw @diffy %>
+
+<h3>現在のページ内容</h3>
+<%= form_with(url: wiki_page_request_merge_path(@wiki, @page, @request), method: :post, local: true) do |form| %>
   <%= render partial: 'shared/form_error', locals: {form_object: @request} %>
 
-  <% content_value = @merged_content || @request.content %>
   <div class="form-group">
-    <%= form.label :content, class: "form-label" %>
-    <%= form.text_area :content, id: "mdeditor", data: {wiki_id: @wiki.id}, value: content_value %>
+    <%= form.text_area :content, id: "mdeditor", data: {wiki_id: @wiki.id}, value: @page.latest_history.content %>
   </div>
 
   <div class="form-action">

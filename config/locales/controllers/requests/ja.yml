@@ -1,0 +1,14 @@
+ja:
+  wikis:
+    requests:
+      create:
+        notice: リクエストを受け付けました
+      update:
+        notice: リクエストを受け付けました
+      destroy:
+        notice: リクエストを削除しました
+      merge:
+        notice: マージしました
+        alert: マージできませんでした
+      reject:
+        notice: リジェクトしました

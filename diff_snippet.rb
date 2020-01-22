@@ -53,6 +53,11 @@ a_b = Diffy::Diff.new(aaa, bbb, context: 1)
 a_c = Diffy::Diff.new(aaa, ccc, context: 1)
 b_c = Diffy::Diff.new(bbb, ccc, context: 1)
 
+puts a_c.string1
+p '--------------------'
+puts a_c.string2
+p '--------------------'
+
 binding.irb
 
 # p '-----------------'

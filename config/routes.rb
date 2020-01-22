@@ -7,7 +7,7 @@ Rails.application.routes.draw do
       resource :nav, only: [:edit, :update], module: "wikis"
       resources :maintainers, only: [:index, :update, :destroy], module: "wikis"
       resources :pages, except: [:destroy], module: "wikis", as: :wiki_pages do
-        resources :requests, except: [:destroy] do
+        resources :requests do
           get '/adjust', to: 'requests#adjust'
           post '/merge', to: 'requests#merge'
           post '/reject', to: 'requests#reject'
