@@ -15,14 +15,14 @@
         </div>
         <div class="tile-action">
           <% target = "modal-#{SecureRandom.hex(8)}" %>
-          <a class="btn btn-error" onclick="openModal('<%= target %>')">
+          <a class="btn btn-error" onclick="toggleModal('<%= target %>')">
             <%= t('wikis.maintainers.index.remove_maintainer_link') %>
           </a>
           <div class="modal" id="<%= target %>">
-            <a href="#close" class="modal-overlay" onclick="closeModal('<%= target %>')"></a>
+            <a href="#close" class="modal-overlay" onclick="toggleModal('<%= target %>')"></a>
             <div class="modal-container">
               <div class="modal-header">
-                <a href="#close" class="btn btn-clear float-right" onclick="closeModal('<%= target %>')">
+                <a href="#close" class="btn btn-clear float-right" onclick="toggleModal('<%= target %>')">
                 </a>
                 <div class="modal-title h5"><%= t('wikis.maintainers.index.remove_maintainer_title') %></div>
               </div>
@@ -33,7 +33,7 @@
               </div>
               <div class="modal-footer">
                 <%= link_to t('wikis.maintainers.index.remove_maintainer_link'), maintainer_path(wiki_id: @wiki.id, id: maintainer.id), method: :delete, class: "btn btn-error" %>
-                <button class="btn" onclick="closeModal('<%= target %>')">
+                <button class="btn" onclick="toggleModal('<%= target %>')">
                   <%= t('wikis.maintainers.index.remove_maintainer_cancel') %>
                 </button>
               </div>
@@ -58,14 +58,14 @@
         </div>
         <div class="tile-action">
           <% target = "modal-#{SecureRandom.hex(8)}" %>
-          <a class="btn btn-error" onclick="openModal('<%= target %>')">
+          <a class="btn btn-error" onclick="toggleModal('<%= target %>')">
             <%= t('wikis.maintainers.index.add_maintainer_link') %>
           </a>
           <div class="modal" id="<%= target %>">
-            <a href="#close" class="modal-overlay" onclick="closeModal('<%= target %>')"></a>
+            <a href="#close" class="modal-overlay" onclick="toggleModal('<%= target %>')"></a>
             <div class="modal-container">
               <div class="modal-header">
-                <a href="#close" class="btn btn-clear float-right" onclick="closeModal('<%= target %>')">
+                <a href="#close" class="btn btn-clear float-right" onclick="toggleModal('<%= target %>')">
                 </a>
                 <div class="modal-title h5"><%= t('wikis.maintainers.index.add_maintainer_title') %></div>
               </div>
@@ -76,7 +76,7 @@
               </div>
               <div class="modal-footer">
                 <%= link_to t('wikis.maintainers.index.add_maintainer_link'), maintainer_path(wiki_id: @wiki.id, id: watch_user.id), method: :put, class: "btn btn-error" %>
-                <button class="btn" onclick="closeModal('<%= target %>')">
+                <button class="btn" onclick="toggleModal('<%= target %>')">
                   <%= t('wikis.maintainers.index.add_maintainer_cancel') %>
                 </button>
               </div>
@@ -88,12 +88,3 @@
 
   </div>
 <% end %>
-
-<script>
-function openModal(target){
-  document.getElementById(target).classList.add('active')
-}
-function closeModal(target){
-  document.getElementById(target).classList.remove('active')
-}
-</script>
