@@ -91,9 +91,15 @@
           <div class="column is-12">
             <a href="/" class="brand navbar-brand"><%= image_tag 'logo.svg', class: "brand-logo" %>dotwiki</a>
             <ul class="sns_icons">
-              <li><i class="icon-github"></i></li>
-              <li><i class="icon-twitter"></i></li>
-              <li><i class="icon-slack"></i></li>
+              <%= link_to 'https://github.com/dotwiki/dotwiki', target: "_blank" do %>
+                <li><i class="icon-github"></i></li>
+              <% end %>
+              <%= link_to 'https://twitter.com/dotwikixyz', target: "_blank" do %>
+                <li><i class="icon-twitter"></i></li>
+              <% end %>
+              <%= link_to 'https://join.slack.com/t/dotwiki/shared_invite/enQtOTA2Njk4MjY5MDkxLWIwYTkzZTNkNTRhM2QyZWI4ZDMzZTVmMGRmNDJmMmM5ODNkNDdjZTA5NWMwOWZiMDcwZWE0ZTk4YzE4MDBlM2Y', target: "_blank" do %>
+                <li><i class="icon-slack"></i></li>
+              <% end %>
             </ul>
           </div>
         </div>
