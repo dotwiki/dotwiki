@@ -34,3 +34,4 @@ yarn-debug.log*
 .DS_Store
 .overmind.sock
 .env
+dump.rdb

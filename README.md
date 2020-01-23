@@ -10,9 +10,10 @@ Next-generation wiki service that allows you to write in markdown, manage mainta
 ## Require
 
 - ruby
-- node.js(webpack)
-- vue.js
+- node.js
+  - vue.js
 - postgresql
+- redis
 - overmind(`brew install overmind`)
 
 ## Setup
@@ -30,4 +31,5 @@ $ npm run rails
 
 $ rails s
 $ npm run wds
+$ redis-server
 ```

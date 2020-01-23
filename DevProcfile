@@ -1,2 +1,3 @@
 server: bin/rails server
 assets: npx webpack-dev-server
+redis: redis-server
