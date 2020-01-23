@@ -1,8 +1,37 @@
-
 <div class="columns is-index">
   <div class="column col-3 col-sm-12 side-column">
     <div>
-      <%= render partial: 'bookmark' if current_user %>
+      <% if current_user %>
+      <div class="panel">
+        <div class="panel-header text-center">
+          <figure class="avatar avatar-lg"><%= image_tag current_user.current_avatar %></figure>
+          <div class="panel-title h5 mt-10"><%= current_user.name %></div>
+          <div class="panel-subtitle d-hide"></div>
+        </div>
+        <nav class="panel-nav d-hide">
+          <ul class="tab tab-block">
+            <li class="tab-item active"><a href="#panels">ウォッチ</a></li>
+            <li class="tab-item"><a href="#panels">プライベート</a></li>
+          </ul>
+        </nav>
+        <div class="panel-body">
+          <% current_user.watches.each do |watching| %>
+          <div class="tile">
+            <div class="tile-content">
+              <div class="tile-title">
+                <%= link_to wiki_path(watching.wiki) do %>
+                  <i class="icon-bookmark"></i><%= watching.wiki.title %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+          <% end %>
+        </div>
+        <div class="panel-footer">
+          <button class="btn btn-primary btn-block">foobar</button>
+        </div>
+      </div>
+      <% end %>
     </div>
     <div>
       <ul class="menu">
@@ -33,7 +62,26 @@
   </div>
   <div class="column col-3 col-sm-12 side-column">
     <div>
-      <%= render partial: 'controll_panel' if current_user %>
+      <% if current_user %>
+        <ul class="menu mb-2">
+          <li class="divider" data-content="コントロールパネル"></li>
+          <li class="menu-item">
+            <%= link_to edit_user_path(current_user) do %>
+              <i class="icon-cog"></i>ユーザー情報を更新
+            <% end %>
+          </li>
+          <li class="menu-item">
+            <%= link_to new_wiki_path do %>
+              <i class="icon-wiki-add"></i>新しくWikiを作成
+            <% end %>
+          </li>
+          <li class="menu-item d-hide">
+            <a href="#" class="">
+              <i class="icon icon-check mr-2"></i>編集リクエストを確認
+            </a>
+          </li>
+        </ul>
+      <% end %>
     </div>
   </div>
 </div>

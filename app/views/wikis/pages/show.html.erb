@@ -4,8 +4,15 @@
   <h2><%= @page.title %></h2>
   <div id="markdown"><%= sanitize(@page.latest_history.content) %></div>
 
-  <%= link_to new_wiki_page_request_path(@wiki, @page), class: "btn" do %>
-    編集リクエストを送る
-  <% end %>
+  <p>
+    <%= link_to new_wiki_page_request_path(@wiki, @page), class: "btn" do %>
+      <i class="icon icon-pencil"></i>編集リクエストを送る
+    <% end %>
+  </p>
+  <p>
+    <%= link_to wiki_page_requests_path(@wiki, @page) do %>
+      <i class="icon icon-inbox"></i>このページの編集リクエストを確認
+    <% end %>
+  </p>
   <%= javascript_pack_tag 'marked' %>
 <% end %>

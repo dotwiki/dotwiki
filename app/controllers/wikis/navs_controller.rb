@@ -6,9 +6,7 @@ class Wikis::NavsController < ApplicationController
 
   def edit
     @wiki = Wiki.includes(:pages).find(params["wiki_id"])
-
     gon.wiki_id = @wiki.id
-
     display_pages = []
     rej = []
     @wiki.nav.each do |nv|
