@@ -31,7 +31,12 @@
 #
 
 class User < ApplicationRecord
+  include Redis::Objects
   authenticates_with_sorcery!
+
+  counter :notice_counter
+  list :notices, marshal: true
+
   has_many :authentications, dependent: :destroy
   accepts_nested_attributes_for :authentications
 
@@ -57,5 +62,23 @@ class User < ApplicationRecord
 
   def current_avatar
     self.avatar_url || self.sns_image || Identicon.data_url_for(self.id)
+  end
+
+  def push_notice(object, date)
+    l = Redis::List.new(notice_key(date))
+    l << "#{object.class.to_s.underscore}:#{object.id}"
+    notice_counter.incr
+  end
+
+  def pop_notice(date)
+    l = Redis::List.new(notice_key(date))
+    res = l.pop
+    notice_counter.decr unless res
+    res
+  end
+
+  private
+  def notice_key(date)
+    "user:#{self.id}:notice:#{date.strftime('%y%m%d')}"
   end
 end
