@@ -18,6 +18,7 @@ Rails.application.routes.draw do
 
   resources :users, except: [:index] do
     resources :watches, only: [:update], module: "users", as: :watch_wiki, param: :wiki_id
+    resources :notices, only: [:index, :destroy], module: "users"
     member do
       get :activate
       get :change_password

@@ -1,2 +1,0 @@
-module Wikis::RequestsHelper
-end
