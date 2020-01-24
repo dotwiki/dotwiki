@@ -59,6 +59,8 @@ class User < ApplicationRecord
   validates :email, format: {with: VALID_EMAIL_REGEX}
   validates_acceptance_of :agreement, allow_nil: false, on: :create
 
+  after_create :new_user_initializer
+
   def current_avatar
     self.avatar_url || self.sns_image || Identicon.data_url_for(self.id)
   end
@@ -72,4 +74,9 @@ class User < ApplicationRecord
   end
 
   private
+  
+  def new_user_initializer
+    self.push_notice(path: '/wikis/1', title: 'dotwikiへようこそ🎉')
+  end
+
 end
