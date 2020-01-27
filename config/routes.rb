@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   resources :wikis, except: [:destroy], param: :wiki_id do
     member do
+      get '/about', to: 'wikis#about'
       post '/upload', to: 'wikis#upload'
       resource :nav, only: [:edit, :update], module: "wikis"
       resources :maintainers, only: [:index, :update, :destroy], module: "wikis"

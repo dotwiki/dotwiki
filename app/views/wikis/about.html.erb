@@ -1,0 +1,19 @@
+<%= buoy_with_title :wiki_about, {wiki: @wiki}, title: "#{@wiki.title}について" %>
+
+<%= render layout: 'wikis/layout' do %>
+  <h2><%= @wiki.title %>について</h2>
+
+  <p><%= @wiki.description %></p>
+
+  <h3>ルールや規約について</h3>
+  <p><%= @wiki.terms %></p>
+
+  <h3>コントリビューター</h3>
+  <ul style="margin: 0;">
+  <% @contributors.each do |user| %>
+    <figure class="avatar avatar-sm tooltip" data-tooltip="<%= user.name %>">
+      <%= image_tag user.current_avatar %>
+    </figure>
+  <% end %>
+  </ul>
+<% end %>

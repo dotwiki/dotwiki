@@ -4,6 +4,11 @@ buoy :wiki do |args|
   link args[:wiki].title, wiki_path(args[:wiki])
 end
 
+buoy :wiki_about do |args|
+  link "#{args[:wiki].title}について", about_wiki_path(args[:wiki])
+  parent :wiki, args
+end
+
 buoy :wiki_page do |args|
   link args[:page].title, wiki_page_path(args[:wiki], args[:page])
   parent :wiki, args
