@@ -10,7 +10,7 @@
 
   <h3>コントリビューター</h3>
   <ul style="margin: 0;">
-  <% @contributors.each do |user| %>
+  <% @wiki.maintainers.each do |user| %>
     <figure class="avatar avatar-sm tooltip" data-tooltip="<%= user.name %>">
       <%= image_tag user.current_avatar %>
     </figure>

@@ -41,7 +41,6 @@ class User < ApplicationRecord
 
   has_many :wikis, through: :wiki_maintainers
   has_many :wiki_maintainers, dependent: :destroy
-  has_many :wiki_contributors, dependent: :destroy
 
   has_many :wikis, through: :watches
   has_many :watches, dependent: :destroy

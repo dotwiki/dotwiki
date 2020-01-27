@@ -15,7 +15,6 @@ class WikisController < ApplicationController
   end
 
   def about
-    @contributors = @wiki.maintainers + @wiki.contributors
   end
 
   # GET /wikis/new

@@ -22,10 +22,6 @@ class Wiki < ApplicationRecord
   has_many :maintainers, through: :wiki_maintainers, source: :user
   accepts_nested_attributes_for :wiki_maintainers
 
-  has_many :wiki_contributors, dependent: :delete_all
-  has_many :contributors, through: :wiki_contributors, source: :user
-  accepts_nested_attributes_for :wiki_contributors
-
   has_many :watches, dependent: :delete_all
   has_many :watchers, through: :watches, source: :user
   
