@@ -10,7 +10,7 @@ module CheckCanEditPage
     result = false
     if current_user.is_maintainer?(@wiki.id)
       result = true
-    elsif @wiki.can_contributor_edit? && @wiki.contributors.find_by(id: current_user.id)
+    elsif @wiki.can_edit? && @wiki.contributors.find_by(id: current_user.id)
       result = true
     end
     result

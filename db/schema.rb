@@ -128,7 +128,7 @@ ActiveRecord::Schema.define(version: 2020_01_27_042628) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.jsonb "nav"
-    t.integer "can_edit"
+    t.integer "can_edit", default: 1, null: false
     t.index ["title"], name: "index_wikis_on_title"
   end
 

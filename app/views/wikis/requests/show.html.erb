@@ -32,7 +32,6 @@
   </div>
 <% end %>
 
-<% if current_user_is_maintainer %>
   <% if @can_quick_merge %>
     <%= link_to wiki_page_request_merge_path(@wiki, @page, @request, content: @request.content), method: :post do %>
       <button class="btn btn-success">マージ</button>
@@ -65,4 +64,3 @@
       </div>
     </div>
   </div>
-<% end %>

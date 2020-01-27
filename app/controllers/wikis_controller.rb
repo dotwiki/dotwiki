@@ -1,9 +1,6 @@
 class WikisController < ApplicationController
-  include OnlyMaintainers
-  helper_method :current_user_is_maintainer
-
+  include Banken
   before_action :set_wiki, only: [:show, :about, :edit, :update, :destroy]
-  before_action :only_maintainers, except: [:index, :show, :about, :new, :create]
   skip_before_action :require_login, only: [:index, :show, :about]
 
   # GET /wikis
@@ -27,6 +24,7 @@ class WikisController < ApplicationController
   end
 
   def edit
+    authorize! @wiki
   end
 
   def upload
@@ -93,6 +91,6 @@ class WikisController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def wiki_params
-      params.require(:wiki).permit(:title, :description, :terms, images: [])
+      params.require(:wiki).permit(:title, :description, :terms, :can_edit, images: [])
     end
 end
