@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_16_062128) do
+ActiveRecord::Schema.define(version: 2020_01_27_041806) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -125,11 +125,9 @@ ActiveRecord::Schema.define(version: 2020_01_16_062128) do
     t.text "description"
     t.text "terms"
     t.text "first_view"
-    t.boolean "can_contributor_edit", default: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.jsonb "nav"
-    t.index ["can_contributor_edit"], name: "index_wikis_on_can_contributor_edit"
     t.index ["title"], name: "index_wikis_on_title"
   end
 
