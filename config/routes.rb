@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root 'home#index'
+  get '/thanks', to: "home#thanks"
 
   resources :wikis, except: [:destroy], param: :wiki_id do
     member do

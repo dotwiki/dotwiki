@@ -3,4 +3,7 @@ class HomeController < ApplicationController
   def index
     @wikis = Wiki.all.order(id: :desc)
   end
+
+  def thanks
+  end
 end
