@@ -4,7 +4,7 @@ class Wikis::PagesLoyalty < ApplicationLoyalty
   end
 
   def new?
-    user_level >= record.can_edit
+    user_level >= record.can_edit_before_type_cast
   end
 
   def show?
