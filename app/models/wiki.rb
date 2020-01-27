@@ -3,7 +3,7 @@
 # Table name: wikis
 #
 #  id          :bigint           not null, primary key
-#  can_edit    :integer          default("maintainer"), not null
+#  can_edit    :integer          default("contributor"), not null
 #  description :text
 #  first_view  :text
 #  nav         :jsonb
@@ -33,9 +33,10 @@ class Wiki < ApplicationRecord
   after_create :wiki_initializer
 
   enum can_edit: {
-    maintainer: 1,
-    contributor: 2,
-    anyone: 3
+    anyone: 0,
+    contributor: 1,
+    maintainer: 2,
+    administrator: 3
   }
 
   private 

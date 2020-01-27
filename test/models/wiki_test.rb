@@ -3,7 +3,7 @@
 # Table name: wikis
 #
 #  id          :bigint           not null, primary key
-#  can_edit    :integer          default("maintainer"), not null
+#  can_edit    :integer          default("contributor"), not null
 #  description :text
 #  first_view  :text
 #  nav         :jsonb

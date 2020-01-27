@@ -1,8 +1,4 @@
 class Wikis::PagesController < ApplicationController
-  include OnlyMaintainers
-  helper_method :current_user_is_maintainer
-
-  before_action :only_maintainers, except: [:index, :show]
   before_action :set_wiki
   before_action :set_page, only: [:show, :edit, :update, :destroy]
   skip_before_action :require_login, only: [:index, :show]
@@ -21,6 +17,7 @@ class Wikis::PagesController < ApplicationController
 
   # GET /pages/new
   def new
+    authorize! @wiki
     @wiki = Wiki.find(params[:wiki_id])
     @page = @wiki.pages.new
     @page.histories.build

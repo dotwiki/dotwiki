@@ -1,5 +1,4 @@
 class WikisController < ApplicationController
-  include Banken
   before_action :set_wiki, only: [:show, :about, :edit, :update, :destroy]
   skip_before_action :require_login, only: [:index, :show, :about]
 
@@ -45,7 +44,7 @@ class WikisController < ApplicationController
 
     respond_to do |format|
       if @wiki.save
-        wiki_maintainer = @wiki.wiki_maintainers.new(user: current_user)
+        wiki_maintainer = @wiki.wiki_maintainers.new(user: current_user, level: 3)
         wiki_maintainer.save
         format.html { redirect_to @wiki, notice: t('.notice') }
       else

@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  include Banken
   before_action :require_login
   before_action :set_locale
   rescue_from Banken::NotAuthorizedError, with: :user_not_authorized

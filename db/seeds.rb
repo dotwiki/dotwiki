@@ -14,7 +14,7 @@ dotwiki_admin = User.new(
 )
 dotwiki_admin.save!
 dotwiki_admin.activate!
-dotwiki.wiki_maintainers.create(user: dotwiki_admin)
+dotwiki.wiki_maintainers.create(user: dotwiki_admin, level: 3)
 dotwiki_admin.watches.create(wiki_id: dotwiki.id)
 
 # 自分がアクセスできるテスト用wiki
@@ -30,6 +30,6 @@ t4traw.activate!
 wiki = Wiki.create(
   title: 'かいはつよーうぃき',
 )
-wiki.wiki_maintainers.create(user: t4traw)
+wiki.wiki_maintainers.create(user: t4traw, level: 3)
 t4traw.watches.create(wiki_id: wiki.id)
 
