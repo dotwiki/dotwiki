@@ -23,10 +23,6 @@ class WikisController < ApplicationController
     @wiki = Wiki.new
   end
 
-  def edit
-    authorize! @wiki
-  end
-
   def upload
     @wiki = Wiki.find(params[:wiki_id])
     attachment = @wiki.attachments.new
@@ -59,9 +55,14 @@ class WikisController < ApplicationController
     end
   end
 
+  def edit
+    authorize! @wiki
+  end
+
   # PATCH/PUT /wikis/1
   # PATCH/PUT /wikis/1.json
   def update
+    authorize! @wiki
     respond_to do |format|
       if @wiki.update(wiki_params)
         format.html { redirect_to @wiki, notice: t('.notice') }
