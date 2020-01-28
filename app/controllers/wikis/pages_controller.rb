@@ -1,8 +1,8 @@
 class Wikis::PagesController < ApplicationController
   before_action :set_wiki
   before_action :set_page, only: [:show, :edit, :update, :destroy]
+  before_action :authorize, except: %i[index show]
   skip_before_action :require_login, only: [:index, :show]
-
 
   # GET /pages
   # GET /pages.json
@@ -17,7 +17,6 @@ class Wikis::PagesController < ApplicationController
 
   # GET /pages/new
   def new
-    authorize! @wiki
     @wiki = Wiki.find(params[:wiki_id])
     @page = @wiki.pages.new
     @page.histories.build
@@ -77,6 +76,10 @@ class Wikis::PagesController < ApplicationController
     
     def set_page
       @page = @wiki.pages.find(params[:id])
+    end
+
+    def authorize
+      authorize! @wiki
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

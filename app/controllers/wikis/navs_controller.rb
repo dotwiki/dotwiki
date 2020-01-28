@@ -1,10 +1,8 @@
 class Wikis::NavsController < ApplicationController
-  include OnlyMaintainers
-  before_action :only_maintainers
-
-  skip_before_action :require_login, only: [:index, :show]
+  before_action :set_wiki
 
   def edit
+    authorize! @wiki
     @wiki = Wiki.includes(:pages).find(params["wiki_id"])
     gon.wiki_id = @wiki.id
     display_pages = []
@@ -52,6 +50,10 @@ class Wikis::NavsController < ApplicationController
   end
 
   private
+
+  def set_wiki
+    @wiki = Wiki.find(params[:wiki_id])
+  end
 
   def wiki_nav_params
     params.require(:nav).permit!

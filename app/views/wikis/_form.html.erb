@@ -19,20 +19,162 @@
     <%= form.text_area :terms, class: "form-input", placeholder: "Wikiのルールや規約" %>
   </div>
 
-  <div class="form-group">
-    <%= form.label :can_contributor_edit, class: "form-label" %>
-    <%= form.check_box :can_contributor_edit, class: "form-input" %>
+  <% if @wiki.id %>
+
+  <div class="columns">
+    <div class="column col-6 col-sm-12 mb-2">
+      <div class="form-group">
+        <%= form.label class: "form-label" do %>
+          <div class="popover d-inline">
+            <%= t('wikis.settings.can_page_create_level.label') %><i class="icon-question"></i>
+            <div class="popover-container">
+              <div class="card">
+                <div class="card-header">
+                  <%= t('wikis.settings.can_page_create_level.hint_header') %>
+                </div>
+                <div class="card-body">
+                  <%= t('wikis.settings.can_page_create_level.hint_body') %>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+        <%= form.select :can_page_create_level, {
+          "#{t('wikis.settings.maintainer_level.anyone')}": 0,
+          "#{t('wikis.settings.maintainer_level.contributor')}": 1,
+          "#{t('wikis.settings.maintainer_level.moderator')}": 2,
+          "#{t('wikis.settings.maintainer_level.administrator')}": 3
+          }, {}, {class: "form-select"} %>
+      </div>
+    </div>
+    <div class="column col-6 col-sm-12 mb-2">
+      <div class="form-group">
+        <%= form.label class: "form-label" do %>
+          <div class="popover d-inline">
+            <%= t('wikis.settings.can_page_edit_level.label') %><i class="icon-question"></i>
+            <div class="popover-container">
+              <div class="card">
+                <div class="card-header">
+                  <%= t('wikis.settings.can_page_edit_level.hint_header') %>
+                </div>
+                <div class="card-body">
+                  <%= t('wikis.settings.can_page_edit_level.hint_body') %>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+        <%= form.select :can_page_edit_level, {
+          "#{t('wikis.settings.maintainer_level.anyone')}": 0,
+          "#{t('wikis.settings.maintainer_level.contributor')}": 1,
+          "#{t('wikis.settings.maintainer_level.moderator')}": 2,
+          "#{t('wikis.settings.maintainer_level.administrator')}": 3
+          }, {}, {class: "form-select"} %>
+      </div>
+    </div>
+    <div class="column col-6 col-sm-12 mb-2">
+      <div class="form-group">
+        <%= form.label class: "form-label" do %>
+          <div class="popover d-inline">
+            <%= t('wikis.settings.can_page_request_level.label') %><i class="icon-question"></i>
+            <div class="popover-container">
+              <div class="card">
+                <div class="card-header">
+                  <%= t('wikis.settings.can_page_request_level.hint_header') %>
+                </div>
+                <div class="card-body">
+                  <%= t('wikis.settings.can_page_request_level.hint_body') %>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+        <%= form.select :can_page_request_level, {
+          "#{t('wikis.settings.maintainer_level.anyone')}": 0,
+          "#{t('wikis.settings.maintainer_level.contributor')}": 1,
+          "#{t('wikis.settings.maintainer_level.moderator')}": 2,
+          "#{t('wikis.settings.maintainer_level.administrator')}": 3
+          }, {}, {class: "form-select"} %>
+      </div>
+    </div>
+    <div class="column col-6 col-sm-12 mb-2">
+      <div class="form-group">
+        <%= form.label class: "form-label" do %>
+          <div class="popover d-inline">
+            <%= t('wikis.settings.can_page_frozen_level.label') %><i class="icon-question"></i>
+            <div class="popover-container">
+              <div class="card">
+                <div class="card-header">
+                  <%= t('wikis.settings.can_page_frozen_level.hint_header') %>
+                </div>
+                <div class="card-body">
+                  <%= t('wikis.settings.can_page_frozen_level.hint_body') %>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+        <%= form.select :can_page_frozen_level, {
+          "#{t('wikis.settings.maintainer_level.anyone')}": 0,
+          "#{t('wikis.settings.maintainer_level.contributor')}": 1,
+          "#{t('wikis.settings.maintainer_level.moderator')}": 2,
+          "#{t('wikis.settings.maintainer_level.administrator')}": 3
+          }, {}, {class: "form-select"} %>
+      </div>
+    </div>
+    <div class="column col-6 col-sm-12 mb-2">
+      <div class="form-group">
+        <%= form.label class: "form-label" do %>
+          <div class="popover d-inline">
+            <%= t('wikis.settings.can_page_archive_level.label') %><i class="icon-question"></i>
+            <div class="popover-container">
+              <div class="card">
+                <div class="card-header">
+                  <%= t('wikis.settings.can_page_archive_level.hint_header') %>
+                </div>
+                <div class="card-body">
+                  <%= t('wikis.settings.can_page_archive_level.hint_body') %>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+        <%= form.select :can_page_archive_level, {
+          "#{t('wikis.settings.maintainer_level.anyone')}": 0,
+          "#{t('wikis.settings.maintainer_level.contributor')}": 1,
+          "#{t('wikis.settings.maintainer_level.moderator')}": 2,
+          "#{t('wikis.settings.maintainer_level.administrator')}": 3
+          }, {}, {class: "form-select"} %>
+      </div>
+    </div>
+    <div class="column col-6 col-sm-12 mb-2">
+      <div class="form-group">
+        <%= form.label class: "form-label" do %>
+          <div class="popover d-inline">
+            <%= t('wikis.settings.can_navs_edit_level.label') %><i class="icon-question"></i>
+            <div class="popover-container">
+              <div class="card">
+                <div class="card-header">
+                  <%= t('wikis.settings.can_navs_edit_level.hint_header') %>
+                </div>
+                <div class="card-body">
+                  <%= t('wikis.settings.can_navs_edit_level.hint_body') %>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+        <%= form.select :can_navs_edit_level, {
+          "#{t('wikis.settings.maintainer_level.anyone')}": 0,
+          "#{t('wikis.settings.maintainer_level.contributor')}": 1,
+          "#{t('wikis.settings.maintainer_level.moderator')}": 2,
+          "#{t('wikis.settings.maintainer_level.administrator')}": 3
+          }, {}, {class: "form-select"} %>
+      </div>
+    </div>
   </div>
 
-  <!-- form select control -->
-  <div class="form-group">
-    <select class="form-select">
-      <option>Choose an option</option>
-      <option>Slack</option>
-      <option>Skype</option>
-      <option>Hipchat</option>
-    </select>
-  </div>
+  <% end %>
 
   <div class="form-action">
     <%= form.submit class: 'btn btn-primary' %>

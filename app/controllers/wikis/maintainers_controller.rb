@@ -1,20 +1,19 @@
 class Wikis::MaintainersController < ApplicationController
-  include OnlyMaintainers
-  helper_method :current_user_is_maintainer
-  before_action :only_maintainers
+  before_action :set_wiki
 
   def index
-    @wiki = Wiki.find(params[:wiki_id])
+    authorize! @wiki
     @maintainers = @wiki.maintainers
     @watchers = @wiki.watchers.reject{|v| @maintainers.include?(v)}
   end
 
   def update
-    @maintainer = Wiki.find(params[:wiki_id]).wiki_maintainers.new(user_id: params[:id])
+    authorize! @wiki
+    @maintainer = @wiki.wiki_maintainers.new(user_id: params[:id])
 
     respond_to do |format|
       if @maintainer.save
-        format.html { redirect_to maintainers_path(params[:wiki_id]), notice: t('.notice') }
+        format.html { redirect_to maintainers_path(@wiki), notice: t('.notice') }
       else
         format.html { render :new }
       end
@@ -22,9 +21,16 @@ class Wikis::MaintainersController < ApplicationController
   end
 
   def destroy
-    WikiMaintainer.find_by(user_id: params[:id]).destroy
+    authorize! @wiki
+    @wiki.wiki_maintainers.find_by(user_id: params[:id]).destroy
     respond_to do |format|
-      format.html { redirect_to maintainers_path(params[:wiki_id]), notice: t('.notice') }
+      format.html { redirect_to maintainers_path(@wiki), notice: t('.notice') }
     end
+  end
+
+  private
+
+  def set_wiki
+    @wiki = Wiki.find(params[:wiki_id])
   end
 end

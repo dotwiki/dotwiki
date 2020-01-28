@@ -1,0 +1,12 @@
+ja:
+  activerecord:
+    models:
+      wiki: Wiki
+    attributes:
+      wiki:
+        can_page_create_level: "ページの作成が可能なユーザーレベル"
+        can_page_edit_level: "ページの編集が可能なユーザーレベル"
+        can_page_request_level: "編集リクエストが可能なユーザーレベル"
+        can_page_frozen_level: "ページ凍結が可能なユーザーレベル"
+        can_page_archive_level: "ページアーカイブが可能なユーザーレベル"
+        can_navs_edit_level: "サイドバーが編集可能なユーザーレベル"

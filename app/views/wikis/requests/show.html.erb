@@ -26,11 +26,12 @@
 
 <%= raw @diffy %>
 
-<% unless @can_quick_merge %>
-  <div class="caution">
-    <p class="text-error">編集リクエストのあとでページ内容に更新がありました。変更点を調整してマージしてください。</p>
-  </div>
-<% end %>
+<% if loyalty(@wiki, :wikis).update? %>
+  <% unless @can_quick_merge %>
+    <div class="caution">
+      <p class="text-error">編集リクエストのあとでページ内容に更新がありました。変更点を調整してマージしてください。</p>
+    </div>
+  <% end %>
 
   <% if @can_quick_merge %>
     <%= link_to wiki_page_request_merge_path(@wiki, @page, @request, content: @request.content), method: :post do %>
@@ -64,3 +65,4 @@
       </div>
     </div>
   </div>
+<% end %>

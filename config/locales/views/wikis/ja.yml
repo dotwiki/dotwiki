@@ -2,6 +2,36 @@ ja:
   wikis:
     index:
       title: Wikiのタイトル
+    settings: 
+      maintainer_level:
+        anyone: 誰でも
+        contributor: コントリビューター以上
+        moderator: モデレーター以上
+        administrator: 管理者のみ
+      can_page_create_level:
+        label: "ページの作成が可能なユーザーレベル"
+        hint_header: "ページの作成"
+        hint_body: "ページの作成ができるユーザーの権限を設定します"
+      can_page_edit_level: 
+        label: "ページの編集が可能なユーザーレベル"
+        hint_header: "ページの編集"
+        hint_body: "ページの編集ができるユーザーの権限を設定します。また、ページの編集ができるユーザーは編集リクエストのマージもできます"
+      can_page_request_level: 
+        label: "編集リクエストが可能なユーザーレベル"
+        hint_header: "編集リクエスト"
+        hint_body: "編集リクエストができるユーザーの権限を設定します。誰でも編集リクエストが出せる状態を推奨します"
+      can_page_frozen_level: 
+        label: "ページ凍結が可能なユーザーレベル"
+        hint_header: "ページ凍結"
+        hint_body: "ページ凍結が可能なユーザーレベル"
+      can_page_archive_level: 
+        label: "ページアーカイブが可能なユーザーレベル"
+        hint_header: "ページアーカイブ"
+        hint_body: "ページアーカイブが可能なユーザーレベル"
+      can_navs_edit_level: 
+        label: "サイドバーが編集可能なユーザーレベル"
+        hint_header: "サイドバー編集"
+        hint_body: "サイドバー編集が可能なユーザーレベル"
     maintainers:
       index:
         maintainers: メンテナー
