@@ -5,9 +5,9 @@ ja:
     settings: 
       maintainer_level:
         anyone: 誰でも
-        contributor: コントリビューター以上
-        moderator: モデレーター以上
-        administrator: 管理者のみ
+        contributor: コントリビューター
+        moderator: モデレーター
+        administrator: 管理者
       can_page_create_level:
         label: "ページの作成が可能なユーザーレベル"
         hint_header: "ページの作成"

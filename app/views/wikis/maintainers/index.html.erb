@@ -1,3 +1,9 @@
+<style>
+.inline-form {
+  display: contents;
+}
+</style>
+
 <%= render layout: 'wikis/layout' do %>
   <div class="container is_main">
     <p class="mini_header"><%= t('wikis.maintainers.index.maintainers') %></p>
@@ -6,12 +12,27 @@
         <div class="tile-icon">
           <div class="example-tile-icon">
             <figure class="avatar">
-              <%= image_tag maintainer.current_avatar %>
+              <%= image_tag maintainer.user.current_avatar %>
             </figure>
           </div>
         </div>
         <div class="tile-content">
-          <%= maintainer.name %>
+          <%= maintainer.user.name %>
+          <%= form_with(url: maintainer_path(wiki_id: @wiki, id: maintainer.user), method: :patch, class: "inline-form") do |form| %>
+            <% if current_user.id == maintainer.user.id %>
+            <%= form.select :level, {
+              "#{t('wikis.settings.maintainer_level.contributor')}": 1,
+              "#{t('wikis.settings.maintainer_level.moderator')}": 2,
+              "#{t('wikis.settings.maintainer_level.administrator')}": 3
+              }, {selected: maintainer.level}, {class: "form-select", onchange: "this.form.submit();", disabled: "disabled"} %>
+            <% else %>
+            <%= form.select :level, {
+              "#{t('wikis.settings.maintainer_level.contributor')}": 1,
+              "#{t('wikis.settings.maintainer_level.moderator')}": 2,
+              "#{t('wikis.settings.maintainer_level.administrator')}": 3
+              }, {selected: maintainer.level}, {class: "form-select", onchange: "this.form.submit();"} %>
+            <% end %>
+          <% end %>
         </div>
         <div class="tile-action">
           <% target = "modal-#{SecureRandom.hex(8)}" %>
@@ -75,7 +96,7 @@
                 </div>
               </div>
               <div class="modal-footer">
-                <%= link_to t('wikis.maintainers.index.add_maintainer_link'), maintainer_path(wiki_id: @wiki.id, id: watch_user.id), method: :put, class: "btn btn-error" %>
+                <%= link_to t('wikis.maintainers.index.add_maintainer_link'), maintainers_path(wiki_id: @wiki.id, user_id: watch_user.id), method: :post, class: "btn btn-error" %>
                 <button class="btn" onclick="toggleModal('<%= target %>')">
                   <%= t('wikis.maintainers.index.add_maintainer_cancel') %>
                 </button>

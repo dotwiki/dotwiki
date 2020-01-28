@@ -11,6 +11,10 @@ class Wikis::MaintainersLoyalty < ApplicationLoyalty
     index?
   end
 
+  def create?
+    index?
+  end
+
   def destroy?
     index?
   end

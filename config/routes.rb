@@ -7,7 +7,7 @@ Rails.application.routes.draw do
       get '/about', to: 'wikis#about'
       post '/upload', to: 'wikis#upload'
       resource :nav, only: [:edit, :update], module: "wikis"
-      resources :maintainers, only: [:index, :update, :destroy], module: "wikis"
+      resources :maintainers, except: %i[show new edit], module: "wikis"
       resources :pages, except: [:destroy], module: "wikis", as: :wiki_pages do
         resources :requests do
           get '/adjust', to: 'requests#adjust'

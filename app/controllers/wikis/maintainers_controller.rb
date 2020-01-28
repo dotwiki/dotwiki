@@ -3,13 +3,20 @@ class Wikis::MaintainersController < ApplicationController
 
   def index
     authorize! @wiki
-    @maintainers = @wiki.maintainers
-    @watchers = @wiki.watchers.reject{|v| @maintainers.include?(v)}
+    @maintainers = @wiki.wiki_maintainers
+    @watchers = @wiki.watchers.reject{|v| @wiki.maintainers.include?(v)}
   end
 
   def update
     authorize! @wiki
-    @maintainer = @wiki.wiki_maintainers.new(user_id: params[:id])
+    maintainer = @wiki.wiki_maintainers.find_by(user_id: params[:id])
+    maintainer.level = params[:level].to_i
+    maintainer.save
+  end
+
+  def create
+    authorize! @wiki
+    @maintainer = @wiki.wiki_maintainers.new(user_id: params[:user_id])
 
     respond_to do |format|
       if @maintainer.save
@@ -32,5 +39,8 @@ class Wikis::MaintainersController < ApplicationController
 
   def set_wiki
     @wiki = Wiki.find(params[:wiki_id])
+    gon.wiki_id = @wiki.id
+    gon.wathing_wiki = current_user.watches.find_by(wiki_id: @wiki.id) if current_user
+    gon.current_user = current_user.id if current_user
   end
 end
