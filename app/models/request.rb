@@ -30,7 +30,6 @@ class Request < ApplicationRecord
 
   after_create do
     self.wiki.maintainers.each do |user|
-      binding.pry
       requests_path = "/wikis/#{self.wiki_id}/pages/#{self.page_id}/requests"
       user.push_notice(path: requests_path, title: "『#{self.wiki.title}/#{self.page.title}』に編集リクエストが届いています")
     end
