@@ -120,7 +120,12 @@ ActiveRecord::Schema.define(version: 2020_01_27_170436) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.jsonb "nav"
-    t.integer "can_edit", default: 1, null: false
+    t.integer "can_page_create_level", default: 1, null: false
+    t.integer "can_page_edit_level", default: 2, null: false
+    t.integer "can_page_request_level", default: 0, null: false
+    t.integer "can_page_frozen_level", default: 2, null: false
+    t.integer "can_page_archive_level", default: 2, null: false
+    t.integer "can_navs_edit_level", default: 2, null: false
     t.index ["title"], name: "index_wikis_on_title"
   end
 
