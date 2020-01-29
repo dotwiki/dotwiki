@@ -65,17 +65,17 @@ class User < ApplicationRecord
   end
 
   def push_notice(path: '#', title: )
-    notices << {path: path, title: title, date: DateTime.now.to_s}
+    self.notices << {path: path, title: title, date: DateTime.now.to_s}
   end
 
   def pop_notice(pos)
-    notices.pop(pos)
+    self.notices.pop(pos)
   end
 
   private
   
   def new_user_initializer
-    self.push_notice(path: '/wikis/1', title: 'dotwikiへようこそ🎉')
+    self.push_notice(path: "/wikis/1", title: "dotwikiへようこそ🎉")
   end
 
 end
