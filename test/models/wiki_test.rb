@@ -10,7 +10,6 @@
 #  can_page_frozen_level  :integer          default(2), not null
 #  can_page_request_level :integer          default(0), not null
 #  description            :text
-#  first_view             :text
 #  nav                    :jsonb
 #  terms                  :text
 #  title                  :string           not null
