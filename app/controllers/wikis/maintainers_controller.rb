@@ -29,7 +29,7 @@ class Wikis::MaintainersController < ApplicationController
 
   def destroy
     authorize! @wiki
-    @wiki.wiki_maintainers.find_by(user_id: params[:id]).destroy
+    @wiki.wiki_maintainers.find_by(id: params[:id]).destroy
     respond_to do |format|
       format.html { redirect_to maintainers_path(@wiki), notice: t('.notice') }
     end
