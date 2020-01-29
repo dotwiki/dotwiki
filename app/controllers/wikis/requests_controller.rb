@@ -2,7 +2,6 @@ class Wikis::RequestsController < ApplicationController
   before_action :set_wiki
   before_action :set_page
   before_action :set_request, only: [:show, :edit, :update, :destroy]
-  before_action :authorize!, except: %i[index show]
   skip_before_action :require_login, only: [:index, :show]
 
   def index
