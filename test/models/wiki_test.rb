@@ -16,6 +16,7 @@
 #  title                  :string           not null
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  first_page_id          :integer
 #
 # Indexes
 #
