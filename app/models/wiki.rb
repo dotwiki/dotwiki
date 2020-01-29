@@ -33,7 +33,7 @@ class Wiki < ApplicationRecord
   
   has_many :pages, dependent: :delete_all
   has_many :requests, dependent: :destroy
-  has_many :attachments, dependent: :delete_all 
+  has_many :attachments, dependent: :delete_all
 
   before_create :add_wiki_string
   after_create :wiki_initializer
@@ -51,6 +51,7 @@ class Wiki < ApplicationRecord
     his.save
     
     self.nav = [{page_id: page.id}]
+    self.first_page_id = page.id
     self.save
   end
 

@@ -11,6 +11,7 @@ class WikisController < ApplicationController
   # GET /wikis/1
   # GET /wikis/1.json
   def show
+    @page = @wiki.pages.find_by(id: @wiki.first_page_id) || @wiki.pages.first
   end
 
   def about
