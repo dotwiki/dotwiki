@@ -16,7 +16,7 @@
         </div>
 
         <div class="form-group">
-          <%= form.label :agreement, class: "form-checkbox" do %>
+          <%= form.label :agreement, class: "form-checkbox", id: "user_agreement_label" do %>
             <%= form.check_box :agreement, as: :boolean, checked:false %>
             <i class="form-icon"></i>
             <%= t(".terms_privacy_html",

@@ -21,10 +21,10 @@
 
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  user: one
-  wiki: one
+# one:
+#   user: one
+#   wiki: one
 
-two:
-  user: two
-  wiki: two
+# two:
+#   user: two
+#   wiki: two

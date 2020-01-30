@@ -23,6 +23,10 @@
 #
 
 class Wiki < ApplicationRecord
+  include Redis::Objects
+
+  list :feeds, marshal: true
+
   has_many :wiki_maintainers, dependent: :delete_all
   has_many :maintainers, through: :wiki_maintainers, source: :user
   accepts_nested_attributes_for :wiki_maintainers

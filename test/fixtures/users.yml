@@ -36,8 +36,17 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
-# column: value
-#
-two: {}
-# column: value
+mario:
+  name: "Mario"
+  email: <%= Faker::Internet.email %>
+  salt: <%= salt = "password" %>
+  crypted_password: <%= Sorcery::CryptoProviders::BCrypt.encrypt("secret", salt) %>
+  activation_state: active
+
+wario:
+  name: "Wario"
+  email: <%= Faker::Internet.email %>
+  salt: invalid_password
+  crypted_password: incollect_password
+  activation_state: nil
+
