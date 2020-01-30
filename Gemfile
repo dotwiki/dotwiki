@@ -42,6 +42,7 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
+  gem 'mock_redis'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -63,4 +64,5 @@ gem 'rollbar'
 gem 'diffy'
 gem 'redis'
 gem 'redis-objects'
+gem 'redis-namespace'
 gem 'banken'
