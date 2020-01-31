@@ -1,5 +1,14 @@
 # frozen_string_literal: true
 
+buoy :root do
+  link 'dotwiki', root_path
+end
+
+buoy :user_notice do |args|
+  link "通知一覧", user_notices_path(args[:user])
+  parent :root
+end
+
 buoy :wiki do |args|
   link args[:wiki].title, wiki_path(args[:wiki])
 end
