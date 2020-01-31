@@ -24,8 +24,7 @@
 
 class Wiki < ApplicationRecord
   include Redis::Objects
-
-  list :feeds, marshal: true
+  hash_key :news
 
   has_many :wiki_maintainers, dependent: :delete_all
   has_many :maintainers, through: :wiki_maintainers, source: :user
@@ -33,7 +32,7 @@ class Wiki < ApplicationRecord
 
   has_many :watches, dependent: :delete_all
   has_many :watchers, through: :watches, source: :user
-  
+
   has_many :pages, dependent: :delete_all
   has_many :requests, dependent: :destroy
   has_many :attachments, dependent: :delete_all
@@ -41,26 +40,44 @@ class Wiki < ApplicationRecord
   before_create :add_wiki_string
   after_create :wiki_initializer
 
-  private 
+  private
+
+  def push_news(class_name: :wiki, action: :update, path: nil, title:)
+    # case class_name
+    # when :page
+    #   c_name = 'page'
+    # when :comment
+    #   c_name =  'comment'
+    # end
+    # binding.pry
+    
+    # self.news << {
+    #   class_name: class_name,
+    #   action: action,
+    #   path: path,
+    #   title: title,
+    #   date: DateTime.now.to_s,
+    # }
+  end
 
   def wiki_initializer
     page = self.pages.new(
       title: "ようこそ#{self.title}へ！",
     )
     his = page.histories.new(
-      content: "まずはほげほげしましょう"
+      content: "まずはほげほげしましょう",
     )
     page.save
     his.save
-    
-    self.nav = [{page_id: page.id}]
+
+    self.nav = [{ page_id: page.id }]
     self.first_page_id = page.id
     self.save
   end
 
   def add_wiki_string
     unless self.title.match(/wiki/i)
-      self.title << ' Wiki'
+      self.title << " Wiki"
     end
   end
 end

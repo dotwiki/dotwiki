@@ -20,4 +20,13 @@ class Page < ApplicationRecord
   has_one :latest_history, -> { order(created_at: :desc) }, class_name: :History
   accepts_nested_attributes_for :histories, limit: 1
   has_many :requests, dependent: :destroy
+
+  after_commit :push_page_news
+
+  private 
+
+  def push_page_news
+    # binding.pry
+    # wiki.push_news
+  end
 end
