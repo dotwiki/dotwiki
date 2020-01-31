@@ -47,15 +47,15 @@ class User < ApplicationRecord
   has_many :requests, dependent: :destroy
 
   mount_uploader :avatar, AvatarUploader
-  
+
   before_save { self.email = email.downcase }
-  before_save { self.name = SecureRandom.hex(6) if self.name.nil?}
+  before_save { self.name = SecureRandom.hex(6) if self.name.nil? }
 
   validates :email, presence: true
   validates :email, uniqueness: true
   validates :email, uniqueness: { case_sensitive: false }
   VALID_EMAIL_REGEX = /\A[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*\z/
-  validates :email, format: {with: VALID_EMAIL_REGEX}
+  validates :email, format: { with: VALID_EMAIL_REGEX }
   validates_acceptance_of :agreement, allow_nil: false, on: :create
 
   after_create :new_user_initializer
@@ -64,8 +64,12 @@ class User < ApplicationRecord
     self.avatar_url || self.sns_image || Identicon.data_url_for(self.id)
   end
 
-  def push_notice(path: '#', title: )
-    self.notices << {path: path, title: title, date: DateTime.now.to_s}
+  def push_notice(path: "#", title:)
+    self.notices << {
+      path: path,
+      title: title,
+      date: DateTime.now.to_s,
+    }
   end
 
   def pop_notice(pos)
@@ -73,9 +77,8 @@ class User < ApplicationRecord
   end
 
   private
-  
+
   def new_user_initializer
     self.push_notice(path: "/wikis/1", title: "dotwikiへようこそ🎉")
   end
-
 end
