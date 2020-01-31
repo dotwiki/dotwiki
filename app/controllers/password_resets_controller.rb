@@ -5,9 +5,8 @@ class PasswordResetsController < ApplicationController
   skip_before_action :require_login
 
   def new
-    
   end
-  
+
   # request password reset.
   # you get here when the user entered his email in the reset password form and submitted it.
   def create
@@ -18,7 +17,7 @@ class PasswordResetsController < ApplicationController
 
     # Tell the user instructions have been sent whether or not email was found.
     # This is to not leak information to attackers about which emails exist in the system.
-    redirect_to(root_path, notice: t('.notice'))
+    redirect_to(root_path, notice: t(".notice"))
   end
 
   # This is the reset password form.
@@ -44,7 +43,7 @@ class PasswordResetsController < ApplicationController
 
     # the next line clears the temporary token and updates the password
     if @user.change_password!(params[:user][:password])
-      redirect_to(login_path, notice: t('.notice'))
+      redirect_to(login_path, notice: t(".notice"))
     else
       render action: "edit"
     end

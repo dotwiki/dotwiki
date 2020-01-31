@@ -5,10 +5,11 @@ class ApplicationController < ActionController::Base
   rescue_from Banken::NotAuthorizedError, with: :user_not_authorized
 
   private
+
   def not_authenticated
-    redirect_to login_path, alert: t('user_sessions.please_login_first')
+    redirect_to login_path, alert: t("user_sessions.please_login_first")
   end
-  
+
   def require_login
     unless current_user
       redirect_to login_url

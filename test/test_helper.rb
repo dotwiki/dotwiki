@@ -1,6 +1,6 @@
-ENV['RAILS_ENV'] ||= 'test'
-require_relative '../config/environment'
-require 'rails/test_help'
+ENV["RAILS_ENV"] ||= "test"
+require_relative "../config/environment"
+require "rails/test_help"
 # require 'minitest/reporters'
 # Minitest::Reporters.use!
 
@@ -15,8 +15,8 @@ class ActiveSupport::TestCase
     visit new_user_path
     fill_in "user[email]", with: u[:email]
     fill_in "user[password]", with: u[:password]
-    find('#user_agreement_label').click
-    find('#user_resister_submit').click
+    find("#user_agreement_label").click
+    find("#user_resister_submit").click
     User.last.activate!
     User.last
   end
@@ -25,17 +25,17 @@ class ActiveSupport::TestCase
     visit login_url
     fill_in "email", with: u[:email]
     fill_in "password", with: u[:password]
-    find('#user_login_submit').click
+    find("#user_login_submit").click
   end
 
   def fixture_user
     # fixtureを使うと登録時のnoticeなどがないので注意
     user = users(:mario)
-    user.update!(password: 'password')
+    user.update!(password: "password")
     visit login_url
     fill_in "email", with: user[:email]
-    fill_in "password", with: 'password'
-    find('#user_login_submit').click
+    fill_in "password", with: "password"
+    find("#user_login_submit").click
     user
   end
 end
