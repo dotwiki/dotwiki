@@ -20,6 +20,6 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  page: phoenix_page
-  content: <%= Faker::Games::Dota.quote %>
+  page: scorbunny_page
+  content: Faker::Games::Pokemon.location
   user: mario

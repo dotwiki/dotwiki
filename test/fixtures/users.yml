@@ -37,14 +37,14 @@
 # below each fixture, per the syntax in the comments below
 #
 mario:
-  name: "Mario"
+  name: Mario
   email: <%= Faker::Internet.email %>
   salt: <%= salt = "password" %>
   crypted_password: <%= Sorcery::CryptoProviders::BCrypt.encrypt("secret", salt) %>
   activation_state: active
 
 wario:
-  name: "Wario"
+  name: Wario
   email: <%= Faker::Internet.email %>
   salt: invalid_password
   crypted_password: incollect_password

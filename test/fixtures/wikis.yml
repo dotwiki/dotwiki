@@ -24,8 +24,8 @@
 
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-dota_wiki:
-  title: "dota wiki"
+pokemon_wiki:
+  title: Pokemon Wiki
   description: MyText
   can_navs_edit_level: 2
   can_page_archive_level: 2

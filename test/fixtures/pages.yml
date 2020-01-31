@@ -16,6 +16,14 @@
 
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-phoenix_page:
-  wiki: dota_wiki
-  title: 'phoenix_page'
+scorbunny_page:
+  wiki: pokemon_wiki
+  title: Scorbunny
+
+sobble_page:
+  wiki: pokemon_wiki
+  title: Sobble
+
+grookey_page:
+  wiki: pokemon_wiki
+  title: Grookey
