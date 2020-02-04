@@ -2,9 +2,11 @@ class HomeController < ApplicationController
   skip_before_action :require_login
 
   def index
-    @wikis = Wiki.all.order(id: :desc)
+    @recent_created_wikis = Wiki.order(id: :desc).limit(10)
+    @waching_wikis = current_user.watches.map{|v| v.wiki}
+    @news = Notification.where(wiki_id: current_user.watches.pluck(:id)).order(updated_at: :desc).limit(10)
   end
 
   def thanks
   end
-end
+end 
