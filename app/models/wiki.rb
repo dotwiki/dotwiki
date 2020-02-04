@@ -49,15 +49,13 @@ class Wiki < ApplicationRecord
     # when :comment
     #   c_name =  'comment'
     # end
-    # binding.pry
-    
-    # self.news << {
-    #   class_name: class_name,
-    #   action: action,
-    #   path: path,
-    #   title: title,
-    #   date: DateTime.now.to_s,
-    # }
+
+  private
+  
+  def add_wiki_string
+    unless self.title.match(/wiki/i)
+      self.title << " Wiki"
+    end
   end
 
   def wiki_initializer
@@ -73,11 +71,5 @@ class Wiki < ApplicationRecord
     self.nav = [{ page_id: page.id }]
     self.first_page_id = page.id
     self.save
-  end
-
-  def add_wiki_string
-    unless self.title.match(/wiki/i)
-      self.title << " Wiki"
-    end
   end
 end
