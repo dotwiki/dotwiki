@@ -6,3 +6,18 @@
     background-color: #f5f5f5;
   }
 }
+
+.subsidebar {
+  margin: 1rem 0;
+  .title {
+    margin: 0;
+    font-weight: bold;
+  }
+  ul.notifications {
+    margin: 0;
+    li {
+      list-style-position: outside;
+      margin-left: 1.1rem;
+    }
+  }
+}

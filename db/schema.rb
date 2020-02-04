@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_29_041309) do
+ActiveRecord::Schema.define(version: 2020_02_04_011656) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,19 @@ ActiveRecord::Schema.define(version: 2020_01_29_041309) do
     t.index ["comment"], name: "index_histories_on_comment"
     t.index ["page_id"], name: "index_histories_on_page_id"
     t.index ["user_id"], name: "index_histories_on_user_id"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.string "key_name"
+    t.string "title"
+    t.string "path"
+    t.integer "wiki_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["key_name"], name: "index_notifications_on_key_name"
+    t.index ["path"], name: "index_notifications_on_path"
+    t.index ["title"], name: "index_notifications_on_title"
+    t.index ["wiki_id"], name: "index_notifications_on_wiki_id"
   end
 
   create_table "pages", force: :cascade do |t|

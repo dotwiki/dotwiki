@@ -6,9 +6,9 @@
   margin: $unit-1;
 
   .nav-item {
+    padding: 0 $unit-2;
     a {
       color: $gray-color-dark;
-      padding: $unit-1 $unit-2;
       text-decoration: none;
       &:focus,
       &:hover {

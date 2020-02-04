@@ -23,32 +23,27 @@
 #
 
 class Wiki < ApplicationRecord
-  include Redis::Objects
-  hash_key :news
-
   has_many :wiki_maintainers, dependent: :delete_all
   has_many :maintainers, through: :wiki_maintainers, source: :user
   accepts_nested_attributes_for :wiki_maintainers
-
   has_many :watches, dependent: :delete_all
   has_many :watchers, through: :watches, source: :user
-
   has_many :pages, dependent: :delete_all
   has_many :requests, dependent: :destroy
   has_many :attachments, dependent: :delete_all
+  has_many :notifications, dependent: :destroy
 
   before_create :add_wiki_string
   after_create :wiki_initializer
 
-  private
+  def push_news(path: nil, obj:, title:)
+    key_name = "#{obj.class.name}:#{obj.id}"
 
-  def push_news(class_name: :wiki, action: :update, path: nil, title:)
-    # case class_name
-    # when :page
-    #   c_name = 'page'
-    # when :comment
-    #   c_name =  'comment'
-    # end
+    record = self.notifications.find_or_initialize_by(key_name: key_name)
+    record.title = title
+    record.path = path
+    record.save
+  end
 
   private
   
@@ -62,10 +57,11 @@ class Wiki < ApplicationRecord
     page = self.pages.new(
       title: "ようこそ#{self.title}へ！",
     )
+    page.save
+
     his = page.histories.new(
       content: "まずはほげほげしましょう",
     )
-    page.save
     his.save
 
     self.nav = [{ page_id: page.id }]
