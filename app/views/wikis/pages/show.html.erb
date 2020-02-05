@@ -2,7 +2,9 @@
 
 <%= render layout: 'wikis/layout' do %>
   <h2><%= @page.title %></h2>
-  <div id="markdown"><%= sanitize(@page.latest_history.content) %></div>
+  <div id="markdown">
+    <%== markdown(sanitize(@page.latest_history.content)) %>
+  </div>
 
   <p>
     <%= link_to new_wiki_page_request_path(@wiki, @page), class: "btn" do %>
@@ -14,5 +16,4 @@
       <i class="icon icon-inbox"></i>このページの編集リクエストを確認
     <% end %>
   </p>
-  <%= javascript_pack_tag 'marked' %>
 <% end %>

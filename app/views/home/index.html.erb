@@ -47,12 +47,14 @@
   </div>
   <div class="column col-sm-12">
     <div class="container">
-      <% @news.each do |nfd| %>
-        <div class="news_feed">
-          <%= link_to nfd.path do %>
-            <%= nfd.title %>
-          <% end %>
-        </div>
+      <% if current_user %>
+        <% @news.each do |nfd| %>
+          <div class="news_feed">
+            <%= link_to nfd.path do %>
+              <%= nfd.title %>
+            <% end %>
+          </div>
+        <% end %>
       <% end %>
     </div>
   </div>

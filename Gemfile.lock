@@ -150,6 +150,7 @@ GEM
     jbuilder (2.9.1)
       activesupport (>= 4.2.0)
     jwt (2.2.1)
+    kramdown (2.1.0)
     launchy (2.4.3)
       addressable (~> 2.3)
     letter_opener (1.7.0)
@@ -327,6 +328,7 @@ DEPENDENCIES
   guard-minitest
   identicon
   jbuilder (~> 2.7)
+  kramdown
   letter_opener
   listen (>= 3.0.5, < 3.2)
   mini_magick
