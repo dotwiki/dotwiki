@@ -13,7 +13,7 @@ function collectWhitelist() {
 }
 
 function collectWhitelistPatternsChildren() {
-  return [/CodeMirror/, /editor/, /cm/, /toast/, /avatar/, /diff/, /tree/, /icon/, /col-/, /article/]
+  return [/CodeMirror/, /editor/, /cm/, /toast/, /avatar/, /diff/, /tree/, /icon/, /col-/, /article/, /markdown/]
 }
 
 module.exports = {

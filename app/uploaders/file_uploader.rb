@@ -11,7 +11,7 @@ class FileUploader < CarrierWave::Uploader::Base
   end
 
   process resize_to_limit: [600, 400]
-  process convert: "jpg"
+  # process convert: "jpg"
 
   def size_range
     1..2.megabytes

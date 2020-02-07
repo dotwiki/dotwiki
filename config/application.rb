@@ -31,8 +31,8 @@ module Dotwiki
       g.assets false
     end
 
-    config.action_view.sanitized_allowed_tags = %w(span a img table thead tbody th tr td)
-    config.action_view.sanitized_allowed_attributes = %w(href style src width height)
+    config.action_view.sanitized_allowed_tags = %w(wiki span img table thead tbody th tr td)
+    config.action_view.sanitized_allowed_attributes = %w(plugin style src width height)
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading

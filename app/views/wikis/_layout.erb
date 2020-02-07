@@ -1,14 +1,9 @@
 <%= include_gon %>
+
 <div class="columns">
 
-  <div class="column col-9 col-sm-12 side-column">
-
-    <a class="btn show-lg" href="#sidebar-id">
-      <i class="icon icon-arrow-right mr-1"></i>メニューを開く
-    </a>
-
+  <div class="side-column">
     <div class="off-canvas off-canvas-sidebar-show">
-      <%# サイドバー %>
       <div id="sidebar-id" class="sidebar off-canvas-sidebar">
         <ul class="nav">
           <% @wiki.nav.each do |nv| %>
@@ -50,19 +45,20 @@
           </li>
         </ul>
       </div>
-      <%# /サイドバー %>
-
       <a class="off-canvas-overlay" href="#close"></a>
-
-      <div class="off-canvas-content">
-        <article>
-          <%= yield %>
-        </article>
-      </div>
     </div>
   </div>
 
-  <div class="column col-3 col-sm-12 side-column">
+  <div class="column col-xl-9 col-lg-8 col-md-7 col-sm-12 col-xs-12 side-column">
+    <a class="btn show-lg" href="#sidebar-id">
+      <i class="icon icon-arrow-right mr-1"></i>メニューを開く
+    </a>
+    <article>
+      <%= yield %>
+    </article>
+  </div>
+
+  <div class="column col-2 col-xl-3 col-lg-4 col-md-5 col-sm-12 col-xs-12 side-column">
     <% if current_user %>
       <div id="watch_wiki_button"></div>
       <%=  javascript_pack_tag 'watch_wiki', defer: true %>
