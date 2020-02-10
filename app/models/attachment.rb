@@ -19,4 +19,15 @@ class Attachment < ApplicationRecord
   mount_uploader :file, FileUploader
 
   validates :shortcode, uniqueness: { scope: :wiki_id }
+
+  before_commit :set_default_shortcode
+  
+  private
+
+  def set_default_shortcode
+    if self.shortcode.nil?
+      self.shortcode = SecureRandom.hex(6)
+      self.save
+    end
+  end
 end
