@@ -17,4 +17,6 @@
 class Attachment < ApplicationRecord
   belongs_to :wiki
   mount_uploader :file, FileUploader
+
+  validates :shortcode, uniqueness: { scope: :wiki_id }
 end
