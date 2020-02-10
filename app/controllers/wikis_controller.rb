@@ -22,9 +22,9 @@ class WikisController < ApplicationController
     attachment.file = params[:file]
     attachment.store_file!
     attachment.save!
-    
+
     if Rails.env.production?
-      cloudinary_url = 'https://res.cloudinary.com/dotwiki/'.freeze
+      cloudinary_url = "https://res.cloudinary.com/dotwiki/".freeze
       file_path = cloudinary_url + attachment.file_was
     else
       file_path = attachment.file.url
@@ -41,7 +41,7 @@ class WikisController < ApplicationController
       if @wiki.save
         wiki_maintainer = @wiki.wiki_maintainers.new(user: current_user, level: 3)
         wiki_maintainer.save
-        format.html { redirect_to @wiki, notice: t('.notice') }
+        format.html { redirect_to @wiki, notice: t(".notice") }
       else
         format.html { render :new }
       end
@@ -58,7 +58,7 @@ class WikisController < ApplicationController
     authorize! @wiki
     respond_to do |format|
       if @wiki.update(wiki_params)
-        format.html { redirect_to @wiki, notice: t('.notice') }
+        format.html { redirect_to @wiki, notice: t(".notice") }
       else
         format.html { render :edit }
       end
@@ -75,16 +75,17 @@ class WikisController < ApplicationController
   # end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_wiki
-      @wiki = Wiki.find(params[:wiki_id])
-      gon.wiki_id = @wiki.id
-      gon.wathing_wiki = current_user.watches.find_by(wiki_id: @wiki.id) if current_user
-      gon.current_user = current_user.id if current_user
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def wiki_params
-      params.require(:wiki).permit(:title, :description, :can_navs_edit_level, :can_page_archive_level, :can_page_create_level, :can_page_edit_level, :can_page_frozen_level, :can_page_request_level, :terms, :first_page_id, images: [])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_wiki
+    @wiki = Wiki.find(params[:wiki_id])
+    gon.wiki_id = @wiki.id
+    gon.wathing_wiki = current_user.watches.find_by(wiki_id: @wiki.id) if current_user
+    gon.current_user = current_user.id if current_user
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def wiki_params
+    params.require(:wiki).permit(:title, :description, :can_navs_edit_level, :can_page_archive_level, :can_page_create_level, :can_page_edit_level, :can_page_frozen_level, :can_page_request_level, :terms, :first_page_id, images: [])
+  end
 end
