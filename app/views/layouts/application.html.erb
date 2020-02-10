@@ -11,7 +11,6 @@
   <link rel="apple-touch-icon" type="image/png" href="/apple-touch-icon-180x180.png">
   <link rel="icon" type="image/png" href="/icon-192x192.png">
   <%= stylesheet_pack_tag 'application', media: 'all' %>
-  <%= javascript_pack_tag 'application' %>
 </head>
 
 <body>
@@ -163,6 +162,8 @@
     <div id="toast_msg"></div>
   </div>
 
+  <%= javascript_pack_tag 'application' %>
+  
   <% flash.each do |toast_type, toast_msg| %>
   <script defer>
     toast('<%= toast_type %>', '<%= toast_msg %>')

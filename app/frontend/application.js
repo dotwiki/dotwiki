@@ -15,6 +15,7 @@ require('@rails/ujs').start()
 // const imagePath = (name) => images(name, true)
 
 import './stylesheets/application.scss'
+import './javascripts/src/sortable'
 
 window.toast = function toast(type, msg) {
   let toast = document.getElementById('toast')

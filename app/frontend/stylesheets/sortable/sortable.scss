@@ -1,0 +1,54 @@
+$sortable-stripe-color: #e4e4e4;
+$sortable-th-color: #fff;
+$sortable-th-bg: #808080;
+$sortable-th-color-active: #000;
+
+.sortable {
+  border-spacing: 0;
+
+  thead {
+    td {
+      font-weight: bold;
+      text-align: center;
+      text-transform: uppercase;
+    }
+  }
+
+  // tbody {
+  //     tr {
+  //         &:nth-child(odd) {
+  //             background: $sortable-stripe-color;
+  //         }
+  //     }
+  // }
+
+  th {
+    // background: $sortable-th-bg;
+    // color: $sortable-th-color;
+    cursor: pointer;
+    font-weight: normal;
+    text-align: left;
+    text-transform: capitalize;
+    vertical-align: baseline;
+    white-space: nowrap;
+    color: $sortable-th-color-active;
+    &::after {
+      color: inherit;
+      content: " ↕";
+    }
+    &.dir-d {
+      color: $sortable-th-color-active;
+      &::after {
+        color: inherit;
+        content: " ↓";
+      }
+    }
+    &.dir-u {
+      color: $sortable-th-color-active;
+      &::after {
+        color: inherit;
+        content: " ↑";
+      }
+    }
+  }
+}
