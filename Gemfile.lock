@@ -201,6 +201,8 @@ GEM
       multi_json (~> 1.3)
       multi_xml (~> 0.5)
       rack (>= 1.2, < 3)
+    oneshot_task_generator (0.1.3)
+      rails (>= 3.0.0)
     pg (1.2.1)
     pry (0.12.2)
       coderay (~> 1.1.0)
@@ -334,6 +336,7 @@ DEPENDENCIES
   mini_magick
   minitest-reporters
   mock_redis
+  oneshot_task_generator
   pg (>= 0.18, < 2.0)
   pry
   puma (~> 4.1)
