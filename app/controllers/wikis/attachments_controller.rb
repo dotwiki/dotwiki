@@ -5,14 +5,7 @@ class Wikis::AttachmentsController < ApplicationController
     @attachments = @wiki.attachments
   end
 
-  def new
-    @attachment = @wiki.attachment.new
-  end
-
   def create
-  end
-
-  def edit
   end
 
   def update

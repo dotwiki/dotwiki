@@ -18,3 +18,21 @@
     }
   }
 }
+
+.is-attachments {
+  #file_uploader {
+    width: 100%;
+    height: 50px;
+    background-color: #ff8aab;
+    margin-bottom: 1rem;
+  }
+
+  table {
+    img {
+      width: 50px;
+    }
+    .desc {
+      text-align: left;
+    }
+  }
+}
