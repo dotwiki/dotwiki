@@ -15,6 +15,7 @@
   bottom: 30px;
   font-size: 17px;
   white-space: nowrap;
+  overflow: hidden;
   &.notice {
     background-color: $primary-color;
     #toast_img {
