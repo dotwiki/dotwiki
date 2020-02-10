@@ -18,6 +18,11 @@ buoy :wiki_about do |args|
   parent :wiki, args
 end
 
+buoy :wiki_attachments do |args|
+  link "#{args[:wiki].title}のアップロードファイル一覧", attachments_path(args[:wiki])
+  parent :wiki, args
+end
+
 buoy :wiki_page do |args|
   link args[:page].title, wiki_page_path(args[:wiki], args[:page])
   parent :wiki, args
