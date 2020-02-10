@@ -35,7 +35,7 @@ window.toast = function toast(type, msg) {
   toast_msg.innerHTML = msg
   toast.classList.toggle('show')
   setTimeout(function() {
-    toast.className = toast.className.replace('show', '')
+    toast.className = ''
   }, 5000)
 }
 
