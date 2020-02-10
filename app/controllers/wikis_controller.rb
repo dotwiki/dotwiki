@@ -2,12 +2,6 @@ class WikisController < ApplicationController
   before_action :set_wiki, only: [:show, :about, :edit, :update, :destroy]
   skip_before_action :require_login, only: [:index, :show, :about]
 
-  # GET /wikis
-  # GET /wikis.json
-  def index
-    @wikis = Wiki.all
-  end
-
   # GET /wikis/1
   # GET /wikis/1.json
   def show
