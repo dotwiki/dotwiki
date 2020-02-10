@@ -4,8 +4,8 @@ class HomeController < ApplicationController
   def index
     @recent_created_wikis = Wiki.order(id: :desc).limit(10)
     if current_user
-      @waching_wikis = current_user&.watches.map{|v| v.wiki}
-      @news = Notification.where(wiki_id: current_user.watches.pluck(:id))
+      @waching_wikis = current_user&.watches.map { |v| v.wiki }
+      @news = Notification.where(wiki_id: current_user.watches.pluck(:wiki_id))
                           .order(updated_at: :desc)
                           .limit(10)
     end
@@ -13,4 +13,4 @@ class HomeController < ApplicationController
 
   def thanks
   end
-end 
+end
