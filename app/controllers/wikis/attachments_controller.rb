@@ -6,11 +6,19 @@ class Wikis::AttachmentsController < ApplicationController
   end
 
   def all
-    @attachments = @wiki.attachments
+    @attachments = @wiki.attachments.order(id: :desc)
     render "all"
   end
 
   def create
+    attachment = @wiki.attachments.new
+    attachment.file = params[:file]
+    attachment.store_file!
+    if attachment.save
+      render body: nil, status: 200
+    else
+      render body: nil, status: 500
+    end
   end
 
   def update
