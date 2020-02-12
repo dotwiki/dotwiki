@@ -38,9 +38,6 @@
             <%= link_to "ページ一覧", wiki_pages_path(@wiki) %>
           </li>
           <li class="nav-item">
-            <%= link_to "アップロード一覧", attachments_path(@wiki) %>
-          </li>
-          <li class="nav-item">
             <%= link_to "このWikiについて", about_wiki_path(@wiki) %>
           </li>
         </ul>
@@ -92,6 +89,14 @@
           <li class="menu-item">
             <%= link_to edit_nav_path(wiki_id: @wiki) do %>
               <i class="icon-navi"></i>サイドバーの設定
+            <% end %>
+          </li>
+          <% end %>
+
+          <% if Wikis::AttachmentsLoyalty.new(current_user, @wiki).edit? %>
+          <li class="menu-item">
+            <%= link_to attachments_path(@wiki) do %>
+              <i class="icon-attach"></i>アップロード一覧
             <% end %>
           </li>
           <% end %>

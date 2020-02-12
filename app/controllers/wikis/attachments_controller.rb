@@ -2,6 +2,7 @@ class Wikis::AttachmentsController < ApplicationController
   before_action :set_wiki
 
   def index
+    authorize! @wiki
     gon.wiki_id = @wiki.id
   end
 
@@ -11,6 +12,7 @@ class Wikis::AttachmentsController < ApplicationController
   end
 
   def create
+    authorize! @wiki
     attachment = @wiki.attachments.new
     attachment.file = params[:file]
     attachment.store_file!
@@ -22,6 +24,7 @@ class Wikis::AttachmentsController < ApplicationController
   end
 
   def update
+    authorize! @wiki
     attachment = Attachment.find(params[:id])
     attachment.shortcode = params[:shortcode]
     if attachment.save
@@ -33,6 +36,7 @@ class Wikis::AttachmentsController < ApplicationController
   end
 
   def destroy
+    authorize! @wiki
   end
 
   private
