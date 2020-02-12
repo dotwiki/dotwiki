@@ -8,7 +8,11 @@ Rails.application.routes.draw do
       post "/upload", to: "wikis#upload"
       resource :nav, only: [:edit, :update], module: "wikis"
       resources :maintainers, except: %i[show new edit], module: "wikis"
-      resources :attachments, except: %i[show], module: "wikis"
+      resources :attachments, except: %i[show], module: "wikis" do
+        collection do
+          get "/all", to: "attachments#all"
+        end
+      end
       resources :pages, except: [:destroy], module: "wikis", as: :wiki_pages do
         resources :requests do
           get "/adjust", to: "requests#adjust"

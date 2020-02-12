@@ -1,57 +1,12 @@
+<%= include_gon %>
+
 <%= buoy_with_title :wiki_attachments, {wiki: @wiki}, title: "#{@wiki.title}のアップロードファイル一覧" %>
 
 <%= render layout: 'wikis/layout' do %>
-  <h2>attachments</h2>
-  
+  <h2>アップロードファイル一覧</h2>
   <div class="container is-attachments">
-    
-    <div id="file_uploader"></div>
-
-    <table>
-      <tbody>
-
-        <% @wiki.attachments.each do |att| %>
-        <tr>
-          <td><img src="<%= att.file.url %>"></td>
-          <td class="desc">
-            <%= form_with(url: attachment_path(@wiki, att), method: :patch) do |form| %>
-              <div class="input-group">
-                <span class="input-group-addon">shortcode</span>
-                <%= form.text_field :shortcode, value: att.shortcode, class: "form-input" %>
-                <%= form.submit class: 'btn btn-primary' %>
-              </div>
-            <% end %>
-          </td>
-        </tr>
-        <% end %>
-
-      </tbody>
-    </table>
+    <div id="attachments_vue"></div>
   </div>
-
-  <script>
-  let target = document.getElementById('file_uploader');
-  function dragOverHandler(event) {
-    event.preventDefault();
-    event.dataTransfer.dropEffect = 'copy';
-  }
-
-  function dropHandler(event) {
-    event.stopPropagation();
-    event.preventDefault();
-    let files = event.dataTransfer.files;
-    Array.prototype.forEach.call(files, function (file) {
-      let reader = new FileReader();
-      reader.addEventListener('load', function (event) {
-        let img = document.createElement('img');
-        img.src = event.target.result;
-        target.appendChild(img);
-      });
-      reader.readAsDataURL(file);
-    });
-}
-
-  target.addEventListener('dragover', dragOverHandler);
-  target.addEventListener('drop', dropHandler);
-  </script>
 <% end %>
+
+<%= javascript_pack_tag "attachments" %>
