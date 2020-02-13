@@ -1,5 +1,7 @@
 <%= render layout: 'wikis/layout' do %>
+<ul>
   <% @wiki.pages.each do |page| %>
-    <%= link_to page.title, wiki_page_path(@wiki, page) %>
+  <li><%= link_to page.title, wiki_page_path(@wiki, page) %>(最終更新日: <%= page.updated_at.strftime("%Y/%m/%d") %>)</li>
   <% end %>
+</ul>
 <% end %>
