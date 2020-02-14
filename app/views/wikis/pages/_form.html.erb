@@ -69,7 +69,7 @@
 
 <script>
 function insert_attachment(el) {
-  cloudinary_path = 'https://res.cloudinary.com/dotwiki/image/upload/'
+  cloudinary_path = 'https://res.cloudinary.com/<%= ENV['CLOUDINARY_CLOUD_NAME'] %>/image/upload/'
   if (!el.match(cloudinary_path)) {
     return el
   }
