@@ -52,3 +52,8 @@ window.addEventListener('DOMContentLoaded', () => {
   let md = document.getElementById('markdown').innerHTML
   document.getElementById('markdown').innerHTML = Marked(md)
 })
+// MEMO turbolinksの場合はこんな感じになる
+// window.addEventListener('turbolinks:load', () => {
+//   let md = document.getElementById('markdown').innerHTML
+//   document.getElementById('markdown').innerHTML = Marked(md)
+// })
