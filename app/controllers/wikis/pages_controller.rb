@@ -20,13 +20,16 @@ class Wikis::PagesController < ApplicationController
     @wiki = Wiki.find(params[:wiki_id])
     @page = @wiki.pages.new
     @page.histories.build
+    @attachments = @wiki.attachments.order(id: :desc)
   end
 
   # GET /pages/1/edit
   def edit
+    gon.page_content = @page.latest_history.content
     @page.histories.build(
       @page.latest_history.attributes.except('id', 'created_at', 'updated_at')
     )
+    @attachments = @wiki.attachments.order(id: :desc)
   end
 
   # POST /pages

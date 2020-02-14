@@ -33,7 +33,7 @@ module.exports = {
   mode: isProd ? 'production' : 'development',
   entry: {
     application: path.resolve(__dirname, 'app/frontend/application.js'),
-    simplemde: path.resolve(__dirname, 'app/frontend/javascripts/simplemde.js'),
+    markdown_editor: path.resolve(__dirname, 'app/frontend/javascripts/markdown_editor.js'),
     wiki_nav: path.resolve(__dirname, 'app/frontend/javascripts/wiki_nav.js'),
     watch_wiki: path.resolve(__dirname, 'app/frontend/javascripts/watch_wiki.js'),
     notice: path.resolve(__dirname, 'app/frontend/javascripts/notice.js'),
@@ -100,6 +100,10 @@ module.exports = {
         test: /\.(sass|scss)$/,
         enforce: 'pre',
         loader: 'import-glob-loader'
+      },
+      {
+        test: /\.(jpe?g|png|gif)$/i,
+        loaders: ['file-loader']
       },
       {
         test: /\.(woff2)$/,

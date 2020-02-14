@@ -19,7 +19,7 @@ class WikisController < ApplicationController
   def upload
     @wiki = Wiki.find(params[:wiki_id])
     attachment = @wiki.attachments.new
-    attachment.file = params[:file]
+    attachment.file = params[:image]
     attachment.store_file!
     attachment.save!
 

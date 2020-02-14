@@ -20,6 +20,8 @@ class Wikis::RequestsController < ApplicationController
     @request = Request.new(
       content: @page.latest_history.content
     )
+    @attachments = @wiki.attachments.order(id: :desc)
+    gon.page_content = @request.content
   end
 
   def create
@@ -43,6 +45,8 @@ class Wikis::RequestsController < ApplicationController
 
   def edit
     authorize! @wiki
+    @attachments = @wiki.attachments.order(id: :desc)
+    gon.page_content = @request.content
   end
 
   def update
@@ -78,6 +82,8 @@ class Wikis::RequestsController < ApplicationController
     before = @page.histories.find(@request.history_id)
     @diffy = Diffy::Diff.new(before.content, @request.content, context: 1,
       include_plus_and_minus_in_html: true).to_s(:html_simple)
+    @attachments = @wiki.attachments.order(id: :desc)
+    gon.page_content = @request.content
   end
 
   def reject
