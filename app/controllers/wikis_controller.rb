@@ -24,7 +24,7 @@ class WikisController < ApplicationController
     attachment.save!
 
     if Rails.env.production?
-      cloudinary_url = "https://res.cloudinary.com/dotwiki/".freeze
+      cloudinary_url = "https://res.cloudinary.com/#{ENV['CLOUDINARY_CLOUD_NAME']}/".freeze
       file_path = cloudinary_url + attachment.file_was
     else
       file_path = attachment.file.url
