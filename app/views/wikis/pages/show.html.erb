@@ -6,7 +6,7 @@
     <% md = @page.latest_history.content %>
     <%# markdown(@page.latest_history.content) %>
     <%#= Kramdown::Document.new(md, {parse_block_html: true}).to_html %>
-    <%== markdown(md) %>
+    <%== sanitize(md) %>
   </div>
 
   <p>

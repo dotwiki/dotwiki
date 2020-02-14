@@ -14,6 +14,10 @@ require('@rails/ujs').start()
 // const images = require.context('./images', true)
 // const imagePath = (name) => images(name, true)
 
+// npm i turbolinksが必要だよー
+// import Turbolinks from 'turbolinks'
+// Turbolinks.start()
+
 import './stylesheets/application.scss'
 import './javascripts/src/sortable'
 
@@ -39,6 +43,12 @@ window.toast = function toast(type, msg) {
   }, 5000)
 }
 
-window.toggleModal = function openModal(target) {
+window.toggleModal = function(target) {
   document.getElementById(target).classList.toggle('active')
 }
+
+import Marked from 'marked'
+window.addEventListener('DOMContentLoaded', () => {
+  let md = document.getElementById('markdown').innerHTML
+  document.getElementById('markdown').innerHTML = Marked(md)
+})
