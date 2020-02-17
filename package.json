@@ -28,6 +28,7 @@
     "sortablejs": "^1.10.2",
     "style-loader": "^1.1.2",
     "svg-loader": "0.0.2",
+    "toastify-js": "^1.6.2",
     "tree-helper": "^1.4.14",
     "tui-editor": "^1.4.10",
     "turbolinks": "^5.2.0",
