@@ -14,33 +14,11 @@ require('@rails/ujs').start()
 // const images = require.context('./images', true)
 // const imagePath = (name) => images(name, true)
 
-import Turbolinks from 'turbolinks'
-Turbolinks.start()
-
 import './stylesheets/application.scss'
 import './javascripts/src/sortable'
 
-window.toast = function toast(type, msg) {
-  let toast = document.getElementById('toast')
-  toast.classList.add(type)
-  let toast_img = document.getElementById('toast_img')
-  let ico = '👍'
-  switch (type) {
-    case 'alert':
-      ico = '😭'
-      break
-    case 'success':
-      ico = '🎉'
-      break
-  }
-  toast_img.innerHTML = ico
-  let toast_msg = document.getElementById('toast_msg')
-  toast_msg.innerHTML = msg
-  toast.classList.toggle('show')
-  setTimeout(function() {
-    toast.className = ''
-  }, 5000)
-}
+import Turbolinks from 'turbolinks'
+Turbolinks.start()
 
 window.toggleModal = function(target) {
   document.getElementById(target).classList.toggle('active')
@@ -88,5 +66,24 @@ document.addEventListener('turbolinks:load', () => {
       },
       function() {}
     ).options(hoverIntentOptions)
+  })
+})
+
+import Toastify from 'toastify-js'
+import 'toastify-js/src/toastify.css'
+window.addEventListener('turbolinks:load', () => {
+  let toast_els = document.querySelectorAll('.toast')
+  toast_els.forEach(tst => {
+    Toastify({
+      text: tst.dataset.toastMsg,
+      duration: 3000,
+      newWindow: true,
+      close: true,
+      gravity: 'top', // `top` or `bottom`
+      position: 'right', // `left`, `center` or `right`
+      backgroundColor: 'linear-gradient(to right, #00b09b, #96c93d)',
+      stopOnFocus: true // Prevents dismissing of toast on hover
+      // onClick: function() {} // Callback after click
+    }).showToast()
   })
 })
