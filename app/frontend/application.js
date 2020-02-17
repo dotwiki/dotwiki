@@ -14,9 +14,8 @@ require('@rails/ujs').start()
 // const images = require.context('./images', true)
 // const imagePath = (name) => images(name, true)
 
-// npm i turbolinksが必要だよー
-// import Turbolinks from 'turbolinks'
-// Turbolinks.start()
+import Turbolinks from 'turbolinks'
+Turbolinks.start()
 
 import './stylesheets/application.scss'
 import './javascripts/src/sortable'
@@ -48,12 +47,9 @@ window.toggleModal = function(target) {
 }
 
 import Marked from 'marked'
-window.addEventListener('DOMContentLoaded', () => {
-  let md = document.getElementById('markdown').innerHTML
-  document.getElementById('markdown').innerHTML = Marked(md)
+window.addEventListener('turbolinks:load', () => {
+  if (document.getElementById('markdown') != null) {
+    let md = document.getElementById('markdown').innerHTML
+    document.getElementById('markdown').innerHTML = Marked(md)
+  }
 })
-// MEMO turbolinksの場合はこんな感じになる
-// window.addEventListener('turbolinks:load', () => {
-//   let md = document.getElementById('markdown').innerHTML
-//   document.getElementById('markdown').innerHTML = Marked(md)
-// })

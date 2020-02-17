@@ -3,10 +3,7 @@
 <%= render layout: 'wikis/layout' do %>
   <h2><%= @page.title %></h2>
   <div id="markdown">
-    <% md = @page.latest_history.content %>
-    <%# markdown(@page.latest_history.content) %>
-    <%#= Kramdown::Document.new(md, {parse_block_html: true}).to_html %>
-    <%== sanitize(md) %>
+    <%== sanitize(@page.latest_history.content) %>
   </div>
 
   <p>
