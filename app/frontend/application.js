@@ -48,9 +48,9 @@ window.toggleModal = function(target) {
 
 import Marked from 'marked'
 window.addEventListener('turbolinks:load', () => {
-  if (document.getElementById('markdown') != null) {
-    let md = document.getElementById('markdown').innerHTML
-    document.getElementById('markdown').innerHTML = Marked(md)
+  let md = document.getElementById('markdown')
+  if (md != null) {
+    md.innerHTML = Marked(md.innerHTML)
   }
 })
 
