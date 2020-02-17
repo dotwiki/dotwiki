@@ -3,4 +3,15 @@
 <%= render layout: 'wikis/layout' do %>
   <h2><%= @page.title %></h2>
   <div id="markdown"><%= raw sanitize(@page.latest_history.content) %></div>
+
+  <hr>
+
+  <p class="title">新着情報</p>
+  <ul class="notifications">
+    <% @wiki.notifications.order(updated_at: :desc).limit(10).each do |notif| %>
+    <li class="">
+      <%= link_to notif.title, notif.path %>
+    </li>
+    <% end %>
+  </ul>
 <% end %>

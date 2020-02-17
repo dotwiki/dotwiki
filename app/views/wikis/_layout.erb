@@ -129,16 +129,5 @@
       </div>
     <% end %>
     
-    <div class="subsidebar">
-      <p class="title">新着情報</p>
-      <ul class="notifications">
-        <% @wiki.notifications.order(updated_at: :desc).limit(10).each do |notif| %>
-        <li class="">
-          <%= link_to notif.title, notif.path %>
-        </li>
-        <% end %>
-      </ul>
-    </div>
-
   </div>
 </div>
