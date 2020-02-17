@@ -2,9 +2,7 @@
 
 <%= render layout: 'wikis/layout' do %>
   <h2><%= @page.title %></h2>
-  <div id="markdown">
-    <%= sanitize(@page.latest_history.content) %>
-  </div>
+  <div id="markdown"><%= raw sanitize(@page.latest_history.content) %></div>
 
   <p>
     <%= link_to new_wiki_page_request_path(@wiki, @page), class: "btn" do %>
