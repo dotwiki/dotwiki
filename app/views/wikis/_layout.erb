@@ -1,6 +1,5 @@
 <div class="columns">
-
-  <div class="side-column">
+  <div class="column col-3 col-xl-12 side-column">
     <div class="off-canvas off-canvas-sidebar-show">
       <div id="sidebar-id" class="sidebar off-canvas-sidebar">
         <ul class="nav">
@@ -39,95 +38,38 @@
             <%= link_to "このWikiについて", about_wiki_path(@wiki) %>
           </li>
         </ul>
+        <% unless current_user %>
+          <div class="signup_user">
+            <h4>🙋‍♀️dotwikiに参加しよう🙋‍♂️</h4>
+            <div class="form-group">
+              <%= link_to auth_at_provider_path(provider: :twitter), class: "btn-original btn-full btn-twitter" do %>
+                <span><i class="icon-twitter mr-1"></i>Login with Twitter</span>
+              <% end %>
+            </div>
+            <div class="form-group">
+              <%= link_to auth_at_provider_path(provider: :discord), class: "btn-original btn-full btn-discord" do %>
+                <span><i class="icon-discord mr-1"></i>Login with Discord</span>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
       </div>
       <a class="off-canvas-overlay" href="#close" data-turbolinks="false"></a>
     </div>
+    
   </div>
 
-  <div class="column col-xl-9 col-lg-8 col-md-7 col-sm-12 col-xs-12 side-column">
+  <div class="column col-9 col-xl-12 wiki_page">
     <a class="btn show-xl" href="#sidebar-id" data-turbolinks="false">
       <i class="icon icon-arrow-right mr-1"></i>メニューを開く
     </a>
     <article>
       <%= yield %>
     </article>
-  </div>
 
-  <div class="column col-2 col-xl-3 col-lg-4 col-md-5 col-sm-12 col-xs-12 side-column">
     <% if current_user %>
-      <div id="watch_wiki_button"></div>
-      <%=  javascript_pack_tag 'watch_wiki', defer: true %>
-
-      <div>
-        <ul class="menu" style="background-color: #a4d2ff;">
-
-          <li class="menu-item d-hide">
-            <a href="#" class="">
-              <i class="icon-inbox"></i>編集リクエスト一覧
-            </a>
-          </li>
-
-          <% if @page && Wikis::PagesLoyalty.new(current_user, @wiki).update? %>
-          <li class="menu-item">
-            <%= link_to edit_wiki_page_path(@wiki, @page) do %>
-              <i class="icon-pencil"></i>ページを編集
-            <% end %>
-          </li>
-          <% end %>
-
-          <% if Wikis::PagesLoyalty.new(current_user, @wiki).create? %>
-          <li class="menu-item">
-            <%= link_to new_wiki_page_path(wiki_id: @wiki) do %>
-              <i class="icon-page-add"></i>ページを作成
-            <% end %>
-          </li>
-          <% end %>
-
-          <% if Wikis::NavsLoyalty.new(current_user, @wiki).edit? %>
-          <li class="menu-item">
-            <%= link_to edit_nav_path(wiki_id: @wiki) do %>
-              <i class="icon-navi"></i>サイドバーの設定
-            <% end %>
-          </li>
-          <% end %>
-
-          <% if Wikis::AttachmentsLoyalty.new(current_user, @wiki).edit? %>
-          <li class="menu-item">
-            <%= link_to attachments_path(@wiki) do %>
-              <i class="icon-attach"></i>アップロード一覧
-            <% end %>
-          </li>
-          <% end %>
-
-          <% if loyalty(@wiki, :wikis).edit? %>
-          <li class="menu-item">
-            <%= link_to edit_wiki_path(@wiki) do %>
-              <i class="icon-sliders"></i>Wikiの設定を変更
-            <% end %>
-          </li>
-          <li class="menu-item">
-            <%= link_to maintainers_path(wiki_id: @wiki) do %>
-              <i class="icon-key"></i>メンテナーの管理
-            <% end %>
-          </li>
-          <% end %>
-        </ul>
-      </div>
-    <% else %>
-      <div class="signup_user">
-        <h4>🙋‍♀️dotwikiに参加しよう🙋‍♂️</h4>
-        <div class="form-group">
-          <%= link_to auth_at_provider_path(provider: :twitter), class: "btn-original btn-full btn-twitter" do %>
-            <span><i class="icon-twitter mr-1"></i>Login with Twitter</span>
-          <% end %>
-        </div>
-        <div class="form-group">
-          <%= link_to auth_at_provider_path(provider: :discord), class: "btn-original btn-full btn-discord" do %>
-            <span><i class="icon-discord mr-1"></i>Login with Discord</span>
-          <% end %>
-        </div>
-      </div>
+      <%= render "wikis/control_bar" %>
     <% end %>
-    
   </div>
 </div>
+

@@ -17,6 +17,7 @@ function collectWhitelistPatternsChildren() {
     /CodeMirror/,
     /editor/,
     /cm/,
+    /hide/,
     /toast/,
     /avatar/,
     /diff/,

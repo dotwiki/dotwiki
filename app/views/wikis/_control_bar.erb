@@ -1,0 +1,54 @@
+<div class="control_bar">
+  <ul class="menu">
+    <li class="menu-item d-hide">
+      <a href="#" class="">
+        <i class="icon-inbox"></i>編集リクエスト一覧
+      </a>
+    </li>
+
+    <% if @page && Wikis::PagesLoyalty.new(current_user, @wiki).update? %>
+    <li class="menu-item">
+      <%= link_to edit_wiki_page_path(@wiki, @page) do %>
+        <i class="icon-pencil"></i>
+      <% end %>
+    </li>
+    <% end %>
+
+    <% if Wikis::PagesLoyalty.new(current_user, @wiki).create? %>
+    <li class="menu-item">
+      <%= link_to new_wiki_page_path(wiki_id: @wiki) do %>
+        <i class="icon-page-add"></i>
+      <% end %>
+    </li>
+    <% end %>
+
+    <% if Wikis::NavsLoyalty.new(current_user, @wiki).edit? %>
+    <li class="menu-item">
+      <%= link_to edit_nav_path(wiki_id: @wiki) do %>
+        <i class="icon-navi"></i>
+      <% end %>
+    </li>
+    <% end %>
+
+    <% if Wikis::AttachmentsLoyalty.new(current_user, @wiki).edit? %>
+    <li class="menu-item">
+      <%= link_to attachments_path(@wiki) do %>
+        <i class="icon-attach"></i>
+      <% end %>
+    </li>
+    <% end %>
+
+    <% if loyalty(@wiki, :wikis).edit? %>
+    <li class="menu-item">
+      <%= link_to edit_wiki_path(@wiki) do %>
+        <i class="icon-sliders"></i>
+      <% end %>
+    </li>
+    <li class="menu-item">
+      <%= link_to maintainers_path(wiki_id: @wiki) do %>
+        <i class="icon-key"></i>
+      <% end %>
+    </li>
+    <% end %>
+  </ul>
+</div>

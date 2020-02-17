@@ -61,9 +61,16 @@ $navbar-height: 36px;
 }
 
 .signup_user {
-  background-color: #f8ff8c;
-  box-shadow: 5px 6px 0px #ffdc8c;
+  background-color: #fdffe0;
+  // box-shadow: 5px 6px 0px #ffdc8c;
   padding: 10px;
   border-radius: 5px;
+  margin-top: 1rem;
   margin-bottom: 1rem;
+  margin-left: 8px;
+  margin-right: 8px;
+  h4 {
+    font-size: 1.1rem;
+    text-align: center;
+  }
 }

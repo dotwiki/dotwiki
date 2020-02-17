@@ -13,6 +13,9 @@ article {
     border-collapse: collapse;
     border: solid 1px #ddd;
     border-spacing: 0;
+    tbody {
+      overflow-y: scroll;
+    }
   }
   tr:hover {
     background: #eee;
@@ -35,6 +38,51 @@ article {
   }
   thead th {
     border-bottom: solid 2px #ccc;
+  }
+
+  $sortable-stripe-color: #e4e4e4;
+  $sortable-th-color: #fff;
+  $sortable-th-bg: #808080;
+  $sortable-th-color-active: #000;
+
+  .sortable {
+    // border-spacing: 0;
+
+    thead {
+      td {
+        font-weight: bold;
+        text-align: center;
+        text-transform: uppercase;
+      }
+    }
+
+    th {
+      cursor: pointer;
+      font-weight: normal;
+      text-align: center;
+      text-transform: capitalize;
+      vertical-align: baseline;
+      white-space: nowrap;
+      color: $sortable-th-color-active;
+      &::after {
+        color: inherit;
+        content: " ↕";
+      }
+      &.dir-d {
+        color: $sortable-th-color-active;
+        &::after {
+          color: inherit;
+          content: " ↓";
+        }
+      }
+      &.dir-u {
+        color: $sortable-th-color-active;
+        &::after {
+          color: inherit;
+          content: " ↑";
+        }
+      }
+    }
   }
 
   .flip {

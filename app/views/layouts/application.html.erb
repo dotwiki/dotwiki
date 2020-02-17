@@ -17,7 +17,7 @@
 
 <body>
   <header>
-    <div class="container">
+    <div class="container grid-xl">
       <div class="columns wiki_header">
         <div class="column col-auto">
           <a href="/" class="brand navbar-brand"><%= image_tag 'logo.svg', class: "brand-logo" %></a>
@@ -76,9 +76,19 @@
     </div>
   </header>
 
-  <div class="container is-main">
-    <div class="breadcrumb_container">
-      <%= render partial: 'breadcrumbs/buoys' %>
+  <div class="container is-main grid-xl">
+    <div class="columns">
+      <div class="column">
+        <div class="breadcrumb_container">
+          <%= render partial: 'breadcrumbs/buoys' %>
+        </div>
+      </div>
+      <div class="column col-auto">
+        <% if current_user %>
+          <div id="watch_wiki_button"></div>
+          <%=  javascript_pack_tag 'watch_wiki', defer: true %>
+        <% end %>
+      </div>
     </div>
     <%= yield %>
   </div>

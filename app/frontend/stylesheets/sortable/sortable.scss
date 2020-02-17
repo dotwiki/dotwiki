@@ -4,7 +4,7 @@ $sortable-th-bg: #808080;
 $sortable-th-color-active: #000;
 
 .sortable {
-  border-spacing: 0;
+  // border-spacing: 0;
 
   thead {
     td {
@@ -34,20 +34,20 @@ $sortable-th-color-active: #000;
     color: $sortable-th-color-active;
     &::after {
       color: inherit;
-      content: ' ↕';
+      content: " ↕";
     }
     &.dir-d {
       color: $sortable-th-color-active;
       &::after {
         color: inherit;
-        content: ' ↓';
+        content: " ↓";
       }
     }
     &.dir-u {
       color: $sortable-th-color-active;
       &::after {
         color: inherit;
-        content: ' ↑';
+        content: " ↑";
       }
     }
   }

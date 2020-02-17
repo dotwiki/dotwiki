@@ -1,0 +1,19 @@
+.wiki_page {
+  position: relative;
+
+  .control_bar {
+    @media (max-width: $off-canvas-breakpoint) {
+      ul.menu {
+        background-color: #e2e2e2;
+        li {
+          display: inline-block;
+        }
+      }
+    }
+    @media (min-width: $off-canvas-breakpoint) {
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+  }
+}
