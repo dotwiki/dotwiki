@@ -29,6 +29,7 @@
     "svg-loader": "0.0.2",
     "tree-helper": "^1.4.14",
     "tui-editor": "^1.4.10",
+    "turbolinks": "^5.2.0",
     "url-loader": "^3.0.0",
     "vue": "^2.6.11",
     "vue-draggable-nested-tree": "^2.2.18",
