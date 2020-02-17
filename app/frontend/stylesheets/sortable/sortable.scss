@@ -27,27 +27,27 @@ $sortable-th-color-active: #000;
     // color: $sortable-th-color;
     cursor: pointer;
     font-weight: normal;
-    text-align: left;
+    text-align: center;
     text-transform: capitalize;
     vertical-align: baseline;
     white-space: nowrap;
     color: $sortable-th-color-active;
     &::after {
       color: inherit;
-      content: " ↕";
+      content: ' ↕';
     }
     &.dir-d {
       color: $sortable-th-color-active;
       &::after {
         color: inherit;
-        content: " ↓";
+        content: ' ↓';
       }
     }
     &.dir-u {
       color: $sortable-th-color-active;
       &::after {
         color: inherit;
-        content: " ↑";
+        content: ' ↑';
       }
     }
   }

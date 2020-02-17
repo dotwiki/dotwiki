@@ -25,10 +25,24 @@ window.toggleModal = function(target) {
 }
 
 import Marked from 'marked'
+const renderer = new Marked.Renderer()
+renderer.table = function(header, body) {
+  const regex = /\:(.*?)\:/
+  const addon = header.match(regex) ? header.match(regex)[1] : ''
+  header = header.replace(/(\:.*?\:)/, '')
+
+  return `
+    <table class="table ${addon}">
+      <thead>
+        ${header}
+      </thead>
+      ${body}
+    </table>`
+}
 window.addEventListener('turbolinks:load', () => {
   let md = document.getElementById('markdown')
   if (md != null) {
-    md.innerHTML = Marked(md.innerHTML)
+    md.innerHTML = Marked(md.innerHTML, { renderer: renderer })
   }
 })
 

@@ -3,7 +3,7 @@
 <%= render layout: 'wikis/layout' do %>
   <h2><%= @page.title %></h2>
   <div id="markdown">
-    <%== sanitize(@page.latest_history.content) %>
+    <%= sanitize(@page.latest_history.content) %>
   </div>
 
   <p>
