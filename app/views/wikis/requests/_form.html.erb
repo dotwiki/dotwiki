@@ -1,6 +1,14 @@
 <%= form_with(model: [@wiki, @page, @request], local: true, html: {onsubmit: "transfer_to_textarea()"}) do |form| %>
   <%= render partial: 'shared/form_error', locals: {form_object: @request} %>
 
+  <div id="loading">
+    <div class="spinner">
+      <div class="bounce1"></div>
+      <div class="bounce2"></div>
+      <div class="bounce3"></div>
+    </div>
+  </div>
+
   <div id="editorSection"></div>
   <div class="form-group">
     <%= form.text_area :content, class: "d-hide", id: "content_area", data: {wiki_id: @wiki.id} %>

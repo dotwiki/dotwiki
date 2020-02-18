@@ -69,3 +69,5 @@ editor.eventManager.listen('InsertAttachment', () => {
 })
 
 window.tui = editor
+
+document.querySelector('#loading').remove()
