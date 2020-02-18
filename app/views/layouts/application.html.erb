@@ -84,10 +84,6 @@
         </div>
       </div>
       <div class="column col-auto">
-        <% if current_user %>
-          <div id="watch_wiki_button"></div>
-          <%=  javascript_pack_tag 'watch_wiki', defer: true %>
-        <% end %>
       </div>
     </div>
     <%= yield %>

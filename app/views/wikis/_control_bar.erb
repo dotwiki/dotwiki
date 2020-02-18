@@ -1,4 +1,10 @@
 <div class="control_bar">
+
+  <% if current_user %>
+    <div id="watch_wiki_button"></div>
+    <%= javascript_pack_tag 'watch_wiki' %>
+  <% end %>
+
   <ul class="menu">
     <li class="menu-item d-hide">
       <a href="#" class="">
