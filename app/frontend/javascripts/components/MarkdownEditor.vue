@@ -23,7 +23,7 @@
                 <div class="panel-title"></div>
               </div>
               <div class="panel-body">
-                <img v-for="atc in attachments" :src="atc.file" @click="insertImage(atc.file)" />
+                <img v-for="atc in attachments" :src="atc.thumbnail" @click="insertImage(atc.file)" />
               </div>
             </div>
           </div>
@@ -130,7 +130,7 @@ export default {
       })
     },
     insertImage: function(el) {
-      if (!el.match(gon.cloudinary_pat)) {
+      if (!el.match(gon.cloudinary_path)) {
         if (this.$refs.tuiEditor.editor.currentMode == 'wysiwyg') {
           result = `<img src="${path}" alt="">`
           this.$refs.tuiEditor.editor.wwEditor.replaceSelection(el)
@@ -155,7 +155,7 @@ export default {
 
       let path = el
       if (opt.length !== 0) {
-        path = gon.cloudinary_pat + opt.join(',') + '/' + path.replace(cloudinary_path, '')
+        path = gon.cloudinary_path + opt.join(',') + '/' + path.replace(gon.cloudinary_path, '')
       }
 
       let result
