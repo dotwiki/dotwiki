@@ -1,3 +1,12 @@
   <% flash.each do |toast_type, toast_msg| %>
-    toast('<%= toast_type %>', '<%= toast_msg %>')
+    Toastify({
+      text: toast_msg,
+      duration: 3000,
+      newWindow: true,
+      close: true,
+      gravity: 'top',
+      position: 'right',
+      backgroundColor: 'linear-gradient(to right, #00b09b, #96c93d)',
+      stopOnFocus: true
+    }).showToast()
   <% end %>

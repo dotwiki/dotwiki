@@ -1,5 +1,5 @@
 <template>
-  <div id="notice" class="">
+  <div id="notice" class>
     <transition-group name="notice-list" tag="ul">
       <li v-for="(notice, idx) in notices" :key="notice.date" class="notice-list-item">
         <a :href="notice.path">{{ notice.title }}</a>
@@ -28,7 +28,16 @@ export default {
         if (res.status == 200) {
           this.notices.splice(idx, 1)
         } else {
-          toast('alert', 'エラーが発生しました')
+          Toastify({
+            text: 'エラーが発生しました',
+            duration: 3000,
+            newWindow: true,
+            close: true,
+            gravity: 'top',
+            position: 'right',
+            backgroundColor: 'linear-gradient(to right, #00b09b, #96c93d)',
+            stopOnFocus: true
+          }).showToast()
         }
       })
     },

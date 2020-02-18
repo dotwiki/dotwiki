@@ -16,29 +16,33 @@
         </label>
       </div>
     </div>
-    <table>
-      <tbody>
-        <tr v-for="atc in attachments">
-          <td>
-            <img :src="atc.file" class="fit_image" />
-          </td>
-          <td class="shortcode_td">
-            <form @submit.prevent>
-              <label for>
-                shortcode:
-                <input
-                  type="text"
-                  class="form-input"
-                  :value="atc.shortcode"
-                  :data-record="atc.id"
-                  @keydown.enter="change_shortcode"
-                />
-              </label>
-            </form>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+
+    <div class="tile tile-centered" v-for="atc in attachments">
+      <div class="tile-icon">
+        <div class="example-tile-icon">
+          <img :src="atc.file" class="fit_image" />
+        </div>
+      </div>
+      <div class="tile-content">
+        <div class="tile-title">
+          <form @submit.prevent>
+            <input
+              type="text"
+              class="form-input"
+              :value="atc.shortcode"
+              :data-record="atc.id"
+              @keydown.enter="change_shortcode"
+            />
+          </form>
+        </div>
+        <small class="tile-subtitle text-gray">{{atc.size}} · {{atc.created_at}}</small>
+      </div>
+      <div class="tile-action">
+        <button class="btn btn-error" @click="removeAttachment(atc.id)">
+          <i class="icon-trash"></i>
+        </button>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -46,6 +50,7 @@
 import { csrfToken } from '@rails/ujs'
 import axios from 'axios'
 axios.defaults.headers.common['X-CSRF-Token'] = csrfToken()
+import Toastify from 'toastify-js'
 
 export default {
   data: function() {
@@ -64,29 +69,25 @@ export default {
       })
     },
     change_shortcode: function(e) {
-      if (e.keyCode !== 13) return
-      let sc = e.target.value
-      if (!sc.match(/^[0-9a-zA-Z\_]*$/)) {
-        toast('alert', '利用できない文字が含まれています')
-        return
-      }
-      let params = { shortcode: sc }
-      axios
-        .patch(`/wikis/${gon.wiki_id}/attachments/${e.target.dataset.record}`, params)
-        .then(res => {
-          if (res.status == 200) {
-            this.sync_attachments()
-            toast('notice', 'shortcodeを更新しました')
-            // TODO いつか重複だけは教えてあげたい
-            // } else if (res.status == 204) {
-            //   this.sync_attachments()
-            //   toast('alert', '既に登録されているshortcodeです')
-          }
-        })
-        .catch(err => {
-          this.sync_attachments()
-          toast('alert', 'エラーが発生しました')
-        })
+      // if (e.keyCode !== 13) return
+      // let sc = e.target.value
+      // if (!sc.match(/^[0-9a-zA-Z\_]*$/)) {
+      //   toast('alert', '利用できない文字が含まれています')
+      //   return
+      // }
+      // let params = { shortcode: sc }
+      // axios
+      //   .patch(`/wikis/${gon.wiki_id}/attachments/${e.target.dataset.record}`, params)
+      //   .then(res => {
+      //     if (res.status == 200) {
+      //       this.sync_attachments()
+      //       toast('notice', 'shortcodeを更新しました')
+      //     }
+      //   })
+      //   .catch(err => {
+      //     this.sync_attachments()
+      //     toast('alert', 'エラーが発生しました')
+      //   })
     },
     checkDrag: function(event, key, status) {
       if (status && event.dataTransfer.types == 'text/plain') {
@@ -120,6 +121,38 @@ export default {
           this.sync_attachments()
           toast('alert', 'エラーが発生しました')
         })
+    },
+    removeAttachment: function(atc_id) {
+      if (window.confirm('本当に削除してもよろしいですか？')) {
+        axios
+          .delete(`/wikis/${gon.wiki_id}/attachments/${atc_id}`)
+          .then(res => {
+            this.sync_attachments()
+            Toastify({
+              text: '削除しました',
+              duration: 3000,
+              newWindow: true,
+              close: true,
+              gravity: 'top',
+              position: 'right',
+              backgroundColor: 'linear-gradient(to right, #00b09b, #96c93d)',
+              stopOnFocus: true
+            }).showToast()
+          })
+          .catch(err => {
+            this.sync_attachments()
+            Toastify({
+              text: 'エラーが発生しました',
+              duration: 3000,
+              newWindow: true,
+              close: true,
+              gravity: 'top',
+              position: 'right',
+              backgroundColor: 'linear-gradient(to right, #00b09b, #96c93d)',
+              stopOnFocus: true
+            }).showToast()
+          })
+      }
     }
   }
 }
@@ -140,8 +173,8 @@ export default {
 }
 
 .fit_image {
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
   object-fit: contain;
 }
 

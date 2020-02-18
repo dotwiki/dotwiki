@@ -37,6 +37,8 @@ class Wikis::AttachmentsController < ApplicationController
 
   def destroy
     authorize! @wiki
+    @wiki.attachments.find(params[:id]).destroy
+    render body: nil, status: 204
   end
 
   private
