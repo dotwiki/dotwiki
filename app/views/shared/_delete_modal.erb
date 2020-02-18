@@ -1,14 +1,14 @@
 <%# render partial: 'shared/delete_modal', locals: {link: '全てのユーザー情報を削除する', title: '本当に削除しますか？', content: 'ユーザーの削除をすると、アップロードファイルやプレイリストなど全ての情報が削除され、今後アクセスする事ができなくなります。本当に削除してもよいですか？', object: @user} %>
 
 <% target = "modal-#{SecureRandom.hex(8)}" %>
-<a class="btn btn-error" onclick="toggleModal('<%= target %>')"><%= link %></a>
+<a class="btn btn-error" onclick="toggleModal('<%= target %>')" data-turbolinks="false"><%= link %></a>
 
 <div class="modal" id="<%= target %>">
-  <a href="#close" class="modal-overlay" onclick="toggleModal('<%= target %>')"></a>
+  <span class="modal-overlay" onclick="toggleModal('<%= target %>')"></span>
   <div class="modal-container">
     <div class="modal-header">
-      <a href="#close" class="btn btn-clear float-right" onclick="toggleModal('<%= target %>')">
-      </a>
+      <span class="btn btn-clear float-right" onclick="toggleModal('<%= target %>')">
+      </span>
       <div class="modal-title h5"><%= title %></div>
     </div>
     <div class="modal-body">

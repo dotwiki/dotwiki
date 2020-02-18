@@ -75,6 +75,7 @@ class Wikis::PagesController < ApplicationController
       @wiki = Wiki.find(params[:wiki_id])
       gon.wiki_id = @wiki.id
       gon.wathing_wiki = current_user.watches.find_by(wiki_id: @wiki.id) if current_user
+      gon.cloudinary_path = "https://res.cloudinary.com/#{ENV['CLOUDINARY_CLOUD_NAME']}/image/upload/"
     end
     
     def set_page

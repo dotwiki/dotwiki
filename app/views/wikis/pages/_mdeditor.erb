@@ -2,49 +2,6 @@
 <%= stylesheet_pack_tag 'markdown_editor' %>
 <%= javascript_pack_tag 'markdown_editor' %>
 
-<div class="modal" id="attachments_modal">
-  <a class="modal-overlay" onclick="toggleModal('attachments_modal')"></a>
-  <div class="modal-container">
-    <div class="modal-header">
-      <a class="btn btn-clear float-right" onclick="toggleModal('attachments_modal')"></a>
-      <div class="modal-title h5">アップロードファイル一覧</div>
-    </div>
-    <div class="modal-body">
-      <div class="content">
-
-        <div class="panel">
-          <div class="panel-header">
-            <div class="panel-title"></div>
-          </div>
-          <div class="panel-body">
-          <% @attachments.each do |atc| %>
-            <%= image_tag resize_climage(atc.file.url, "c_fill,w_50,h_50"), onclick: "insert_attachment('#{atc.file.url}')" %>
-          <% end %>
-          </div>
-        </div>
-
-      </div>
-    </div> <!--modal-body-->
-    <div class="modal-footer">
-      <div class="columns">
-        <div class="column">
-          <div class="input-group">
-            <span class="input-group-addon">Width</span>
-            <input type="number" id="insert_img_width" class="form-input" placeholder="50">
-          </div>
-        </div>
-        <div class="column">
-          <div class="input-group">
-            <span class="input-group-addon">Height</span>
-            <input type="number" id="insert_img_height" class="form-input" placeholder="50">
-          </div>
-        </div>
-      </div>
-      画像クリックで挿入できます
-    </div>
-  </div>
-</div>
-
 <script>
 function insert_attachment(el) {
   cloudinary_path = 'https://res.cloudinary.com/<%= ENV['CLOUDINARY_CLOUD_NAME'] %>/image/upload/'

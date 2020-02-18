@@ -1,5 +1,3 @@
-
-
 <%= form_with(model: [@wiki, page], local: true, html: {onsubmit: "transfer_to_textarea()"}) do |form| %>
   <%= render partial: 'shared/form_error', locals: {form_object: page} %>
 
@@ -16,7 +14,7 @@
     </div>
   </div>
 
-  <div id="editorSection"></div>
+  <div id="markdown_editor"></div>
   <%= form.fields_for :histories, @page.histories.last do |cform| %>
     <div class="form-group">
       <%= cform.text_area :content, class: "d-hide", id: "content_area", data: {wiki_id: @wiki.id} %>
