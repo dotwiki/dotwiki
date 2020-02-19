@@ -32,16 +32,16 @@
         <div class="modal-footer">
           <div class="columns">
             <div class="column">
-              <div class="input-group">
+              <form onsubmit="return false;" class="input-group">
                 <span class="input-group-addon">Width</span>
-                <input type="number" class="form-input" :model="insertImgWidth" placeholder="50" />
-              </div>
+                <input type="number" v-model.number="insertImgWidth" class="form-input" />
+              </form>
             </div>
             <div class="column">
-              <div class="input-group">
+              <form onsubmit="return false;" class="input-group">
                 <span class="input-group-addon">Height</span>
-                <input type="number" class="form-input" :model="insertImgHeight" placeholder="50" />
-              </div>
+                <input type="number" v-model.number="insertImgHeight" class="form-input" />
+              </form>
             </div>
           </div>画像クリックで挿入できます
         </div>
@@ -69,8 +69,8 @@ export default {
     return {
       page_content: gon.page_content,
       attachments: [],
-      insertImgWidth: '',
-      insertImgHeight: '',
+      insertImgWidth: 50,
+      insertImgHeight: 50,
       editorOptions: {
         initialEditType: 'wysiwyg',
         minHeight: '500px',
@@ -132,22 +132,23 @@ export default {
     insertImage: function(el) {
       if (!el.match(gon.cloudinary_path)) {
         if (this.$refs.tuiEditor.editor.currentMode == 'wysiwyg') {
-          result = `<img src="${path}" alt="">`
-          this.$refs.tuiEditor.editor.wwEditor.replaceSelection(el)
-          this.transfer_to_textarea()
+          let result = `<img src="${el}" alt="">`
+          this.$refs.tuiEditor.editor.wwEditor.replaceSelection(result)
         } else {
-          result = `![](${path})`
-          this.$refs.tuiEditor.editor.mdEditor.replaceSelection(el)
-          this.transfer_to_textarea()
+          let result = `![](${el})`
+          this.$refs.tuiEditor.editor.mdEditor.replaceSelection(result)
         }
+        this.transfer_to_textarea()
+        return null
       }
 
       let opt = []
+
       if (this.insertImgWidth.length !== 0) {
-        opt.push('w_' + insert_img_width)
+        opt.push('w_' + this.insertImgWidth)
       }
       if (this.insertImgHeight.length !== 0) {
-        opt.push('h_' + insert_img_height)
+        opt.push('h_' + this.insertImgHeight)
       }
       if (opt.length === 2) {
         opt.unshift('c_fit')
