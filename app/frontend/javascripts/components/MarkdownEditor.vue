@@ -106,13 +106,13 @@ export default {
           }
         ],
         hooks: {
-          addImageBlobHook: this.addImage.bind(this)
+          addImageBlobHook: this.uploadImage.bind(this)
         }
       }
     }
   },
   methods: {
-    addImage: function(blob, callback) {
+    uploadImage: function(blob, callback) {
       const data = new FormData()
       data.append('image', blob)
       axios
