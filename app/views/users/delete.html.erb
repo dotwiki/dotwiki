@@ -1,4 +1,3 @@
-<div class="container grid-md">
 <%= render layout: 'setting_menu', locals: {user: @user, active: 'delete_user'} do %>
   <%= form_with(model: @user, local: true) do |form| %>
     <%= render partial: 'shared/form_error', locals: {form_object: @user} %>
@@ -6,4 +5,3 @@
   
   <%= render partial: 'shared/delete_modal', locals: {link: '全てのユーザー情報を削除する', title: '本当に削除しますか？', content: 'ユーザーの削除をすると、アップロードファイルやプレイリストなど全ての情報が削除され、今後アクセスする事ができなくなります。本当に削除してもよいですか？', object: @user} %>
 <% end %>
-</div>
