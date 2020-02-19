@@ -1,7 +1,7 @@
 class FileUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
   
-  if Rails.env.production?
+  if ENV["CLOUDINARY_API_KEY"].present?
     include Cloudinary::CarrierWave
   else
     storage :file
