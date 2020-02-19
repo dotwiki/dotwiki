@@ -1,5 +1,5 @@
 <template>
-  <div id="markdown_editor" data-turbolinks="false">
+  <div id="markdown_editor">
     <editor
       :value="page_content"
       :options="editorOptions"
@@ -22,7 +22,7 @@
               <div class="panel-header">
                 <div class="panel-title"></div>
               </div>
-              <div class="panel-body">
+              <div class="panel-body is-attachmens-list">
                 <img v-for="atc in attachments" :src="atc.thumbnail" @click="insertImage(atc.file)" />
               </div>
             </div>
@@ -139,6 +139,7 @@ export default {
           this.$refs.tuiEditor.editor.mdEditor.replaceSelection(result)
         }
         this.transfer_to_textarea()
+        document.getElementById('attachments_modal').classList.toggle('active')
         return null
       }
 
@@ -168,6 +169,7 @@ export default {
         this.$refs.tuiEditor.editor.mdEditor.replaceSelection(result)
       }
       this.transfer_to_textarea()
+      document.getElementById('attachments_modal').classList.toggle('active')
     },
     transfer_to_textarea: function() {
       let content_area = document.getElementById('content_area')
@@ -178,12 +180,18 @@ export default {
     this.getAttachments()
     this.$refs.tuiEditor.editor.eventManager.addEventType('InsertAttachment')
     this.$refs.tuiEditor.editor.eventManager.listen('InsertAttachment', () => {
-      let modal = document.getElementById('attachments_modal')
-      modal.classList.toggle('active')
+      document.getElementById('attachments_modal').classList.toggle('active')
     })
   }
 }
 </script>
 
 <style lang="scss">
+#markdown_editor {
+  .is-attachmens-list {
+    img {
+      cursor: pointer;
+    }
+  }
+}
 </style>
