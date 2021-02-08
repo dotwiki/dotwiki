@@ -55,7 +55,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'sorcery', github: 'Sorcery/sorcery'
 gem 'warning'
 gem 'pry'
-gem 'carrierwave', '~> 1.3.1'
+gem 'carrierwave', '~> 1.3.2'
 gem 'cloudinary' , '1.11.1'
 gem 'identicon'
 gem 'gon'
